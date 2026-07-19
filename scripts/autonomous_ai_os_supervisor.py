@@ -150,7 +150,6 @@ class AIOSSupervisor:
         
         # Save metrics to report data file
         with open(os.path.join(os.path.dirname(__file__), "..", "docs", "execution_metrics.json"), "w") as f:
-            json.dumps(self.metrics, f, indent=2) if hasattr(json, 'dumps') else None
             json.dump(self.metrics, f, indent=2)
             
         logger.info("Metrics written to docs/execution_metrics.json")

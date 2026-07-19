@@ -1,0 +1,56 @@
+{
+  "total_tasks_processed": 6,
+  "total_latency_seconds": 102.93,
+  "estimated_token_savings": 7772,
+  "llm_api_cost_usd": 0.0,
+  "tasks": [
+    {
+      "chunk_id": "CHUNK-1",
+      "title": "PostgreSQL JPA AdminUserEntity",
+      "status": "SUCCESS",
+      "latency_sec": 12.11,
+      "model": "qwen2.5:7b",
+      "target_file": "src/main/java/org/yt/entity/AdminUserEntity.java"
+    },
+    {
+      "chunk_id": "CHUNK-2",
+      "title": "PostgreSQL JPA AuditLogEntity",
+      "status": "SUCCESS",
+      "latency_sec": 11.88,
+      "model": "qwen2.5:7b",
+      "target_file": "src/main/java/org/yt/entity/AuditLogEntity.java"
+    },
+    {
+      "chunk_id": "CHUNK-3",
+      "title": "Spring Data AdminUserRepository",
+      "status": "SUCCESS",
+      "latency_sec": 3.17,
+      "model": "qwen2.5:7b",
+      "target_file": "src/main/java/org/yt/repository/AdminUserRepository.java"
+    },
+    {
+      "chunk_id": "CHUNK-4",
+      "title": "botanixUI TypeScript API Service Client",
+      "status": "SUCCESS",
+      "latency_sec": 14.72,
+      "model": "qwen2.5:7b",
+      "target_file": "src/botanixUI/botanixUiService.ts"
+    },
+    {
+      "chunk_id": "CHUNK-5",
+      "title": "botanixUI React Admin Dashboard Component",
+      "status": "SUCCESS",
+      "latency_sec": 37.63,
+      "model": "qwen2.5:7b",
+      "target_file": "src/botanixUI/BotanixAdminDashboard.tsx"
+    },
+    {
+      "chunk_id": "CHUNK-6",
+      "title": "JUnit 5 JPA Repository Unit Test",
+      "status": "SUCCESS",
+      "latency_sec": 23.42,
+      "model": "qwen2.5:7b",
+      "target_file": "src/test/java/org/yt/repository/AdminRepositoryTest.java"
+    }
+  ]
+}
