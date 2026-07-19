@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RoutingDecision",
+  "type": "object",
+  "required": ["id", "schema_version", "prompt_packet_id", "policy_decision_id", "selected_model_id", "reason", "token_budget", "cost_ceiling", "fallback_model_ids", "confidence", "decided_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "prompt_packet_id": { "type": "string" },
+    "policy_decision_id": { "type": "string" },
+    "selected_model_id": { "type": "string" },
+    "reason": { "type": "string" },
+    "token_budget": { "type": "integer", "minimum": 0 },
+    "cost_ceiling": { "type": "number", "minimum": 0 },
+    "fallback_model_ids": { "type": "array", "items": { "type": "string" } },
+    "historical_reliability": { "type": "number", "minimum": 0, "maximum": 1 },
+    "hallucination_risk": { "enum": ["low", "medium", "high", "unknown"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "decided_at": { "type": "string", "format": "date-time" }
+  }
+}

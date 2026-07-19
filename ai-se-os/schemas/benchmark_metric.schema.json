@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BenchmarkMetric",
+  "type": "object",
+  "required": ["id", "schema_version", "benchmark_id", "task_taxonomy", "metric_name", "numerator_definition", "denominator_definition", "unit", "value", "sample_size", "source_artifact_ids", "recorded_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "benchmark_id": { "type": "string" },
+    "task_taxonomy": { "type": "string" },
+    "metric_name": { "type": "string" },
+    "numerator_definition": { "type": "string" },
+    "denominator_definition": { "type": "string" },
+    "unit": { "type": "string" },
+    "value": { "type": "number" },
+    "baseline_value": { "type": "number" },
+    "target_value": { "type": "number" },
+    "sample_size": { "type": "integer", "minimum": 1 },
+    "time_window": { "type": "string" },
+    "source_artifact_ids": { "type": "array", "items": { "type": "string" } },
+    "recorded_at": { "type": "string", "format": "date-time" }
+  }
+}

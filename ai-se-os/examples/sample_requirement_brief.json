@@ -1,0 +1,22 @@
+{
+  "id": "REQ-001",
+  "schema_version": "1.0.0",
+  "repository_id": "example-repository",
+  "correlation_id": "corr-example-001",
+  "user_outcome": "Add a batch approval screen with validation and audit history.",
+  "scope": ["analyze impacted inventory and approval modules", "plan UI, API, service, and tests"],
+  "non_scope": ["production deployment"],
+  "assumptions": ["approval workflow already exists or will be created as a separate task"],
+  "unknowns": ["which roles can approve batches"],
+  "affected_modules": ["inventory", "approval", "audit"],
+  "acceptance_criteria": ["approved batches are persisted", "audit entries are visible", "unauthorized users cannot approve"],
+  "risk": "medium",
+  "complexity": "medium",
+  "token_budget": 4000,
+  "rollback_impact": "low",
+  "confidence": 0.78,
+  "confidence_basis": ["user request", "repository index revision abc123"],
+  "producer": "requirement-analyzer",
+  "provenance": ["request:example-001", "repository-index:idx-001"],
+  "published_at": "2026-07-18T10:00:00Z"
+}

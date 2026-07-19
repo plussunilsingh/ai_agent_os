@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SchedulerLease",
+  "type": "object",
+  "required": ["id", "schema_version", "task_id", "attempt_id", "owner", "repository_id", "workspace_id", "worktree_id", "resources", "issued_at", "expires_at", "heartbeat_interval_seconds", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "task_id": { "type": "string" },
+    "attempt_id": { "type": "string" },
+    "owner": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "workspace_id": { "type": "string" },
+    "worktree_id": { "type": "string" },
+    "branch": { "type": "string" },
+    "resources": { "type": "array", "items": { "type": "string" } },
+    "issued_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "heartbeat_interval_seconds": { "type": "integer", "minimum": 1 },
+    "status": { "enum": ["active", "expired", "released", "revoked"] },
+    "policy_decision_id": { "type": "string" }
+  }
+}

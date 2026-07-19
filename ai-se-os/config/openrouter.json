@@ -1,0 +1,58 @@
+{
+  "$schema": "../schemas/artifact_envelope.schema.json",
+  "config_version": "1.0",
+  "provider": "openrouter",
+  "api_base_url": "https://openrouter.ai/api/v1",
+  "api_key_env_var": "OPENROUTER_API_KEY",
+  "default_headers": {
+    "HTTP-Referer": "https://botanixui.app",
+    "X-Title": "BotanixUI-AI-SE-OS"
+  },
+  "rate_limiting": {
+    "max_requests_per_minute": 60,
+    "max_tokens_per_minute": 100000,
+    "retry_on_rate_limit": true,
+    "retry_max_attempts": 3,
+    "retry_backoff_base_seconds": 2
+  },
+  "timeout": {
+    "request_timeout_seconds": 120,
+    "stream_timeout_seconds": 300
+  },
+  "cache_integration": {
+    "provider_supports_prefix_caching": true,
+    "send_cache_control_headers": true,
+    "cache_control_header_name": "X-Cache-Control",
+    "cache_control_values": {
+      "ephemeral": "public,max-age=300",
+      "short": "public,max-age=3600",
+      "long": "public,max-age=86400"
+    },
+    "models_with_cache_support": [
+      "openrouter:anthropic/claude-sonnet-4-20250514",
+      "openrouter:openai/gpt-4o-2024-11-20",
+      "openrouter:google/gemini-2.5-pro-exp-03-25"
+    ]
+  },
+  "fallback_chain": [
+    "openrouter:deepseek/deepseek-chat",
+    "openrouter:deepseek/deepseek-chat-v3",
+    "openrouter:anthropic/claude-sonnet-4-20250514",
+    "openrouter:openai/gpt-4o-2024-11-20",
+    "openrouter:google/gemini-2.5-pro-exp-03-25"
+  ],
+  "privacy": {
+    "data_handling": "third_party_api",
+    "send_headers_only": false,
+    "log_prompts_locally": true,
+    "log_responses_locally": true,
+    "strip_sensitive_patterns": [
+      "api_key",
+      "password",
+      "secret",
+      "token",
+      "credential",
+      "authorization"
+    ]
+  }
+}

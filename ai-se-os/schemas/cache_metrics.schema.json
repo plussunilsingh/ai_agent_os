@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CacheMetricsRecord",
+  "description": "A point-in-time snapshot of cache performance metrics. Emitted by Cache Intelligence to Telemetry.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "metric_id",
+    "repo_id",
+    "workspace_id",
+    "session_id",
+    "window_start",
+    "window_end",
+    "hits",
+    "misses",
+    "hit_rate",
+    "divergence_count",
+    "tokens_saved",
+    "tokens_spent",
+    "producer"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "enum": ["1.0"] },
+    "metric_id": { "type": "string" },
+    "repo_id": { "type": "string" },
+    "workspace_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "window_start": { "type": "string", "format": "date-time" },
+    "window_end": { "type": "string", "format": "date-time" },
+    "hits": { "type": "integer", "minimum": 0 },
+    "misses": { "type": "integer", "minimum": 0 },
+    "hit_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "hits / (hits + misses)"
+    },
+    "divergence_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Cache entries served where source had already changed"
+    },
+    "eviction_count": { "type": "integer", "minimum": 0, "default": 0 },
+    "compaction_count": { "type": "integer", "minimum": 0, "default": 0 },
+    "tokens_saved": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Tokens avoided by serving cached content rather than rebuilding"
+    },
+    "tokens_spent": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Tokens spent on dynamic (uncached) content in the window"
+    },
+    "by_layer": {
+      "type": "object",
+      "description": "Per-layer breakdown of hits and misses",
+      "properties": {
+        "system_prefix": { "$ref": "#/definitions/LayerMetrics" },
+        "workspace":     { "$ref": "#/definitions/LayerMetrics" },
+        "history":       { "$ref": "#/definitions/LayerMetrics" }
+      }
+    },
+    "alerts_raised": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["cache_hit_rate_low", "cache_eviction_budget_exceeded", "cache_divergence_detected"]
+      }
+    },
+    "producer": { "type": "string" }
+  },
+  "definitions": {
+    "LayerMetrics": {
+      "type": "object",
+      "properties": {
+        "hits":   { "type": "integer", "minimum": 0 },
+        "misses": { "type": "integer", "minimum": 0 },
+        "tokens_saved": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "additionalProperties": false
+}

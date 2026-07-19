@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReleaseReadiness",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "release_id", "source_revision", "status", "validation_report_ids", "residual_risk", "rollback_plan", "policy_decision_id", "published_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "release_id": { "type": "string" },
+    "source_revision": { "type": "string" },
+    "status": { "enum": ["ready", "blocked", "conditional"] },
+    "validation_report_ids": { "type": "array", "items": { "type": "string" } },
+    "residual_risk": { "type": "array", "items": { "type": "string" } },
+    "rollback_plan": { "type": "string" },
+    "policy_decision_id": { "type": "string" },
+    "approver": { "type": "string" },
+    "published_at": { "type": "string", "format": "date-time" }
+  }
+}

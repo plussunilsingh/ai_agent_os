@@ -1,0 +1,18 @@
+{
+  "id": "AUD-001",
+  "schema_version": "1.0.0",
+  "event_type": "task.leased",
+  "occurred_at": "2026-07-18T10:06:00Z",
+  "repository_id": "example-repository",
+  "workspace_id": "workspace-main",
+  "worktree_id": "worktree-main",
+  "branch": "main",
+  "session_id": "session-001",
+  "correlation_id": "corr-example-001",
+  "actor": "scheduler",
+  "idempotency_key": "lease:TASK-001:attempt-001",
+  "artifact_ids": ["TASK-001", "LEASE-001", "POL-001"],
+  "policy_decision_id": "POL-001",
+  "outcome": "success",
+  "redacted_metadata": { "owner": "agent:codex" }
+}
