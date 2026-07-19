@@ -1,16 +1,15 @@
 name: AI-SE OS CI/CD Pipeline
 
-# ✅ Add permissions for security scanning
 permissions:
   contents: read
   security-events: write
   actions: read
   pull-requests: read
 
-# ✅ Set default working directory for all jobs
+# ✅ FIX: Remove ./ prefix
 defaults:
   run:
-    working-directory: ./ai-se-os
+    working-directory: ai-se-os
 
 on:
   push:
