@@ -1,15 +1,5 @@
 name: AI-SE OS CI/CD Pipeline
 
-# ✅ ADD THESE PERMISSIONS
-permissions:
-  contents: read
-  security-events: write
-  actions: read
-  pull-requests: read
-
-defaults:
-  run:
-    working-directory: ./ai-se-os
 
 # ✅ Make sure these trigger events are correct
 on:
