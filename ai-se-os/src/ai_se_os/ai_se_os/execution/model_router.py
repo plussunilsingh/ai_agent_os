@@ -7,7 +7,7 @@ from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
 from enum import Enum
 
-from src.cache.cache_service import CacheService
+from ai_se_os.cache.cache_service import CacheService
 
 
 class TaskType(str, Enum):

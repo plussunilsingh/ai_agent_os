@@ -7,7 +7,9 @@ name = "ai-se-os"
 version = "12.0.0"
 description = "Engineering Intelligence Platform"
 readme = "README.md"
-authors = [{name = "AI-SE OS Team", email = "team@ai-se-os.com"}]
+authors = [
+    {name = "AI-SE OS Team", email = "team@ai-se-os.com"}
+]
 license = {text = "MIT"}
 requires-python = ">=3.10"
 dependencies = [
@@ -32,6 +34,8 @@ dev = [
     "pytest-asyncio>=0.21.0",
     "pytest-cov>=4.1.0",
     "pytest-xdist>=3.3.0",
+    "pytest-benchmark>=4.0.0",
+    "pytest-html>=4.0.0",
     "ruff>=0.1.0",
     "mypy>=1.0.0",
     "pre-commit>=3.0.0",
@@ -42,19 +46,33 @@ dev = [
 [project.scripts]
 ai-se-os = "ai_se_os.main:cli"
 
+# ============================================================
+# Ruff Configuration
+# ============================================================
 [tool.ruff]
 target-version = "py310"
 line-length = 100
 select = ["E", "W", "F", "I", "C", "B", "UP", "RUF"]
 ignore = ["E501", "B008"]
 
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# ============================================================
+# MyPy Configuration
+# ============================================================
 [tool.mypy]
 python_version = "3.10"
 ignore_missing_imports = true
 follow_imports = "silent"
 warn_no_return = false
 check_untyped_defs = false
+strict_optional = true
 
+# ============================================================
+# Pytest Configuration
+# ============================================================
 [tool.pytest.ini_options]
 minversion = "7.0"
 addopts = "-ra -q -v"
@@ -68,4 +86,18 @@ source = ["src/ai_se_os"]
 omit = ["*/tests/*", "*/__pycache__/*"]
 
 [tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if __debug__:",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
 fail_under = 70
+
+# ============================================================
+# uv Extra Build Dependencies
+# ============================================================
+[tool.uv.extra-build-dependencies]
+ai-se-os = ["setuptools>=61.0", "wheel"]

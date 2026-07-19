@@ -4,8 +4,8 @@ Testing graph correctness, traversal, and consistency
 """
 
 import pytest
-from src.intelligence.knowledge_graph import KnowledgeGraphService
-from src.core.data_models import KnowledgeNodeType, KnowledgeEdgeType
+from ai_se_os.intelligence.knowledge_graph import KnowledgeGraphService
+from ai_se_os.core.data_models import KnowledgeNodeType, KnowledgeEdgeType
 
 
 class TestKnowledgeGraph:

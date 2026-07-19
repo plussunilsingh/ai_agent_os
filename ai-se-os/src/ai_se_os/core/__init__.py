@@ -1,10 +1,51 @@
-# AI-SE OS Core Package
+"""Core module for AI-SE OS"""
+
 from .data_models import (
-    Repository, Module, Method,
-    GenomeSnapshot, ArchitectureDNA, DomainDNA, BuildDNA, SecurityDNA, RuntimeDNA, TestDNA, HealthDNA,
-    KnowledgeNode, KnowledgeEdge, KnowledgeGraph,
-    Experience, Playbook,
-    Task, AgentExecution, ValidationResult, RecoveryAttempt,
-    RepositoryStatus, ModuleType, ClassType, TaskState, AgentExecutionStatus,
-    ValidationLayer, Severity, KnowledgeNodeType, KnowledgeEdgeType, RecoveryStrategyType
+    Repository,
+    Module,
+    Class,
+    Method,
+    Dependency,
+    Plan,
+    Task,
+    TaskResult,
+    ExecutionPlan,
+    KnowledgeNode,
+    KnowledgeEdge,
+    GenomeSnapshot,
+    Experience,
+    Change,
+    Evolution,
+    ValidationResult,
+    ADR,
+    RepositoryStatus,
+    ModuleType,
+    TaskState,
+    KnowledgeNodeType,
+    KnowledgeEdgeType
 )
+
+__all__ = [
+    "Repository",
+    "Module",
+    "Class",
+    "Method",
+    "Dependency",
+    "Plan",
+    "Task",
+    "TaskResult",
+    "ExecutionPlan",
+    "KnowledgeNode",
+    "KnowledgeEdge",
+    "GenomeSnapshot",
+    "Experience",
+    "Change",
+    "Evolution",
+    "ValidationResult",
+    "ADR",
+    "RepositoryStatus",
+    "ModuleType",
+    "TaskState",
+    "KnowledgeNodeType",
+    "KnowledgeEdgeType"
+]

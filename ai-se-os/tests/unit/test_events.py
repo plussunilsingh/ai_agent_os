@@ -3,7 +3,7 @@ Tests for Event System
 """
 
 import pytest
-from src.core.events import Event, EventType, EventPriority, EventBus, get_event_bus
+from ai_se_os.core.events import Event, EventType, EventPriority, EventBus, get_event_bus
 
 
 class TestEventBus:

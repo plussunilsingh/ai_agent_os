@@ -9,9 +9,9 @@ import tempfile
 import hashlib
 import json
 
-from src.intelligence.evolution import EvolutionEngine, ChangeType
-from src.intelligence.genome import GenomeAnalyzer, RepositoryFingerprint
-from src.core.data_models import GenomeSnapshot
+from ai_se_os.intelligence.evolution import EvolutionEngine, ChangeType
+from ai_se_os.intelligence.genome import GenomeAnalyzer, RepositoryFingerprint
+from ai_se_os.core.data_models import GenomeSnapshot
 
 
 class TestRepositoryEvolution:

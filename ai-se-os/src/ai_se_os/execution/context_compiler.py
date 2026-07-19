@@ -8,8 +8,8 @@ import json
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
 
-from src.cache.cache_service import CacheService, CacheStrategy
-from src.cache.cache_tracker import CacheTracker
+from ai_se_os.cache.cache_service import CacheService, CacheStrategy
+from ai_se_os.cache.cache_tracker import CacheTracker
 
 
 @dataclass

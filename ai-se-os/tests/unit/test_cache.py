@@ -3,8 +3,8 @@ Tests for Cache Service
 """
 
 import pytest
-from src.cache.cache_service import CacheService, CacheStrategy
-from src.cache.cache_tracker import CacheTracker
+from ai_se_os.cache.cache_service import CacheService, CacheStrategy
+from ai_se_os.cache.cache_tracker import CacheTracker
 
 
 class TestCacheService:

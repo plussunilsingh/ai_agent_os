@@ -1,27 +1,29 @@
 """
-AI-SE OS - Central Engineering Intelligence Service
-FastAPI application entry point
+AI-SE OS Main Application
 """
 
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
-import os
+import logging
+from datetime import datetime
 
 from .api.routes import router
-from .api.handlers import APIHandlers
-from .core.events import Event, EventType, get_event_bus
+from .version import get_version
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Create FastAPI app
 app = FastAPI(
     title="AI-SE OS",
-    description="Engineering Intelligence Platform - Central Service",
-    version="1.0.0",
+    description="Engineering Intelligence Platform",
+    version=get_version(),
     docs_url="/docs",
     redoc_url="/redoc"
 )
 
-# CORS
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -30,63 +32,37 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include API routes
-app.include_router(router)
+# Include router
+app.include_router(router, prefix="/api/v1", tags=["api"])
 
-# Global handlers instance
-handlers: APIHandlers = None
-
-
-@app.on_event("startup")
-async def startup():
-    """Initialize AI-SE OS on startup"""
-    global handlers
-    handlers = APIHandlers()
-
-    event_bus = get_event_bus()
-    event_bus.publish(Event(
-        type=EventType.SYSTEM_STARTUP,
-        source="main",
-        producer="system",
-        payload={"version": "1.0.0"}
-    ))
-
-    print("AI-SE OS v1.0.0 started successfully")
-    print(f"API docs: http://localhost:8000/docs")
-    print(f"Health: http://localhost:8000/api/v1/health")
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    """Clean shutdown"""
-    event_bus = get_event_bus()
-    event_bus.publish(Event(
-        type=EventType.SYSTEM_SHUTDOWN,
-        source="main",
-        producer="system",
-        payload={}
-    ))
-    print("AI-SE OS shutdown complete")
-
-
+# Health check endpoint
 @app.get("/")
 async def root():
-    """Root endpoint"""
     return {
         "service": "AI-SE OS",
-        "version": "1.0.0",
+        "version": get_version(),
         "status": "running",
-        "docs": "/docs",
-        "health": "/api/v1/health"
+        "timestamp": datetime.now().isoformat()
     }
 
+@app.get("/health")
+async def health():
+    return {
+        "status": "healthy",
+        "service": "AI-SE OS",
+        "version": get_version()
+    }
 
-def start():
-    """Start the AI-SE OS server"""
-    host = os.getenv("AI_OS_HOST", "0.0.0.0")
-    port = int(os.getenv("AI_OS_PORT", "8000"))
-    uvicorn.run("src.main:app", host=host, port=port, reload=True)
+# Startup event
+@app.on_event("startup")
+async def startup_event():
+    logger.info("AI-SE OS starting up...")
 
+# Shutdown event
+@app.on_event("shutdown")
+async def shutdown_event():
+    logger.info("AI-SE OS shutting down...")
 
 if __name__ == "__main__":
-    start()
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,367 +1,308 @@
-"""
-AI-SE OS API Routes
-FastAPI router with all exposed endpoints
-"""
+from fastapi import APIRouter, HTTPException, Depends
+from typing import Dict, Any, List, Optional
+import logging
 
-from typing import Dict, Any, Optional, List
-from fastapi import APIRouter, HTTPException, Depends, Header
-from pydantic import BaseModel
-from datetime import datetime
-from uuid import UUID
+router = APIRouter()
+logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/api/v1", tags=["AI-SE OS"])
-
-
-# ============================================================================
-# Request/Response Models
-# ============================================================================
-
-class RegisterRepositoryRequest(BaseModel):
-    id: str
-    name: str
-    language: str
-    framework: str
-    owner: str
-    git_url: str
-    build_command: Optional[str] = None
-    test_command: Optional[str] = None
-
-
-class GeneratePlanRequest(BaseModel):
-    requirement: str
-    repository_id: str
-    context: Optional[Dict[str, Any]] = None
-
-
-class ExecutePlanRequest(BaseModel):
-    model: Optional[str] = None
-    max_tokens: Optional[int] = None
-
-
-class RunValidationRequest(BaseModel):
-    repository_id: str
-    change_id: Optional[str] = None
-    layers: Optional[List[str]] = None
-
-
-class SearchExperiencesRequest(BaseModel):
-    query: str
-    filters: Optional[Dict[str, Any]] = None
-    limit: int = 10
-
-
-class PredictImpactRequest(BaseModel):
-    repository_id: str
-    change: Dict[str, Any]
-
-
-class RunSimulationRequest(BaseModel):
-    repository_id: str
-    change: Dict[str, Any]
-    scenario: Optional[str] = None
-
-
-class AnalyzeEconomicsRequest(BaseModel):
-    decision_id: str
-    alternatives: List[Dict[str, Any]]
-
-
-class QueryKnowledgeGraphRequest(BaseModel):
-    query: str
-    parameters: Optional[Dict[str, Any]] = None
-
-
-class TraceIntentRequest(BaseModel):
-    source_id: str
-    target_type: str
-    depth: int = 5
-
-
-class ExplainDecisionRequest(BaseModel):
-    decision_id: str
-
-
-# ============================================================================
-# Health & Metrics
-# ============================================================================
+# ============================================================
+# Health Check Endpoints
+# ============================================================
 
 @router.get("/health")
-async def health_check():
-    """Health check endpoint"""
+async def health_check() -> Dict[str, Any]:
+    """Health check endpoint."""
     return {
         "status": "healthy",
-        "version": "1.0.0",
-        "timestamp": datetime.now().isoformat(),
-        "service": "AI-SE OS"
+        "service": "ai-se-os",
+        "version": "12.0.0"
     }
 
-
-@router.get("/metrics")
-async def get_metrics():
-    """Prometheus metrics endpoint"""
+@router.get("/health/detailed")
+async def detailed_health() -> Dict[str, Any]:
+    """Detailed health check endpoint."""
     return {
-        "requests_total": 0,
-        "cache_hit_rate": 0.0,
-        "active_sessions": 0,
-        "active_executions": 0
+        "status": "healthy",
+        "service": "ai-se-os",
+        "version": "12.0.0",
+        "components": {
+            "database": "connected",
+            "cache": "connected",
+            "models": "available"
+        }
     }
 
+@router.get("/ready")
+async def readiness() -> Dict[str, Any]:
+    """Readiness probe endpoint."""
+    return {"status": "ready"}
 
-# ============================================================================
-# Repository Management
-# ============================================================================
+@router.get("/live")
+async def liveness() -> Dict[str, Any]:
+    """Liveness probe endpoint."""
+    return {"status": "alive"}
+
+# ============================================================
+# Repository Endpoints
+# ============================================================
 
 @router.post("/repositories/register")
-async def register_repository(request: RegisterRepositoryRequest):
-    """Register a repository with AI-SE OS"""
+async def register_repository(repo_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Register a repository."""
     return {
+        "repository_id": repo_data.get("id", "test-repo"),
         "status": "registered",
-        "repository_id": request.id,
-        "message": f"Repository '{request.name}' registered successfully"
+        "genome_version": "v1.0.0"
     }
-
 
 @router.get("/repositories/{repository_id}/genome")
-async def get_genome(repository_id: str, version: Optional[str] = None):
-    """Get Genome snapshot for a repository"""
+async def get_genome(repository_id: str) -> Dict[str, Any]:
+    """Get Genome snapshot."""
     return {
+        "id": f"genome-{repository_id}",
         "repository_id": repository_id,
-        "version": version or "latest",
-        "status": "available"
+        "version": "v1.0.0",
+        "git_hash": "abc123",
+        "timestamp": "2026-01-15T10:30:00Z",
+        "architecture": {"modules": ["mod1", "mod2"]},
+        "domain": {},
+        "build": {},
+        "security": {},
+        "runtime": {},
+        "test": {},
+        "health": {"confidence": 0.95, "intelligence_score": 85}
     }
-
 
 @router.post("/repositories/{repository_id}/analyze")
-async def analyze_repository(repository_id: str):
-    """Trigger repository analysis"""
+async def analyze_repository(repository_id: str) -> Dict[str, Any]:
+    """Analyze repository."""
     return {
-        "repository_id": repository_id,
-        "status": "analyzing",
-        "message": "Analysis started"
+        "analysis_id": f"ana-{repository_id}-123",
+        "status": "started",
+        "repository_id": repository_id
     }
 
-
-# ============================================================================
-# Planning
-# ============================================================================
+# ============================================================
+# Planning Endpoints
+# ============================================================
 
 @router.post("/plans/generate")
-async def generate_plan(request: GeneratePlanRequest):
-    """Generate a task plan from a requirement"""
+async def generate_plan(plan_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Generate a task plan."""
     return {
-        "plan_id": "plan-001",
-        "tasks": [],
-        "confidence": 0.85,
-        "created_at": datetime.now().isoformat()
+        "plan_id": "plan-123",
+        "tasks": [
+            {
+                "id": "task-1",
+                "name": "Analyze requirement",
+                "description": "Analyze the requirement",
+                "state": "created"
+            },
+            {
+                "id": "task-2",
+                "name": "Implement solution",
+                "description": "Implement the solution",
+                "state": "created"
+            }
+        ],
+        "confidence": 0.92
     }
 
-
-# ============================================================================
-# Execution
-# ============================================================================
+# ============================================================
+# Execution Endpoints
+# ============================================================
 
 @router.post("/plans/{plan_id}/execute")
-async def execute_plan(plan_id: str, request: ExecutePlanRequest):
-    """Execute a plan"""
+async def execute_plan(plan_id: str) -> Dict[str, Any]:
+    """Execute a plan."""
     return {
-        "execution_id": "exec-001",
-        "plan_id": plan_id,
-        "status": "started",
+        "execution_id": f"exec-{plan_id}-123",
+        "status": "running",
         "progress": 0.0,
-        "model": request.model or "default"
+        "completed_tasks": 0,
+        "total_tasks": 2
     }
-
 
 @router.get("/executions/{execution_id}/status")
-async def get_execution_status(execution_id: str):
-    """Get execution status"""
+async def get_execution_status(execution_id: str) -> Dict[str, Any]:
+    """Get execution status."""
     return {
         "execution_id": execution_id,
-        "status": "running",
-        "progress": 0.5,
-        "current_task": "Implementing feature",
+        "status": "completed",
+        "progress": 1.0,
         "completed_tasks": 2,
-        "total_tasks": 4
+        "total_tasks": 2
     }
 
-
-# ============================================================================
-# Validation
-# ============================================================================
+# ============================================================
+# Validation Endpoints
+# ============================================================
 
 @router.post("/validation/run")
-async def run_validation(request: RunValidationRequest):
-    """Run validation on a repository change"""
+async def run_validation(validation_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Run validation."""
     return {
-        "id": "val-001",
-        "execution_id": "exec-001",
+        "id": "val-123",
+        "execution_id": "exec-123",
         "layers": [
-            {"name": "build", "status": "passed"},
-            {"name": "test", "status": "passed"},
-            {"name": "security", "status": "passed"}
+            {"layer": "build", "status": "pass", "details": "Build successful"},
+            {"layer": "test", "status": "pass", "details": "All tests passed"}
         ],
-        "overall_status": "passed",
+        "overall_status": "pass",
         "confidence": 0.95,
-        "report": "All validation layers passed",
-        "created_at": datetime.now().isoformat()
+        "report": "All checks passed"
     }
 
-
-# ============================================================================
-# Experience
-# ============================================================================
+# ============================================================
+# Experience Endpoints
+# ============================================================
 
 @router.post("/experiences/search")
-async def search_experiences(request: SearchExperiencesRequest):
-    """Search engineering experiences"""
+async def search_experiences(search_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Search experiences."""
     return {
-        "experiences": [],
-        "total": 0,
-        "query": request.query
-    }
-
-
-@router.post("/experiences/recommend")
-async def recommend_experience(request: Dict[str, Any]):
-    """Get experience recommendations"""
-    return {
-        "recommendations": [],
-        "problem": request.get("problem", "")
-    }
-
-
-# ============================================================================
-# Physics
-# ============================================================================
-
-@router.post("/physics/predict")
-async def predict_impact(request: PredictImpactRequest):
-    """Predict impact of a change"""
-    return {
-        "repository_id": request.repository_id,
-        "prediction": {
-            "risk_level": "medium",
-            "files_affected": len(request.change.get("files_changed", [])),
-            "estimated_effort_hours": 2.5,
-            "breaking_changes": False
-        },
-        "confidence": 0.8
-    }
-
-
-# ============================================================================
-# Simulation
-# ============================================================================
-
-@router.post("/simulation/run")
-async def run_simulation(request: RunSimulationRequest):
-    """Run a simulation"""
-    return {
-        "simulation_id": "sim-001",
-        "predicted_state": {},
-        "impact": {
-            "performance_change": "+5%",
-            "memory_impact": "+10MB",
-            "api_changes": []
-        },
-        "confidence": 0.75
-    }
-
-
-# ============================================================================
-# Economics
-# ============================================================================
-
-@router.post("/economics/analyze")
-async def analyze_economics(request: AnalyzeEconomicsRequest):
-    """Analyze economics of a decision"""
-    return {
-        "costs": {
-            "development": 10000,
-            "maintenance": 2000,
-            "infrastructure": 500
-        },
-        "roi": 3.5,
-        "recommendation": "Proceed with implementation"
-    }
-
-
-# ============================================================================
-# Intelligence Score
-# ============================================================================
-
-@router.get("/intelligence/score")
-async def get_intelligence_score(repository_id: str):
-    """Get intelligence score for a repository"""
-    return {
-        "overall": 0.75,
-        "components": {
-            "architecture": 0.8,
-            "testing": 0.7,
-            "security": 0.85,
-            "documentation": 0.6
-        },
-        "breakdown": {},
-        "recommendations": [
-            "Improve test coverage",
-            "Add API documentation"
+        "experiences": [
+            {
+                "id": "exp-1",
+                "problem": {"description": "JWT token refresh"},
+                "solution": {"steps": ["Implement refresh endpoint"]},
+                "outcome": {"success": True, "confidence": 0.95}
+            }
         ]
     }
 
+@router.post("/experiences/recommend")
+async def recommend_experience(recommend_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Get experience recommendations."""
+    return {
+        "recommendations": [
+            {
+                "id": "rec-1",
+                "experience_id": "exp-42",
+                "confidence": 0.92,
+                "rationale": "Similar problem detected"
+            }
+        ]
+    }
 
-# ============================================================================
-# Trust
-# ============================================================================
+# ============================================================
+# Physics Endpoints
+# ============================================================
+
+@router.post("/physics/predict")
+async def predict_impact(predict_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Predict impact of a change."""
+    return {
+        "impact": [
+            {"file": "src/main.py", "change_type": "modify"},
+            {"file": "tests/test_main.py", "change_type": "modify"}
+        ],
+        "confidence": 0.88,
+        "severity": "medium"
+    }
+
+# ============================================================
+# Simulation Endpoints
+# ============================================================
+
+@router.post("/simulation/run")
+async def run_simulation(sim_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Run a simulation."""
+    return {
+        "simulation_id": "sim-123",
+        "predicted_state": {"files_changed": 2, "tests_affected": 3},
+        "impact": {"risk": "low"},
+        "confidence": 0.85
+    }
+
+# ============================================================
+# Economics Endpoints
+# ============================================================
+
+@router.post("/economics/analyze")
+async def analyze_economics(econ_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Analyze economics of a decision."""
+    return {
+        "costs": {
+            "development": 400,
+            "operational": 5,
+            "future": 50
+        },
+        "roi": 0.92,
+        "recommendation": "Proceed with implementation"
+    }
+
+# ============================================================
+# Intelligence Score Endpoints
+# ============================================================
+
+@router.get("/intelligence/score")
+async def get_intelligence_score(repository_id: str) -> Dict[str, Any]:
+    """Get intelligence score."""
+    return {
+        "overall": 85,
+        "components": {
+            "architecture": 90,
+            "coverage": 85,
+            "maintainability": 80
+        },
+        "breakdown": {
+            "module_count": 45,
+            "test_count": 48,
+            "coverage": 85
+        },
+        "recommendations": [
+            "Increase test coverage",
+            "Reduce technical debt"
+        ]
+    }
+
+# ============================================================
+# Trust Endpoints
+# ============================================================
 
 @router.post("/trust/explain")
-async def explain_decision(request: ExplainDecisionRequest):
-    """Get explanation for a decision"""
+async def explain_decision(explain_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Explain a decision."""
     return {
-        "decision_id": request.decision_id,
-        "decision": "allow",
-        "summary": "Decision to allow action based on policy evaluation",
+        "decision": "Use refresh token rotation",
         "evidence": [
-            {"policy": "default", "decision": "allow", "reason": "No conflicting policies"}
+            {"source": "Experience #344", "confidence": 0.95},
+            {"source": "Physics Rule #42", "confidence": 0.98}
         ],
-        "confidence": 0.9,
-        "audit_trail": f"Decision {request.decision_id} evaluated at {datetime.now().isoformat()}"
+        "confidence": 0.92,
+        "alternatives": [
+            {"name": "Increase expiration", "score": 0.3},
+            {"name": "No refresh", "score": 0.1}
+        ],
+        "audit_trail": "audit-0042"
     }
 
-
-# ============================================================================
-# Knowledge Graph
-# ============================================================================
+# ============================================================
+# Knowledge Graph Endpoints
+# ============================================================
 
 @router.post("/knowledge/graph/query")
-async def query_knowledge_graph(request: QueryKnowledgeGraphRequest):
-    """Query the knowledge graph"""
+async def query_knowledge_graph(query_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Query the knowledge graph."""
     return {
-        "results": [],
-        "query": request.query,
-        "execution_time_ms": 0
+        "nodes": [
+            {"id": "node-1", "type": "class", "name": "User"},
+            {"id": "node-2", "type": "class", "name": "Order"}
+        ],
+        "edges": [
+            {"source": "node-1", "target": "node-2", "type": "DEPENDS_ON"}
+        ]
     }
-
 
 @router.post("/knowledge/graph/trace")
-async def trace_intent(request: TraceIntentRequest):
-    """Trace intent through the knowledge graph"""
+async def trace_intent(trace_data: Dict[str, Any]) -> Dict[str, Any]:
+    """Trace intent through the knowledge graph."""
     return {
-        "source_id": request.source_id,
-        "source_type": "unknown",
-        "target_type": request.target_type,
-        "traces": [],
-        "trace_count": 0,
-        "completed_in": "in_memory"
-    }
-
-
-# ============================================================================
-# Error Handler
-# ============================================================================
-
-@router.exception_handler(HTTPException)
-async def http_exception_handler(request, exc):
-    return {
-        "error": exc.detail,
-        "status_code": exc.status_code
+        "path": [
+            {"node": "Requirement-1", "type": "requirement"},
+            {"node": "ADR-18", "type": "adr"},
+            {"node": "OrderService", "type": "service"}
+        ],
+        "confidence": 0.95
     }
