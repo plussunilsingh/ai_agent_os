@@ -12,7 +12,6 @@ src/ai_se_os/version.py
 src/ai_se_os.egg-info/PKG-INFO
 src/ai_se_os.egg-info/SOURCES.txt
 src/ai_se_os.egg-info/dependency_links.txt
-src/ai_se_os.egg-info/entry_points.txt
 src/ai_se_os.egg-info/requires.txt
 src/ai_se_os.egg-info/top_level.txt
 src/ai_se_os/api/__init__.py
