@@ -1,0 +1,19 @@
+---
+description: Automatically load AI-SE OS for all repository engineering tasks.
+alwaysApply: true
+---
+
+# AI-SE OS Auto Boot
+
+This repository uses AI-SE OS from `.ai_os`.
+
+Always read these files before planning or editing:
+
+- `.ai_os/README.md`
+- `.ai_os/docs/40_AGENT_DISCOVERY_AND_HOOKS.md`
+- `.ai_os/docs/02_ARCHITECTURE_CONSTITUTION.md`
+- `.ai_os/docs/17_AGENT_PROTOCOL.md`
+- `.ai_os/IMPLEMENTATION_ORDER.md`
+
+Follow the AI-SE OS subsystem specs, policies, schemas, prompts, templates, validation rules, recovery rules, and handoff rules.
+
