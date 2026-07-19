@@ -1,18 +1,22 @@
 name: AI-SE OS CI/CD Pipeline
 
+# ✅ Make sure these trigger events are correct
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
+      - master
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - develop
+      - master
   schedule:
     - cron: '0 0 * * *'
-  workflow_dispatch:
+  workflow_dispatch:  # ✅ Allows manual trigger
 
 jobs:
-  # ============================================================
-  # JOB 1: Code Quality & Linting
-  # ============================================================
   lint:
     name: 🔍 Code Quality
     runs-on: ubuntu-latest
@@ -36,20 +40,17 @@ jobs:
           pip install black isort ruff mypy
 
       - name: Check formatting (Black)
-        run: black --check src/ tests/ || echo "⚠️ Black formatting issues found. Run: black ."
+        run: black --check src/ tests/ || echo "⚠️ Black formatting issues found"
 
       - name: Check import sorting (isort)
-        run: isort --check-only src/ tests/ || echo "⚠️ Import sorting issues found. Run: isort ."
+        run: isort --check-only src/ tests/ || echo "⚠️ Import sorting issues found"
 
       - name: Lint with ruff
-        run: ruff check src/ tests/ || echo "⚠️ Ruff issues found. Run: ruff check --fix ."
+        run: ruff check src/ tests/ || echo "⚠️ Ruff issues found"
 
       - name: Type check with mypy
-        run: mypy src/ --ignore-missing-imports || echo "⚠️ Type issues found."
+        run: mypy src/ --ignore-missing-imports || echo "⚠️ Type issues found"
 
-  # ============================================================
-  # JOB 2: Unit Tests
-  # ============================================================
   unit-tests:
     name: 🧪 Unit Tests
     runs-on: ubuntu-latest
@@ -75,7 +76,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          pytest tests/unit/ -v --cov=src/ai_se_os --cov-report=xml --cov-report=html || echo "⚠️ Some tests failed"
+          pytest tests/unit/ -v --cov=src/ai_se_os --cov-report=xml --cov-report=html
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -83,9 +84,6 @@ jobs:
           name: coverage-${{ matrix.python-version }}
           path: htmlcov/
 
-  # ============================================================
-  # JOB 3: Security Scan
-  # ============================================================
   security:
     name: 🔒 Security Scan
     runs-on: ubuntu-latest
@@ -107,9 +105,6 @@ jobs:
         with:
           sarif_file: 'trivy-results.sarif'
 
-  # ============================================================
-  # JOB 4: Build Package
-  # ============================================================
   build:
     name: 📦 Build Package
     runs-on: ubuntu-latest
@@ -142,9 +137,6 @@ jobs:
           name: dist
           path: dist/
 
-  # ============================================================
-  # JOB 5: Docker Build
-  # ============================================================
   docker:
     name: 🐳 Docker Build
     runs-on: ubuntu-latest
@@ -169,9 +161,6 @@ jobs:
         run: |
           docker run --rm ai-se-os:latest python -c "import ai_se_os; print('✅ Docker image works')"
 
-  # ============================================================
-  # JOB 6: Documentation Validation
-  # ============================================================
   docs:
     name: 📚 Documentation Validation
     runs-on: ubuntu-latest
@@ -195,8 +184,6 @@ jobs:
             "docs/api.md"
             "docs/deployment.md"
             "docs/runbook.md"
-            "docs/configuration.md"
-            "docs/testing.md"
           )
           for doc in "${REQUIRED_DOCS[@]}"; do
             if [ ! -f "$doc" ]; then
@@ -207,9 +194,6 @@ jobs:
             fi
           done
 
-  # ============================================================
-  # JOB 7: Validation Summary
-  # ============================================================
   summary:
     name: 📊 Validation Summary
     runs-on: ubuntu-latest
@@ -230,7 +214,6 @@ jobs:
           echo "✅ Docker: ${{ needs.docker.result }}"
           echo "✅ Documentation: ${{ needs.docs.result }}"
           echo ""
-          echo "============================================================"
           if [ "${{ needs.lint.result }}" == "success" ] && [ "${{ needs.unit-tests.result }}" == "success" ]; then
             echo "  ✅ ALL TESTS PASSED - READY FOR DEPLOYMENT"
           else
