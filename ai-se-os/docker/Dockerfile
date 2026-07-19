@@ -14,17 +14,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy pyproject.toml first (for better caching)
+# Copy configuration, metadata, and source directory
 COPY pyproject.toml README.md ./
-
-# Install dependencies from pyproject.toml
-RUN pip install --no-cache-dir .[dev]
-
-# Copy the rest of the application
 COPY src/ /app/src/
 
-# Reinstall with source
-RUN pip install --no-cache-dir .
+# Install application package with dev dependencies
+RUN pip install --no-cache-dir .[dev]
 
 # Create non-root user for security
 RUN useradd -m -u 1000 ai-os && \
