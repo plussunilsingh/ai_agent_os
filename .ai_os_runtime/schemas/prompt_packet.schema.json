@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PromptPacket",
+  "type": "object",
+  "required": ["id", "schema_version", "compiler_version", "task_id", "context_pack_id", "policy_decision_id", "correlation_id", "template_id", "allowed_files", "expected_output_schema", "token_budget", "prompt_hash"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "compiler_version": { "type": "string" },
+    "task_id": { "type": "string" },
+    "context_pack_id": { "type": "string" },
+    "policy_decision_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "template_id": { "type": "string" },
+    "allowed_files": { "type": "array", "items": { "type": "string" } },
+    "forbidden_changes": { "type": "array", "items": { "type": "string" } },
+    "allowed_capabilities": { "type": "array", "items": { "type": "string" } },
+    "expected_output_schema": { "type": "string" },
+    "validation_gates": { "type": "array", "items": { "type": "string" } },
+    "token_budget": { "type": "integer", "minimum": 0 },
+    "retry_metadata": { "type": "object" },
+    "source_artifact_hashes": { "type": "array", "items": { "type": "string" } },
+    "prompt_hash": { "type": "string" }
+  }
+}

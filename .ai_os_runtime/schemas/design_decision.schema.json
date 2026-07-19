@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DesignDecision",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "title", "status", "decision", "rationale", "owner", "evidence_ids", "published_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "title": { "type": "string" },
+    "status": { "enum": ["proposed", "accepted", "rejected", "superseded", "deprecated"] },
+    "decision": { "type": "string" },
+    "rationale": { "type": "string" },
+    "alternatives": { "type": "array", "items": { "type": "string" } },
+    "consequences": { "type": "array", "items": { "type": "string" } },
+    "owner": { "type": "string" },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "supersedes": { "type": "string" },
+    "published_at": { "type": "string", "format": "date-time" }
+  }
+}

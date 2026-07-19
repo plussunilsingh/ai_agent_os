@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RepositoryDNA",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "source_revision", "index_id", "sections", "confidence", "published_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "source_revision": { "type": "string" },
+    "index_id": { "type": "string" },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "content", "source_artifact_ids", "confidence"],
+        "properties": {
+          "name": { "type": "string" },
+          "content": { "type": "string" },
+          "source_artifact_ids": { "type": "array", "items": { "type": "string" } },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "sensitivity": { "type": "string" }
+        }
+      }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "published_at": { "type": "string", "format": "date-time" }
+  }
+}

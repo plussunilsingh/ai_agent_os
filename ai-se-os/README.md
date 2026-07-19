@@ -86,6 +86,22 @@ AI-SE OS owns the intelligence. LLMs are replaceable adapters.
 
 ---
 
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/ai-se-os/ai-se-os.git
+cd ai-se-os
+
+# Create virtual environment and install package
+python3 -m venv venv
+source venv/bin/activate
+pip install -e .
+pip install -r requirements-dev.txt
+```
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Deploy AI-SE OS

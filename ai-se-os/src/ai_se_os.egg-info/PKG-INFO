@@ -6,7 +6,7 @@ Home-page: https://github.com/ai-se-os/ai-se-os
 Author: AI-SE OS Team
 Author-email: AI-SE OS Team <team@ai-se-os.com>
 License: MIT
-Requires-Python: >=3.10
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: pydantic>=2.0.0

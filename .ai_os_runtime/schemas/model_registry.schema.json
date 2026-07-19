@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ModelRegistryEntry",
+  "type": "object",
+  "required": ["id", "provider", "model", "model_version", "capabilities", "context_window", "data_handling", "enabled"],
+  "properties": {
+    "id": { "type": "string" },
+    "provider": { "type": "string" },
+    "model": { "type": "string" },
+    "model_version": { "type": "string" },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "context_window": { "type": "integer", "minimum": 1 },
+    "data_handling": { "type": "string" },
+    "tool_use": { "type": "boolean" },
+    "structured_output": { "type": "boolean" },
+    "cost_input_per_million": { "type": "number", "minimum": 0 },
+    "cost_output_per_million": { "type": "number", "minimum": 0 },
+    "enabled": { "type": "boolean" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

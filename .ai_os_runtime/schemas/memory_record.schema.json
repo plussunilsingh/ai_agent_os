@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MemoryRecord",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "type", "content", "hash", "version", "confidence", "provenance", "freshness", "timestamp", "dependencies"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "type": { "enum": ["fact", "decision", "pattern", "failure", "session_summary", "prompt_history", "validation_history"] },
+    "content": { "type": "string" },
+    "hash": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "provenance": { "type": "array", "items": { "type": "string" } },
+    "freshness": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "dependencies": { "type": "array", "items": { "type": "string" } },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "ttl_seconds": { "type": "integer", "minimum": 0 },
+    "supersedes": { "type": "string" },
+    "sensitivity": { "type": "string" }
+  }
+}

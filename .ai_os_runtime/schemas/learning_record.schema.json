@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LearningRecord",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "learning_type", "source_artifact_ids", "evidence_ids", "promotion_status", "producer", "published_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "learning_type": { "enum": ["fact", "decision", "pattern", "failure_playbook", "model_performance", "validation_guidance", "repository_evolution"] },
+    "source_artifact_ids": { "type": "array", "items": { "type": "string" } },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "promotion_status": { "enum": ["candidate", "promoted", "rejected", "superseded"] },
+    "target_artifact_id": { "type": "string" },
+    "reason": { "type": "string" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "producer": { "type": "string" },
+    "published_at": { "type": "string", "format": "date-time" },
+    "supersedes": { "type": "string" }
+  }
+}

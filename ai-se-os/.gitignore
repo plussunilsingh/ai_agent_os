@@ -1,0 +1,22 @@
+### Python & Testing ###
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+### Environments & Logs ###
+venv/
+.venv/
+env/
+.env
+*.log
+
+### Mac OS ###
+.DS_Store

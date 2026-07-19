@@ -40,3 +40,22 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Python & Testing ###
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.egg-info/
+dist/
+.eggs/
+
+### Environments & Logs ###
+venv/
+.venv/
+env/
+.env
+*.log

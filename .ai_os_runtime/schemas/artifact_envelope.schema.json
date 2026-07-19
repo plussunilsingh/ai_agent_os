@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArtifactEnvelope",
+  "type": "object",
+  "required": ["id", "artifact_type", "schema_version", "repository_id", "producer", "correlation_id", "published_at", "provenance"],
+  "properties": {
+    "id": { "type": "string" },
+    "artifact_type": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "workspace_id": { "type": "string" },
+    "worktree_id": { "type": "string" },
+    "branch": { "type": "string" },
+    "session_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "producer": { "type": "string" },
+    "published_at": { "type": "string", "format": "date-time" },
+    "content_hash": { "type": "string" },
+    "supersedes": { "type": "string" },
+    "provenance": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "sensitivity": { "type": "string" }
+  }
+}

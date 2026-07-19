@@ -3,7 +3,12 @@ README.md
 pyproject.toml
 setup.py
 src/ai_se_os/__init__.py
+src/ai_se_os/client.py
+src/ai_se_os/config.py
+src/ai_se_os/exceptions.py
 src/ai_se_os/main.py
+src/ai_se_os/models.py
+src/ai_se_os/version.py
 src/ai_se_os.egg-info/PKG-INFO
 src/ai_se_os.egg-info/SOURCES.txt
 src/ai_se_os.egg-info/dependency_links.txt

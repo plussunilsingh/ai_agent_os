@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RequirementBrief",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "user_outcome", "scope", "acceptance_criteria", "risk", "confidence", "producer", "published_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "supersedes": { "type": "string" },
+    "user_outcome": { "type": "string" },
+    "scope": { "type": "array", "items": { "type": "string" } },
+    "non_scope": { "type": "array", "items": { "type": "string" } },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "unknowns": { "type": "array", "items": { "type": "string" } },
+    "affected_modules": { "type": "array", "items": { "type": "string" } },
+    "acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+    "risk": { "enum": ["low", "medium", "high", "critical"] },
+    "complexity": { "enum": ["small", "medium", "large", "unknown"] },
+    "token_budget": { "type": "integer", "minimum": 0 },
+    "rollback_impact": { "enum": ["none", "low", "medium", "high", "unknown"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "confidence_basis": { "type": "array", "items": { "type": "string" } },
+    "producer": { "type": "string" },
+    "provenance": { "type": "array", "items": { "type": "string" } },
+    "published_at": { "type": "string", "format": "date-time" }
+  }
+}

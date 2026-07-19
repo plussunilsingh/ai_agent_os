@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PolicyDecision",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "correlation_id", "actor", "action_type", "outcome", "requested_capabilities", "policy_versions", "issued_at", "expires_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "workspace_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "actor": { "type": "string" },
+    "action_type": { "type": "string" },
+    "outcome": { "enum": ["allow", "deny", "require_human", "mask_data", "local_only"] },
+    "requested_capabilities": { "type": "array", "items": { "type": "string" } },
+    "granted_capabilities": { "type": "array", "items": { "type": "string" } },
+    "allowed_paths": { "type": "array", "items": { "type": "string" } },
+    "data_classification": { "type": "string" },
+    "policy_versions": { "type": "array", "items": { "type": "string" } },
+    "reason": { "type": "string" },
+    "approver": { "type": "string" },
+    "issued_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" }
+  }
+}

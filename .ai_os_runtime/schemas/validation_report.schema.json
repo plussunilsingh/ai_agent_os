@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ValidationReport",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "task_id", "status", "gates", "residual_risk", "source_revision", "policy_decision_id", "published_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "correlation_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "status": { "enum": ["pass", "fail", "partial"] },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "status"],
+        "properties": {
+          "name": { "type": "string" },
+          "command": { "type": "string" },
+          "status": { "enum": ["pass", "fail", "skipped"] },
+          "summary": { "type": "string" },
+          "baseline_relation": { "enum": ["new", "baseline", "flaky", "unknown"] },
+          "evidence_uri": { "type": "string" },
+          "environment_id": { "type": "string" },
+          "started_at": { "type": "string", "format": "date-time" },
+          "completed_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "residual_risk": { "type": "array", "items": { "type": "string" } },
+    "source_revision": { "type": "string" },
+    "policy_decision_id": { "type": "string" },
+    "acceptance_evidence": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "published_at": { "type": "string", "format": "date-time" }
+  }
+}
