@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ContextCacheEntry",
+  "description": "A single entry in the AI-SE OS three-layer context cache. Produced exclusively by Cache Intelligence.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "cache_key",
+    "layer",
+    "repo_id",
+    "workspace_id",
+    "session_id",
+    "content_hash",
+    "source_version_hashes",
+    "sensitivity_class",
+    "token_count",
+    "created_at",
+    "invalidation_condition",
+    "producer"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "enum": ["1.0"] },
+    "cache_key": {
+      "type": "string",
+      "description": "Namespaced deterministic key: {layer}:{repo_id}:{workspace_id}:{content_hash}"
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["system_prefix", "workspace", "history"],
+      "description": "Which of the three cache layers this entry belongs to"
+    },
+    "repo_id": { "type": "string" },
+    "workspace_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "content_hash": {
+      "type": "string",
+      "description": "SHA-256 of the canonical UTF-8 byte representation of the cached content"
+    },
+    "source_version_hashes": {
+      "type": "object",
+      "description": "Map of artifact_id to source version hash at the time of caching. Used for divergence detection.",
+      "additionalProperties": { "type": "string" }
+    },
+    "sensitivity_class": {
+      "type": "string",
+      "enum": ["public", "internal", "confidential"],
+      "description": "Inherited from the most restrictive source artifact in this entry"
+    },
+    "token_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Estimated token count of the cached content"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "invalidation_condition": {
+      "type": "string",
+      "enum": ["source_change", "policy_change", "session_close", "manual"],
+      "description": "What triggers invalidation of this entry"
+    },
+    "ttl_seconds": {
+      "type": ["integer", "null"],
+      "description": "Null means content-addressed invalidation only; integer means additional time-based expiry"
+    },
+    "hit_count": { "type": "integer", "minimum": 0, "default": 0 },
+    "last_hit_at": { "type": ["string", "null"], "format": "date-time" },
+    "compaction_sequence": {
+      "type": ["integer", "null"],
+      "description": "For history layer only: the compaction sequence number"
+    },
+    "producer": { "type": "string", "description": "Subsystem that created this entry" }
+  },
+  "additionalProperties": false
+}

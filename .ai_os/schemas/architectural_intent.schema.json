@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArchitecturalIntent",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "subject", "intent", "rationale", "status", "owner", "evidence_ids", "confidence", "published_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "subject": { "type": "string" },
+    "intent": { "type": "string" },
+    "rationale": { "type": "string" },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "status": { "enum": ["proposed", "approved", "superseded", "deprecated"] },
+    "owner": { "type": "string" },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "supersedes": { "type": "string" },
+    "published_at": { "type": "string", "format": "date-time" }
+  }
+}

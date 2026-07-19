@@ -1,0 +1,23 @@
+{
+  "id": "TASK-001",
+  "schema_version": "1.0.0",
+  "repository_id": "example-repository",
+  "correlation_id": "corr-example-001",
+  "plan_version": 1,
+  "requirement_id": "REQ-001",
+  "goal": "Create the backend approval API contract and validation tests.",
+  "files": ["src/api/batchApproval.ts", "tests/batchApproval.test.ts"],
+  "dependencies": [],
+  "risks": ["role-based access rules may be incomplete"],
+  "acceptance_criteria": ["API rejects unauthorized approval", "API records audit event"],
+  "validation_gates": ["unit test", "type check"],
+  "status": "planned",
+  "owner": "unassigned",
+  "max_token_budget": 6000,
+  "max_cost": 0.5,
+  "retry_budget": 2,
+  "rollback_strategy": "Revert only task-owned changes after preserving user edits.",
+  "confidence": 0.81,
+  "confidence_basis": ["impact-report:impact-001", "requirement:REQ-001"],
+  "provenance": ["plan:plan-001"]
+}

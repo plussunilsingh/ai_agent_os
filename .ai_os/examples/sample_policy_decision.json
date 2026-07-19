@@ -1,0 +1,19 @@
+{
+  "id": "POL-001",
+  "schema_version": "1.0.0",
+  "repository_id": "example-repository",
+  "workspace_id": "workspace-main",
+  "session_id": "session-001",
+  "correlation_id": "corr-example-001",
+  "actor": "agent:codex",
+  "action_type": "execute.task",
+  "outcome": "allow",
+  "requested_capabilities": ["filesystem.write:src/api/batchApproval.ts", "terminal.run:test"],
+  "granted_capabilities": ["filesystem.write:src/api/batchApproval.ts", "terminal.run:test"],
+  "allowed_paths": ["src/api/batchApproval.ts", "tests/batchApproval.test.ts"],
+  "data_classification": "internal",
+  "policy_versions": ["security-policy:1.0", "validation-policy:1.0"],
+  "reason": "Bounded implementation task with no production capability.",
+  "issued_at": "2026-07-18T10:05:00Z",
+  "expires_at": "2026-07-18T11:05:00Z"
+}

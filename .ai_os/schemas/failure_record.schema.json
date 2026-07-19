@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FailureRecord",
+  "type": "object",
+  "required": ["id", "schema_version", "repository_id", "task_id", "attempt_id", "classification", "fingerprint", "validation_stage", "root_cause_status", "evidence_ids", "recorded_at"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "repository_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "attempt_id": { "type": "string" },
+    "classification": { "type": "string" },
+    "fingerprint": { "type": "string" },
+    "validation_stage": { "type": "string" },
+    "prompt_hash": { "type": "string" },
+    "context_hash": { "type": "string" },
+    "model_id": { "type": "string" },
+    "source_revision": { "type": "string" },
+    "changed_paths": { "type": "array", "items": { "type": "string" } },
+    "root_cause_status": { "enum": ["hypothesis", "confirmed", "unknown"] },
+    "root_cause_summary": { "type": "string" },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "material_change_required": { "type": "boolean" },
+    "recorded_at": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,26 +1,23 @@
-# Backend Build Guidelines
+# Frontend Build Guidelines
 
-Whenever the user asks you to build, test, or verify the backend application, you MUST perform the following validation checklist:
+Whenever the user asks you to build, test, or verify the frontend UI application, you MUST perform the following validation checklist:
 
-1. **Spotless Code Formatting Check**:
-   * Run `./gradlew spotlessCheck` to verify Java code formatting.
-   * If there are formatting errors, run `./gradlew spotlessApply` to format the code automatically.
-2. **Static Analysis (Checkstyle & PMD)**:
-   * Do not skip static analysis checks. Ensure `config/checkstyle/checkstyle.xml` and `config/pmd/pmd-rules.xml` exist and are valid.
-   * Run `./gradlew check` or `./gradlew build` to execute Checkstyle and PMD tasks.
-3. **Unit & Integration Tests**:
-   * Run `./gradlew test` to execute all JUnit test suites and ensure 100% test success.
-4. **Hardcoded Versions**:
-   * Ensure all dependency versions inside `build.gradle` are hardcoded/pinned to specific versions for production go-live release. Avoid using dynamic or unpinned versions.
+1. **Prettier Code Formatting**:
+   - Run `npm run format` to automatically format all files using Prettier.
+2. **ESLint Static Analysis**:
+   - Run `npm run lint` to verify ESLint compliance.
+3. **Jest Unit & E2E Tests**:
+   - Run `npm run test` to verify all frontend test suites pass successfully.
+4. **Production Compilation**:
+   - Run `npm run build` to verify the Next.js production build creates successfully and compiles without errors.
 
 ## Lessons Learned & Common Issues
 
-* **Checkstyle & PMD Validation**:
-  * Checkstyle ruleset `config/checkstyle/checkstyle.xml` must exist. Do not delete it, otherwise builds will crash on CI.
-  * PMD version is `7.0.0`. Do not use deprecated rules like `ExcessiveMethodLength` or `ExcessiveClassLength` in `config/pmd/pmd-rules.xml` since they will fail PMD parser initialization.
-* **Strict Generic Return Typing**:
-  * Maintain strict compile-time types for REST controllers and services. Avoid returning `ApiResponse<Object>` or raw maps (`Map<String, Object>`) for collection results.
-  * Use Java records in `com.bn.admin.dto.ResponseRecords` (e.g., `CustomerListResponse`, `MaterialListResponse`) and wrap lists with wildcard lists `List<?>` when dynamically mapping batch details.
-* **Database Connection Pooling**:
-  * For production, always use optimized pool configurations (e.g. HikariCP settings in `application-prod.properties` with `maximum-pool-size=20`).
-
+- **API Proxy Response Envelope Unwrapping**:
+  - The Next.js API routes (`src/app/api/admin/**/*.js`) proxy and unwrap the Spring Boot `ApiResponse` envelope (`responseData.data`).
+  - Always use null-safe unwrapping logic to handle cases where the backend returns an explicit `null` payload:
+    `const unwrappedData = responseData.data !== undefined && responseData.data !== null ? responseData.data : responseData;`
+  - Always preserve response metadata (`success` and `message`) by copying them from the outer wrapper to the unwrapped object (if not already set) before returning the response. This is critical for authentication checks (`auth/route.js`).
+- **Modal Contrast Styling (Light/Dark Themes)**:
+  - Do not hardcode fixed light colors (like `text-slate-300`) for text items that will be rendered inside white or light-gray components in light mode.
+  - Always wrap them with the theme helper `t('text-slate-300', 'text-slate-700')` to ensure clear legibility across both themes.
