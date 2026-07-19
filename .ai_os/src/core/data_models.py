@@ -295,13 +295,20 @@ class GenomeSnapshot:
         }
 
     def _serialize_architecture(self) -> Dict[str, Any]:
+        modules = getattr(self.architecture, 'modules', [])
+        module_names = []
+        for m in modules:
+            if isinstance(m, dict):
+                module_names.append(m.get("name", str(m)))
+            else:
+                module_names.append(getattr(m, 'name', str(m)))
         return {
-            "modules": [m.name for m in self.architecture.modules],
-            "dependencies": self.architecture.dependencies,
-            "layers": self.architecture.layers,
-            "patterns": self.architecture.patterns,
-            "violations": self.architecture.violations,
-            "drift_score": self.architecture.drift_score
+            "modules": module_names,
+            "dependencies": getattr(self.architecture, 'dependencies', []),
+            "layers": getattr(self.architecture, 'layers', []),
+            "patterns": getattr(self.architecture, 'patterns', []),
+            "violations": getattr(self.architecture, 'violations', []),
+            "drift_score": getattr(self.architecture, 'drift_score', 0.0)
         }
 
     def _serialize_domain(self) -> Dict[str, Any]:
