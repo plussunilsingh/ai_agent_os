@@ -36,7 +36,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-          cache-dependency-path: pyproject.toml
+          cache-dependency-path: ai-se-os/pyproject.toml
 
       - name: Install dependencies
         run: |
@@ -72,7 +72,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-          cache-dependency-path: pyproject.toml
+          cache-dependency-path: ai-se-os/pyproject.toml
 
       - name: Install dependencies
         run: |
@@ -145,7 +145,7 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
-          cache-dependency-path: pyproject.toml
+          cache-dependency-path: ai-se-os/pyproject.toml
 
       - name: Build package
         run: |
@@ -176,8 +176,8 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./docker/Dockerfile
+          context: ./ai-se-os
+          file: ./ai-se-os/docker/Dockerfile
           push: false
           load: true
           tags: ai-se-os:latest

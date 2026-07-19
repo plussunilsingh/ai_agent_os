@@ -79,7 +79,7 @@ services:
 
   ai-os:
     build:
-      context: ..
+      context: .
       dockerfile: docker/Dockerfile
     depends_on:
       postgres:
