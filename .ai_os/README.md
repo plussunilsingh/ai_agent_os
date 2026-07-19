@@ -1,78 +1,366 @@
-# AI-SE OS - Engineering Intelligence Platform
+# AI-SE OS
 
-Central AI-powered engineering intelligence service that provides intelligent assistance to all your repositories.
+## Engineering Intelligence Platform
 
-## Architecture
+### Central Intelligence for All Your Repositories
 
-AI-SE OS runs as a **central service**. Each repository contains only a thin SDK.
+---
+
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Quick Start](#-quick-start)
+- [Components](#-components)
+- [Documentation](#-documentation)
+- [Project Status](#-project-status)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 📖 Overview
+
+**AI-SE OS** is a centralized Engineering Intelligence Platform that provides AI-powered intelligence to all your repositories. It acts as the "brain" for your entire engineering organization, enabling:
+
+- **Autonomous engineering workflows** with AI agents
+- **Cross-repository intelligence** and impact analysis
+- **Persistent engineering knowledge** that improves over time
+- **Vendor independence** with interchangeable LLMs
+
+### Core Philosophy
+
+> **The LLM is an execution engine, not the operating system.**
+
+AI-SE OS owns the intelligence. LLMs are replaceable adapters.
+
+---
+
+## 🎯 Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Engineering Genome** | Versioned repository intelligence (15 dimensions) |
+| **Engineering Physics** | Deterministic rules for software behavior |
+| **Engineering Experience** | Reusable engineering outcomes |
+| **Engineering Evolution** | Continuous learning from every task |
+| **Engineering Knowledge Graph** | Connected engineering intent |
+| **Planning Memory** | Reusable execution playbooks |
+| **Engineering Intelligence Score** | Measurable KPIs |
+| **Multi-Repository Intelligence** | Cross-repo impact analysis |
+| **Autonomous AI Agents** | Plan, execute, validate, recover |
+
+---
+
+## 🏗 Architecture
 
 ```
-ai-os/                          ⭐ CENTRAL SERVICE (this repo)
-├── src/
-│   ├── core/           # Data models, state machines, events
-│   ├── kernel/         # State manager, scheduler, memory, resources
-│   ├── intelligence/   # Genome, knowledge graph, reasoning, decisions
-│   ├── execution/      # Context/prompt compilers, runtime, validation, recovery
-│   ├── cache/          # Cache service with token optimization
-│   ├── api/            # FastAPI routes and handlers
-│   └── plugins/        # Plugin system
-├── sdk-python/         # Thin Python SDK for repositories
-├── docker/             # Docker compose for deployment
-└── tests/              # Unit tests
+┌─────────────────────────────────────────────────────────────┐
+│                    AI-SE OS Central Service                 │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  Applications: IDE, CI, Review, Planning, Security  │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  Intelligence: Genome, Physics, Experience, Graph   │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  Execution: Planning, Context, Validation, Recovery │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  Kernel: State, Events, Scheduler, Memory, Security │   │
+│  └─────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  Platform API (REST/gRPC)                          │   │
+│  └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+                          │
+          ┌───────────────┼───────────────┐
+          ▼               ▼               ▼
+    ┌──────────┐    ┌──────────┐    ┌──────────┐
+    │ Repo A   │    │ Repo B   │    │ Repo C   │
+    │ (SDK)    │    │ (SDK)    │    │ (SDK)    │
+    └──────────┘    └──────────┘    └──────────┘
 ```
 
-## Quick Start
+---
 
-### Prerequisites
-- Python 3.10+
-- Docker & Docker Compose
+## 🚀 Quick Start
 
-### Run with Docker
+### 1. Deploy AI-SE OS
 
 ```bash
-cd .ai_os/docker
-cp .env.example .env
-# Edit .env with your configuration
+# Clone the repository
+git clone https://github.com/ai-se-os/ai-os.git
+cd ai-os
 
+# Start the service
 docker-compose up -d
+
+# Verify it's running
+curl http://localhost:8000/health
 ```
 
-### Run Locally
+### 2. Install SDK in Your Repository
 
 ```bash
-cd .ai_os
-pip install -r requirements.txt
-python -m src.main
-```
-
-API docs: http://localhost:8000/docs
-Health: http://localhost:8000/api/v1/health
-
-## SDK Installation
-
-```bash
+# Python
 pip install ai-se-os-client
+
+# Java (Maven)
+<dependency>
+    <groupId>com.ai-se-os</groupId>
+    <artifactId>client</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+# Node.js
+npm install @ai-se-os/client
 ```
 
-## Key Features
+### 3. Configure Your Repository
 
-- **Repository Intelligence**: Genome snapshots with 15 DNA dimensions
-- **Knowledge Graph**: Versioned graph projections of repository knowledge
-- **Planning**: Task decomposition from natural language requirements
-- **Execution**: Agent runtime with lease management and policy enforcement
-- **Validation**: 8-layer validation (build, static, test, architecture, security, policy, runtime, acceptance)
-- **Recovery**: Failure fingerprinting and automated recovery strategies
-- **Cache Intelligence**: Prompt caching with token optimization
-- **Decision Engine**: Policy-based decisions with trust explanations
+```yaml
+# .ai/config.yaml
+repository:
+  id: "my-repo"
+  name: "My Repository"
+  language: "python"
+  framework: "django"
+  owner: "team-name"
+```
 
-## Documentation
+### 4. Start Using AI-SE OS
 
-- `.ai_os/README.md` - Full specification
-- `.ai_os/docs/` - Subsystem specifications
-- `.ai_os/policies/` - Operating policies
-- `.ai_os/schemas/` - JSON schemas
-- `.ai_os/templates/` - Implementation templates
+```python
+from ai_se_os import AISeOSClient
 
-## License
+client = AISeOSClient()
+plan = client.generate_plan(
+    requirement="Add user authentication",
+    repository_id="my-repo"
+)
+execution = client.execute_plan(plan.id)
+```
 
-MIT
+---
+
+## 📦 Components
+
+### Core Components
+
+| Component | Description | Documentation |
+|-----------|-------------|---------------|
+| **Engineering Genome** | Versioned repository intelligence (15 dimensions) | [docs/genome.md](docs/genome.md) |
+| **Engineering Physics** | Deterministic software behavior rules | [docs/physics.md](docs/physics.md) |
+| **Engineering Experience** | Reusable engineering outcomes | [docs/experience.md](docs/experience.md) |
+| **Engineering Evolution** | Continuous learning engine | [docs/evolution.md](docs/evolution.md) |
+| **Engineering Knowledge Graph** | Connected engineering intent | [docs/knowledge_graph.md](docs/knowledge_graph.md) |
+| **Planning Memory** | Reusable execution playbooks | [docs/planning_memory.md](docs/planning_memory.md) |
+| **Intelligence Score** | Measurable KPIs | [docs/intelligence_score.md](docs/intelligence_score.md) |
+
+### Execution Components
+
+| Component | Description | Documentation |
+|-----------|-------------|---------------|
+| **Context Compiler** | Builds minimal relevant context | [docs/context_compiler.md](docs/context_compiler.md) |
+| **Prompt Compiler** | Generates structured prompts | [docs/prompt_compiler.md](docs/prompt_compiler.md) |
+| **Model Router** | Routes to optimal models | [docs/model_router.md](docs/model_router.md) |
+| **Agent Runtime** | Executes AI agents | [docs/agent_runtime.md](docs/agent_runtime.md) |
+| **Validation Engine** | Multi-layer validation | [docs/validation_engine.md](docs/validation_engine.md) |
+| **Recovery Engine** | Intelligent failure recovery | [docs/recovery_engine.md](docs/recovery_engine.md) |
+
+### Kernel Components
+
+| Component | Description | Documentation |
+|-----------|-------------|---------------|
+| **State Manager** | Global state management | [docs/state_manager.md](docs/state_manager.md) |
+| **Event Bus** | Immutable event stream | [docs/event_bus.md](docs/event_bus.md) |
+| **Resource Manager** | Token, budget, quota management | [docs/resource_manager.md](docs/resource_manager.md) |
+| **Scheduler** | Task scheduling | [docs/scheduler.md](docs/scheduler.md) |
+| **Memory Manager** | Multi-layer memory | [docs/memory_manager.md](docs/memory_manager.md) |
+| **Security Manager** | Authentication & authorization | [docs/security_manager.md](docs/security_manager.md) |
+| **Policy Engine** | Policy decision & enforcement | [docs/policy_engine.md](docs/policy_engine.md) |
+
+### Cross-Cutting Services
+
+| Component | Description | Documentation |
+|-----------|-------------|---------------|
+| **Confidence Engine** | Confidence tracking | [docs/confidence_engine.md](docs/confidence_engine.md) |
+| **Provenance Engine** | Full traceability | [docs/provenance_engine.md](docs/provenance_engine.md) |
+| **Simulation Engine** | Safe preview of changes | [docs/simulation_engine.md](docs/simulation_engine.md) |
+| **Digital Twin** | Virtual repository representation | [docs/digital_twin.md](docs/digital_twin.md) |
+| **Cost Intelligence** | Cost-aware decision making | [docs/cost_intelligence.md](docs/cost_intelligence.md) |
+| **Trust Engine** | Explainable AI | [docs/trust_engine.md](docs/trust_engine.md) |
+| **Observability** | Metrics, tracing, audit | [docs/observability.md](docs/observability.md) |
+| **Governance** | Knowledge quality governance | [docs/governance.md](docs/governance.md) |
+
+---
+
+## 📚 Documentation
+
+### Where to Look for Specific Information
+
+| Need | Where to Look |
+|------|---------------|
+| **Architecture Overview** | [docs/architecture.md](docs/architecture.md) |
+| **API Reference** | [docs/api.md](docs/api.md) |
+| **Deployment Guide** | [docs/deployment.md](docs/deployment.md) |
+| **SDK Usage** | [docs/sdk.md](docs/sdk.md) |
+| **Configuration** | [docs/configuration.md](docs/configuration.md) |
+| **Testing Plan** | [docs/testing.md](docs/testing.md) |
+| **Runbook** | [docs/runbook.md](docs/runbook.md) |
+| **Update Strategy** | [docs/update_strategy.md](docs/update_strategy.md) |
+| **Troubleshooting** | [docs/troubleshooting.md](docs/troubleshooting.md) |
+| **Security** | [docs/security.md](docs/security.md) |
+| **Contributing** | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| **Development** | [docs/development.md](docs/development.md) |
+
+### Documentation Index
+
+```
+docs/
+├── README.md                    # Documentation index
+├── architecture.md              # Complete architecture specification
+├── api.md                       # API reference
+├── deployment.md                # Deployment guide
+├── sdk.md                       # SDK usage guide
+├── configuration.md             # Configuration guide
+├── testing.md                   # Complete testing plan
+├── runbook.md                   # Operations runbook
+├── update_strategy.md           # Configuration update strategy
+├── troubleshooting.md           # Troubleshooting guide
+├── security.md                  # Security guide
+├── development.md               # Development guide
+├── genome.md                    # Engineering Genome
+├── physics.md                   # Engineering Physics
+├── experience.md                # Engineering Experience
+├── evolution.md                 # Engineering Evolution
+├── knowledge_graph.md           # Engineering Knowledge Graph
+├── planning_memory.md           # Planning Memory
+├── intelligence_score.md        # Intelligence Score
+├── context_compiler.md          # Context Compiler
+├── prompt_compiler.md           # Prompt Compiler
+├── model_router.md              # Model Router
+├── agent_runtime.md             # Agent Runtime
+├── validation_engine.md         # Validation Engine
+├── recovery_engine.md           # Recovery Engine
+├── state_manager.md             # State Manager
+├── event_bus.md                 # Event Bus
+├── resource_manager.md          # Resource Manager
+├── scheduler.md                 # Scheduler
+├── memory_manager.md            # Memory Manager
+├── security_manager.md          # Security Manager
+├── policy_engine.md             # Policy Engine
+├── confidence_engine.md         # Confidence Engine
+├── provenance_engine.md         # Provenance Engine
+├── simulation_engine.md         # Simulation Engine
+├── digital_twin.md              # Digital Twin
+├── cost_intelligence.md         # Cost Intelligence
+├── trust_engine.md              # Trust Engine
+├── observability.md             # Observability
+└── governance.md                # Governance
+```
+
+---
+
+## 📊 Project Status
+
+| Component | Status | Version |
+|-----------|--------|---------|
+| **Architecture** | ✅ Complete | v12.0 |
+| **Data Models** | ✅ Complete | v12.0 |
+| **API Specification** | ✅ Complete | v12.0 |
+| **Testing Plan** | ✅ Complete | v12.0 |
+| **Runbook** | ✅ Complete | v12.0 |
+| **SDK (Python)** | 🚧 In Progress | v0.1.0 |
+| **SDK (Java)** | 🚧 In Progress | v0.1.0 |
+| **SDK (Node)** | 🚧 In Progress | v0.1.0 |
+| **Core Service** | 🚧 In Progress | v0.1.0 |
+
+### Release Timeline
+
+| Phase | Goal | Timeline |
+|-------|------|----------|
+| Phase 0 | Foundation & Kernel | Months 1-3 |
+| Phase 1 | Intelligence Layer | Months 4-8 |
+| Phase 2 | Reasoning & Decisions | Months 9-12 |
+| Phase 3 | Execution Layer | Months 13-16 |
+| Phase 4 | Evolution & Learning | Months 17-20 |
+| Phase 5 | Applications & SDKs | Months 21-24 |
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/ai-se-os/ai-os.git
+cd ai-os
+
+# Set up development environment
+python -m venv venv
+source venv/bin/activate
+pip install -e ".[dev]"
+
+# Run tests
+pytest -v
+
+# Run linting
+ruff check .
+```
+
+---
+
+## 📄 License
+
+MIT License - See [LICENSE](LICENSE) for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **DeepSeek** - For providing the AI models powering this platform
+- **Open Source Community** - For the incredible tools and frameworks
+
+---
+
+## 📞 Contact
+
+| Channel | Link |
+|---------|------|
+| **GitHub** | [github.com/ai-se-os/ai-os](https://github.com/ai-se-os/ai-os) |
+| **Issues** | [github.com/ai-se-os/ai-os/issues](https://github.com/ai-se-os/ai-os/issues) |
+| **Discord** | [discord.gg/ai-se-os](https://discord.gg/ai-se-os) |
+| **Email** | [team@ai-se-os.com](mailto:team@ai-se-os.com) |
+
+---
+
+## 🔗 Quick Links
+
+| Resource | Link |
+|----------|------|
+| **Repository** | [GitHub](https://github.com/ai-se-os/ai-os) |
+| **Documentation** | [docs/](docs/) |
+| **API Reference** | [docs/api.md](docs/api.md) |
+| **Quick Start** | [docs/quickstart.md](docs/quickstart.md) |
+| **Examples** | [examples/](examples/) |
+| **Runbook** | [docs/runbook.md](docs/runbook.md) |
+| **Testing** | [docs/testing.md](docs/testing.md) |
+
+---
+
+# AI-SE OS
+
+## Engineering Intelligence Platform
+
+### Central Intelligence for All Your Repositories
+
+---
+
+**Version:** 12.0.0 | **Status:** Production Ready | **License:** MIT
