@@ -53,6 +53,14 @@ async def health():
         "version": get_version()
     }
 
+from typing import Dict, Any
+from .api.routes import agent_execute
+
+@app.post("/agent/execute")
+async def root_agent_execute(payload: Dict[str, Any]):
+    return await agent_execute(payload)
+
+
 # Startup event
 @app.on_event("startup")
 async def startup_event():

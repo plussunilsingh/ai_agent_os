@@ -10,7 +10,10 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Any, Set
 import logging
 
+from ai_se_os.telemetry.task_state_machine import InvalidStateTransitionError
+
 logger = logging.getLogger(__name__)
+
 
 
 class TaskStatus(str, Enum):

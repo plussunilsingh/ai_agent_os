@@ -370,11 +370,12 @@ async def agent_execute(payload: Dict[str, Any]) -> Dict[str, Any]:
     Kicks off LLMTaskRunner in a background thread so the HTTP response returns immediately.
     """
     task_id = payload.get("task_id", f"task-api-{int(_time.time())}")
-    task_name = payload.get("task_name", "Unnamed Task")
+    task_name = payload.get("task_name")
     target_url = payload.get("target_url", "")
 
     if not task_name:
         raise HTTPException(status_code=400, detail="task_name is required")
+
 
     def _run_in_background():
         try:
@@ -418,23 +419,24 @@ async def agent_status(task_id: str) -> Dict[str, Any]:
 from ai_se_os.core.task_manager import task_manager, TaskStatus
 
 
-@router.post("/api/v1/task/{task_id}/heartbeat")
+@router.post("/task/{task_id}/heartbeat")
 async def task_heartbeat(task_id: str, progress: Optional[int] = None, step: Optional[str] = None):
     """Update heartbeat for a task."""
     await task_manager.heartbeat(task_id, progress, step)
     return {"status": "ok", "task_id": task_id}
 
 
-@router.post("/api/v1/task/{task_id}/cancel")
+@router.post("/task/{task_id}/cancel")
 async def cancel_task(task_id: str):
     """Cancel a running task."""
     await task_manager.transition(task_id, TaskStatus.CANCELLED, step="Cancelled by user")
     return {"status": "cancelled", "task_id": task_id}
 
 
-@router.get("/api/v1/task/{task_id}/history")
+@router.get("/task/{task_id}/history")
 async def get_task_history(task_id: str):
     """Get event history for a task."""
     events = await task_manager.get_history(task_id)
     return [{"timestamp": e.timestamp, "status": e.status.value, "step": e.step, "progress": e.progress} for e in events]
+
 

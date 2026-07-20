@@ -1,14 +1,44 @@
 {
   "active_tasks": [
     {
-      "task_id": "task-e2e-1784549599",
-      "task_name": "Timer Verification Task",
-      "target_url": "http://127.0.0.1:9000/api/admin/inventory/supplier-samples",
+      "task_id": "task-api-1784553388",
+      "task_name": "Unnamed Task",
+      "target_url": "",
       "status": "EXECUTING",
-      "current_step": "Initializing task environment...",
-      "start_time": "2026-07-20 17:43:19 IST",
-      "start_epoch": 1784549599.600993,
-      "progress_pct": 10
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:28 IST",
+      "start_epoch": 1784553388.525055,
+      "progress_pct": 0
+    },
+    {
+      "task_id": "task-api-1784553397",
+      "task_name": "Unnamed Task",
+      "target_url": "",
+      "status": "EXECUTING",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:37 IST",
+      "start_epoch": 1784553397.157962,
+      "progress_pct": 0
+    },
+    {
+      "task_id": "task-api-1784553402",
+      "task_name": "Unnamed Task",
+      "target_url": "",
+      "status": "EXECUTING",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:42 IST",
+      "start_epoch": 1784553402.426187,
+      "progress_pct": 0
+    },
+    {
+      "task_id": "task-api-1784553408",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "EXECUTING",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:48 IST",
+      "start_epoch": 1784553408.548226,
+      "progress_pct": 0
     }
   ],
   "history": [
@@ -244,137 +274,21 @@
       "progress_pct": 10,
       "end_time": "2026-07-20 17:43:19 IST",
       "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-e2e-1784549599",
+      "task_name": "Timer Verification Task",
+      "target_url": "http://127.0.0.1:9000/api/admin/inventory/supplier-samples",
+      "status": "TIMED_OUT",
+      "current_step": "Initializing task environment...",
+      "start_time": "2026-07-20 17:43:19 IST",
+      "start_epoch": 1784549599.600993,
+      "progress_pct": 10,
+      "end_time": "2026-07-20 18:46:28 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
     }
   ],
   "model_chunks": [
-    {
-      "timestamp": "17:06:19 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch...",
-      "agent_response": "[[Iter 4] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:19 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": false, \"error\": \"Tool 'http_post' raised: 'url'\", \"result\": \"\"}",
-      "agent_response": "{\"success\": false, \"error\": \"Tool 'http_post' raised: 'url'\", \"result\": \"\"}...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:19 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "AGENT_TERMINATE",
-      "content": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] (health-1): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] event: TERMINATE. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:48 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] (health-1): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:48 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:50 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\"})",
-      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\"})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:50 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:50 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:58 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch...",
-      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:59 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 311,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 311,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:59 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:03 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 311.",
-      "agent_response": "Order created successfully with ID: 311....",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:03 IST",
-      "task_id": "health-1784547408",
-      "chunk_type": "AGENT_COMPLETE",
-      "content": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] (health-1): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] event: COMPLETE. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:03 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (order-17): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:03 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:05 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
-      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
-      "model_name": "qwen2.5:7b"
-    },
     {
       "timestamp": "17:07:05 IST",
       "task_id": "order-1784547423",
@@ -446,12 +360,140 @@
       "content": "Started autonomous task: Timer Verification Task",
       "agent_response": "Started autonomous task: Timer Verification Task",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:28 IST",
+      "task_id": "task-api-1784553388",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Unnamed Task",
+      "agent_response": "Started autonomous task: Unnamed Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:28 IST",
+      "task_id": "task-api-1784553388",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:28 IST",
+      "task_id": "task-api-1784553388",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Unnamed Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Unnamed Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:28 IST",
+      "task_id": "task-api-1784553388",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:37 IST",
+      "task_id": "task-api-1784553397",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Unnamed Task",
+      "agent_response": "Started autonomous task: Unnamed Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:37 IST",
+      "task_id": "task-api-1784553397",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:37 IST",
+      "task_id": "task-api-1784553397",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Unnamed Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Unnamed Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:37 IST",
+      "task_id": "task-api-1784553397",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:42 IST",
+      "task_id": "task-api-1784553402",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Unnamed Task",
+      "agent_response": "Started autonomous task: Unnamed Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:42 IST",
+      "task_id": "task-api-1784553402",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:42 IST",
+      "task_id": "task-api-1784553402",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Unnamed Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Unnamed Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:42 IST",
+      "task_id": "task-api-1784553402",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:48 IST",
+      "task_id": "task-api-1784553408",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:48 IST",
+      "task_id": "task-api-1784553408",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:48 IST",
+      "task_id": "task-api-1784553408",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "18:46:48 IST",
+      "task_id": "task-api-1784553408",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 18922,
-    "completion_tokens": 24098,
-    "total_tokens": 43020
+    "prompt_tokens": 19242,
+    "completion_tokens": 24346,
+    "total_tokens": 43588
   },
   "ai_agent_os_task_failures": [
     {
@@ -482,6 +524,27 @@
       "llm_failure": "None"
     }
   ],
-  "active_subagents": [],
-  "active_agent_count": 0
+  "active_subagents": [
+    {
+      "agent_id": "task-api-1784553388",
+      "role": "LLM-Runner:Unnamed Task",
+      "spawn_time": "18:46:28 IST"
+    },
+    {
+      "agent_id": "task-api-1784553397",
+      "role": "LLM-Runner:Unnamed Task",
+      "spawn_time": "18:46:37 IST"
+    },
+    {
+      "agent_id": "task-api-1784553402",
+      "role": "LLM-Runner:Unnamed Task",
+      "spawn_time": "18:46:42 IST"
+    },
+    {
+      "agent_id": "task-api-1784553408",
+      "role": "LLM-Runner:API Fuzzing Test Task",
+      "spawn_time": "18:46:48 IST"
+    }
+  ],
+  "active_agent_count": 4
 }
