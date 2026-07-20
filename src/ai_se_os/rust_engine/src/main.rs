@@ -287,33 +287,59 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
 
         let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
         let task_id = format!("task-e2e-{}", now);
-        
-        // 1. Immediately register task in Python TaskQueueTracker
+
+        // 1. Immediately register task in Python TaskQueueTracker (shows in Active queue instantly)
         register_task_in_python_tracker(&task_id, &task_name, &target_url);
 
-        // 2. Spawn multi-stage Task DAG Workflow in non-blocking process
-        let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
-        let dag_cmd = format!(
-            "from ai_se_os.orchestrator.dag_engine import TaskDAGWorkflow; TaskDAGWorkflow('{}', '{}', '{}').execute_workflow()",
-            task_id, task_name.replace("'", "''"), target_url
+        // 2. Bridge to FastAPI /agent/execute (real LLM+Tool execution engine)
+        //    Try FastAPI first; fall back to direct Python subprocess if FastAPI is not running.
+        let _fastapi_url = "http://127.0.0.1:8001/agent/execute";
+        let fastapi_payload = format!(
+            "{{\"task_id\":\"{}\",\"task_name\":\"{}\",\"target_url\":\"{}\"}}",
+            task_id,
+            task_name.replace('"', "'"),
+            target_url
         );
-        let _ = Command::new(py_exe)
-            .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
-            .env("PYTHONPATH", "src")
-            .arg("-c")
-            .arg(dag_cmd)
-            .spawn();
+
+        let fastapi_dispatched = if let Ok(mut fastapi_stream) = std::net::TcpStream::connect("127.0.0.1:8001") {
+            let http_req = format!(
+                "POST /agent/execute HTTP/1.1\r\nHost: 127.0.0.1:8001\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
+                fastapi_payload.len(),
+                fastapi_payload
+            );
+            use std::io::Write;
+            fastapi_stream.write_all(http_req.as_bytes()).is_ok()
+        } else {
+            false
+        };
+
+        // Fallback: direct Python subprocess (DAGWorkflow now calls LLMTaskRunner)
+        if !fastapi_dispatched {
+            let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
+            let dag_cmd = format!(
+                "from ai_se_os.orchestrator.dag_engine import TaskDAGWorkflow; TaskDAGWorkflow('{}', '{}', '{}').execute_workflow()",
+                task_id, task_name.replace('\'', "''"), target_url
+            );
+            let _ = Command::new(py_exe)
+                .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
+                .env("PYTHONPATH", "src")
+                .arg("-c")
+                .arg(dag_cmd)
+                .spawn();
+        }
 
         let body = serde_json::json!({
             "status": "DISPATCHED",
-            "message": "Task dispatched to AI-SE OS Master Queue",
+            "message": if fastapi_dispatched { "Task dispatched to FastAPI LLM Execution Engine" } else { "Task dispatched via Python subprocess (FastAPI offline)" },
             "task_id": task_id,
-            "task_name": task_name
+            "task_name": task_name,
+            "fastapi_bridge": fastapi_dispatched
         }).to_string();
 
         send_json_response(&mut stream, 200, &body);
         return;
     }
+
 
     // Serve Full AI-SE OS Control Plane Telemetry Dashboard HTML
     let dashboard_html = include_str!("../../telemetry/index.html");

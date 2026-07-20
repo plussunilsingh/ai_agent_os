@@ -349,3 +349,63 @@ async def trace_intent(trace_data: Dict[str, Any]) -> Dict[str, Any]:
         ],
         "confidence": 0.95
     }
+
+
+# ============================================================
+# REAL Agent Execution Endpoint (Phase 4 — Rust Bridge)
+# Called by Rust engine dispatch-task instead of dummy subprocess
+# ============================================================
+
+import threading
+import time as _time
+
+from ai_se_os.orchestrator.dag_engine import TaskDAGWorkflow
+
+
+@router.post("/agent/execute")
+async def agent_execute(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Real autonomous task execution endpoint.
+    Rust engine calls this instead of spawning a dummy Python subprocess.
+    Kicks off LLMTaskRunner in a background thread so the HTTP response returns immediately.
+    """
+    task_id = payload.get("task_id", f"task-api-{int(_time.time())}")
+    task_name = payload.get("task_name", "Unnamed Task")
+    target_url = payload.get("target_url", "")
+
+    if not task_name:
+        raise HTTPException(status_code=400, detail="task_name is required")
+
+    def _run_in_background():
+        try:
+            workflow = TaskDAGWorkflow(task_id, task_name, target_url)
+            workflow.execute_workflow()
+        except Exception as exc:
+            logger.error(f"[/agent/execute] Background task '{task_name}' crashed: {exc}")
+
+    thread = threading.Thread(target=_run_in_background, daemon=True, name=f"agent-{task_id}")
+    thread.start()
+
+    return {
+        "accepted": True,
+        "task_id": task_id,
+        "task_name": task_name,
+        "target_url": target_url,
+        "message": "Task dispatched to LLM execution engine. Monitor dashboard for progress."
+    }
+
+
+@router.get("/agent/status/{task_id}")
+async def agent_status(task_id: str) -> Dict[str, Any]:
+    """Get live status of a running or completed agent task."""
+    from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
+    state = TaskQueueTracker._read_state()
+    # Search active tasks
+    for t in state.get("active_tasks", []):
+        if t.get("task_id") == task_id:
+            return {"found": True, "status": "active", "task": t}
+    # Search history
+    for t in state.get("history", []):
+        if t.get("task_id") == task_id:
+            return {"found": True, "status": "history", "task": t}
+    return {"found": False, "task_id": task_id, "message": "Task not found in active or history queue"}
