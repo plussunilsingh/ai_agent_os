@@ -36,8 +36,8 @@ class InvalidStateTransitionError(Exception):
 
 # Allowed state transition graph
 ALLOWED_TRANSITIONS: Dict[TaskState, Set[TaskState]] = {
-    TaskState.CREATED: {TaskState.QUEUED, TaskState.PLANNING, TaskState.EXECUTING, TaskState.CANCELLED},
-    TaskState.QUEUED: {TaskState.PLANNING, TaskState.EXECUTING, TaskState.CANCELLED, TaskState.FAILED},
+    TaskState.CREATED: {TaskState.QUEUED, TaskState.PLANNING, TaskState.EXECUTING, TaskState.CANCELLED, TaskState.FAILED, TaskState.TIMED_OUT},
+    TaskState.QUEUED: {TaskState.PLANNING, TaskState.EXECUTING, TaskState.CANCELLED, TaskState.FAILED, TaskState.TIMED_OUT},
     TaskState.PLANNING: {TaskState.EXECUTING, TaskState.FAILED, TaskState.CANCELLED, TaskState.TIMED_OUT},
     TaskState.EXECUTING: {TaskState.COMPLETED, TaskState.FAILED, TaskState.TIMED_OUT, TaskState.CANCELLED},
     # Terminal states — no transitions allowed out of terminal states

@@ -294,6 +294,11 @@ class TaskQueueTracker:
                 t["duration_sec"] = round(max(0.0, now_epoch - start_ep), 1)
                 t["summary"] = result_summary
                 t["progress_pct"] = 100
+                if "history" not in state:
+                    state["history"] = []
+                state["history"].append(t)
+            else:
+                active.append(t)
         state["active_tasks"] = active
         # Purge subagents associated with completed task_id
         agents = [a for a in state.get("active_subagents", []) if a.get("agent_id") != task_id]
