@@ -205,15 +205,59 @@ def verify_json_field(url: str, field_path: str, expected: Any, headers: Optiona
         return {"success": False, "error": f"JSON verify error: {e}", "result": raw[:500]}
 
 
+def _normalize_args(args: Dict[str, Any]) -> Dict[str, Any]:
+    """Unwraps nested args and normalizes parameter aliases used by various LLMs."""
+    if not isinstance(args, dict):
+        return {}
+    # Unwrap nested args if formatted as {"args": {"url": "..."}}
+    if "args" in args and isinstance(args["args"], dict):
+        unwrapped = dict(args["args"])
+        for k, v in args.items():
+            if k != "args" and k not in unwrapped:
+                unwrapped[k] = v
+        args = unwrapped
+
+    norm = dict(args)
+    # URL aliases
+    if "url" not in norm:
+        for alias in ["target_url", "uri", "endpoint"]:
+            if alias in norm:
+                norm["url"] = norm[alias]
+                break
+
+    # Payload aliases
+    if "payload" not in norm:
+        for alias in ["data", "body", "json"]:
+            if alias in norm:
+                norm["payload"] = norm[alias]
+                break
+
+    # Field aliases
+    if "field" not in norm:
+        for alias in ["field_path", "key", "target_field"]:
+            if alias in norm:
+                norm["field"] = norm[alias]
+                break
+
+    # Expected value aliases
+    if "expected" not in norm:
+        for alias in ["value", "expected_value", "expected_status"]:
+            if alias in norm:
+                norm["expected"] = norm[alias]
+                break
+
+    return norm
+
+
 # Tool dispatch map — used by LLMTaskRunner
 TOOL_REGISTRY = {
-    "http_get": lambda args: http_get(args["url"], args.get("headers")),
-    "http_post": lambda args: http_post(args["url"], args.get("payload", {}), args.get("headers")),
-    "read_file": lambda args: read_file(args["path"]),
-    "write_file": lambda args: write_file(args["path"], args["content"]),
-    "run_shell": lambda args: run_shell(args["cmd"], args.get("cwd")),
+    "http_get": lambda args: http_get(args.get("url", ""), args.get("headers")),
+    "http_post": lambda args: http_post(args.get("url", ""), args.get("payload", {}), args.get("headers")),
+    "read_file": lambda args: read_file(args.get("path", "")),
+    "write_file": lambda args: write_file(args.get("path", ""), args.get("content", "")),
+    "run_shell": lambda args: run_shell(args.get("cmd", ""), args.get("cwd")),
     "verify_json_field": lambda args: verify_json_field(
-        args["url"], args["field"], args["expected"], args.get("headers")
+        args.get("url", ""), args.get("field", ""), args.get("expected"), args.get("headers")
     ),
 }
 
@@ -224,6 +268,8 @@ def dispatch_tool(tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
     if not fn:
         return {"success": False, "error": f"Unknown tool: '{tool_name}'. Available: {list(TOOL_REGISTRY)}", "result": ""}
     try:
-        return fn(args)
+        norm_args = _normalize_args(args)
+        return fn(norm_args)
     except Exception as e:
         return {"success": False, "error": f"Tool '{tool_name}' raised: {e}", "result": ""}
+
