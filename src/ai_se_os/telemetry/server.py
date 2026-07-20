@@ -170,7 +170,9 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(body)
         else:
-            body = HTML_DASHBOARD.encode("utf-8")
+            html_path = os.path.join(os.path.dirname(__file__), "index.html")
+            with open(html_path, "r", encoding="utf-8") as f:
+                body = f.read().encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
