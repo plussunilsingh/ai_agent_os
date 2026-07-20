@@ -225,70 +225,6 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "17:05:55 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:02 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\"})",
-      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\"})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:02 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:02 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:09 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch...",
-      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:09 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": false, \"error\": \"Tool 'http_post' raised: 'url'\", \"result\": \"\"}",
-      "agent_response": "{\"success\": false, \"error\": \"Tool 'http_post' raised: 'url'\", \"result\": \"\"}...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:09 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:15 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch...",
-      "agent_response": "[[Iter 3] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatch",
-      "model_name": "qwen2.5:7b"
-    },
-    {
       "timestamp": "17:06:15 IST",
       "task_id": "health-1784547355",
       "chunk_type": "TOOL_HTTP_POST",
@@ -423,12 +359,76 @@
       "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:05 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:05 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "TOOL_HTTP_GET",
+      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" c...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=de...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:05 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:13 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:13 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 312,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 312,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:13 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:18 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "DONE",
+      "content": "Task complete: Order created successfully with ID: 312.",
+      "agent_response": "Order created successfully with ID: 312....",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:07:18 IST",
+      "task_id": "order-1784547423",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (order-17): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 18602,
-    "completion_tokens": 23406,
-    "total_tokens": 42008
+    "prompt_tokens": 18922,
+    "completion_tokens": 24098,
+    "total_tokens": 43020
   },
   "ai_agent_os_task_failures": [
     {
@@ -459,12 +459,6 @@
       "llm_failure": "None"
     }
   ],
-  "active_subagents": [
-    {
-      "agent_id": "order-1784547423",
-      "role": "LLM-Runner:Test http://localhost:9000/adm",
-      "spawn_time": "17:07:03 IST"
-    }
-  ],
-  "active_agent_count": 1
+  "active_subagents": [],
+  "active_agent_count": 0
 }

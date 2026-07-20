@@ -131,7 +131,7 @@ class TaskQueueTracker:
 
     @classmethod
     def reap_stale_tasks(cls):
-        """Automatically reaps orphaned or stale tasks that have been in RUNNING state for >45s without completion."""
+        """Automatically reaps orphaned or stale tasks that have been in RUNNING state for >60s without completion."""
         state = cls._read_state()
         active = state.get("active_tasks", [])
         now_ts = time.time()
@@ -144,16 +144,16 @@ class TaskQueueTracker:
                     start_ts = time.mktime(time.strptime(t["start_time"], "%Y-%m-%d %H:%M:%S IST"))
                 except Exception:
                     start_ts = now_ts - 120
-            
-            if now_ts - start_ts > 45:
-                t["status"] = "COMPLETED"
+
+            if now_ts - start_ts > 60:
+                t["status"] = "FAILED"
                 t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
                 t["summary"] = "Auto-reaped by AI-SE OS Master Queue (Stale Process Cleaned)"
                 state["history"].append(t)
                 reaped_count += 1
             else:
                 still_active.append(t)
-        
+
         if reaped_count > 0:
             state["active_tasks"] = still_active
             cls._write_state(state)
@@ -163,6 +163,18 @@ class TaskQueueTracker:
         cls.reap_stale_tasks()
         state = cls._read_state()
         now_ts = time.time()
+
+        # Check if already registered
+        existing = [t for t in state.get("active_tasks", []) if t.get("task_id") == task_id]
+        if existing:
+            # Preserve existing start time and epoch
+            task_entry = existing[0]
+            task_entry["task_name"] = task_name
+            task_entry["target_url"] = target_url
+            task_entry["status"] = "RUNNING"
+            cls._write_state(state)
+            return task_entry
+
         task_entry = {
             "task_id": task_id,
             "task_name": task_name,
@@ -173,11 +185,11 @@ class TaskQueueTracker:
             "start_epoch": now_ts,
             "progress_pct": 10
         }
-        state["active_tasks"] = [t for t in state["active_tasks"] if t["task_id"] != task_id]
+        state["active_tasks"] = [t for t in state.get("active_tasks", []) if t.get("task_id") != task_id]
         state["active_tasks"].append(task_entry)
         cls._write_state(state)
         cls.log_model_chunk(task_id, "TASK_START", f"Started autonomous task: {task_name}")
-        
+
         # Permanent Postgres persistence
         PostgresTelemetryStore.register_task(task_id, task_name, target_url)
         return task_entry
@@ -185,8 +197,8 @@ class TaskQueueTracker:
     @classmethod
     def update_task_progress(cls, task_id: str, progress_pct: int, current_step: str, chunk_snippet: str = None):
         state = cls._read_state()
-        for t in state["active_tasks"]:
-            if t["task_id"] == task_id:
+        for t in state.get("active_tasks", []):
+            if t.get("task_id") == task_id:
                 t["progress_pct"] = progress_pct
                 t["current_step"] = current_step
         cls._write_state(state)
@@ -197,19 +209,52 @@ class TaskQueueTracker:
     def complete_task(cls, task_id: str, success: bool, result_summary: str, input_request: str = None, response_payload: str = None, llm_failure: str = None):
         state = cls._read_state()
         active = []
+        task_found = False
         task_name = "AI Agent OS Task"
-        for t in state["active_tasks"]:
-            if t["task_id"] == task_id:
+
+        for t in state.get("active_tasks", []):
+            if t.get("task_id") == task_id:
+                task_found = True
                 task_name = t.get("task_name", task_name)
                 t["status"] = "COMPLETED" if success else "FAILED"
                 t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
                 t["summary"] = result_summary
+                t["progress_pct"] = 100
                 state["history"].append(t)
             else:
                 active.append(t)
+
         state["active_tasks"] = active
+
+        # If not found in active_tasks, check history to update existing entry
+        if not task_found:
+            for t in state.get("history", []):
+                if t.get("task_id") == task_id:
+                    task_found = True
+                    t["status"] = "COMPLETED" if success else "FAILED"
+                    t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
+                    t["summary"] = result_summary
+                    t["progress_pct"] = 100
+                    break
+
+        # If completely new, create history entry
+        if not task_found:
+            new_entry = {
+                "task_id": task_id,
+                "task_name": input_request or "Autonomous Task",
+                "target_url": "",
+                "status": "COMPLETED" if success else "FAILED",
+                "current_step": "Execution Complete",
+                "start_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
+                "end_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
+                "summary": result_summary,
+                "progress_pct": 100
+            }
+            state["history"].append(new_entry)
+
         cls._write_state(state)
         cls.log_model_chunk(task_id, "TASK_COMPLETE", f"Task finished: {'SUCCESS' if success else 'FAILED'} - {result_summary}", agent_response=f"Task Status: {'SUCCESS' if success else 'FAILED'}. Summary: {result_summary}")
+
         
         if not success:
             cls.log_task_failure(
