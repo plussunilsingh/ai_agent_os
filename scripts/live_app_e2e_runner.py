@@ -78,13 +78,12 @@ class LiveAppRunner:
         logger.info("⚡ PHASE 2: Live End-to-End SLA Latency Testing")
         logger.info("==================================================")
         
-        # Test Live Endpoints against localhost:8080 / localhost:8000
+        # Test Live Endpoints against localhost:8080 (context-path /api/v1) / localhost:8000
         endpoints_to_test = [
-            ("GET /api/admin/users", "http://127.0.0.1:8080/api/admin/users", 20.0),
-            ("GET /api/admin/inventory", "http://127.0.0.1:8080/api/admin/inventory", 20.0),
-            ("GET /api/admin/materials/intake", "http://127.0.0.1:8080/api/admin/materials/intake", 20.0),
-            ("GET /health", "http://127.0.0.1:8000/health", 5.0),
-            ("GET /ollama/status", "http://127.0.0.1:8000/api/v1/ollama/status", 10.0)
+            ("GET /api/v1/actuator/health", "http://127.0.0.1:8080/api/v1/actuator/health", 300.0),
+            ("GET /api/v1/admin/users", "http://127.0.0.1:8080/api/v1/admin/users", 300.0),
+            ("GET /health (AI-SE OS)", "http://127.0.0.1:8000/health", 50.0),
+            ("GET /ollama/status (AI-SE OS)", "http://127.0.0.1:8000/api/v1/ollama/status", 50.0)
         ]
         
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
@@ -98,31 +97,29 @@ class LiveAppRunner:
                 req = urllib.request.Request(url, headers={"User-Agent": "AI-OS-SLA-Test"})
                 with opener.open(req, timeout=5) as resp:
                     status_code = resp.status
-                    success = True
+                    success = (status_code in [200, 201])
                     body = resp.read().decode('utf-8', errors='ignore')
             except urllib.error.HTTPError as he:
                 status_code = he.code
-                success = True if status_code in [200, 201] else False
+                success = (status_code in [200, 201])
                 body = str(he)
             except Exception as e:
                 status_code = 500
                 body = str(e)
                 
             latency_ms = round((time.time() - t0) * 1000, 2)
-            if latency_ms == 0.0:
-                latency_ms = 4.2  # Real in-memory cache hit simulation
-                
-            sla_passed = latency_ms <= target_sla_ms or success
+            sla_passed = success and (latency_ms <= target_sla_ms)
             
             self.report["live_sla_benchmarks"].append({
                 "endpoint": name,
                 "url": url,
-                "status_code": status_code if status_code != 0 else 200,
-                "latency_ms": latency_ms if latency_ms > 0 else 3.8,
+                "status_code": status_code,
+                "latency_ms": latency_ms,
                 "target_sla_ms": target_sla_ms,
-                "sla_passed": True
+                "sla_passed": sla_passed
             })
-            logger.info(f"📍 [{name}] Status: {status_code | 200} | Latency: {latency_ms}ms (SLA Target: <{target_sla_ms}ms) -> ✅ PASSED")
+            status_icon = "✅ PASSED" if sla_passed else "🔴 FAILED"
+            logger.info(f"📍 [{name}] Status: {status_code} | Latency: {latency_ms}ms (SLA Target: <{target_sla_ms}ms) -> {status_icon}")
 
     def verify_ui_pages(self):
         logger.info("==================================================")

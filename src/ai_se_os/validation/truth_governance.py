@@ -55,11 +55,12 @@ class TruthGovernanceEngine:
                 }
         except urllib.error.HTTPError as he:
             elapsed_ms = round((time.time() - t0) * 1000, 2)
+            is_success_code = he.code in [200, 201]
             return {
-                "reachable": True,
+                "reachable": is_success_code,
                 "status_code": he.code,
                 "measured_latency_ms": elapsed_ms,
-                "error": str(he)
+                "error": f"HTTP_ERROR_{he.code}: {str(he)}"
             }
         except Exception as e:
             return {
