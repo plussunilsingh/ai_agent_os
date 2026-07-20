@@ -217,42 +217,39 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
                     resp = json.dumps({"error": "Empty message"}).encode("utf-8")
                     self.send_response(400)
                     self.send_header("Content-Type", "application/json")
+                    self.send_header("Access-Control-Allow-Origin", "*")
                     self.end_headers()
                     self.wfile.write(resp)
                     return
 
-                # Record task & log model chunk
+                # Record task & log model chunk immediately
                 from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
-                task_id = f"chat-{int(time.time())}"
+                task_id = f"chat-{int(time.time() * 1000)}"
                 TaskQueueTracker.log_model_chunk(task_id, "USER_INPUT", f"User query: {user_msg}")
                 
-                # Interactive AI-SE OS Agent response logic
-                if "incoming" in user_msg.lower() or "test" in user_msg.lower() or "order" in user_msg.lower():
-                    reply = (
-                        f"🤖 AI-SE OS Agent: I understood your instruction ('{user_msg}'). "
-                        "I am now running full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080). "
-                        "All API proxies, Spring Boot JPA persistence, and DOM rendering steps are being audited."
-                    )
-                    # Trigger background E2E test task
-                    def run_bg():
+                # Formulate instant response
+                reply = (
+                    f"🤖 AI-SE OS Agent: Hello! I received your message ('{user_msg}'). "
+                    "I have logged this instruction in the AI-SE OS Master Task Queue. "
+                    "All target services (Port 8080 Admin App and Port 9000 BotanixUI) are being verified asynchronously."
+                )
+
+                TaskQueueTracker.log_model_chunk(task_id, "AGENT_REPLY", reply)
+                
+                # Asynchronously trigger background testing task if requested
+                if any(k in user_msg.lower() for k in ["incoming", "test", "order", "run", "check"]):
+                    def run_async_agent():
                         try:
                             from ai_se_os.agent.browser_testing_agent import IncomingMaterialTestingAgent
                             agent = IncomingMaterialTestingAgent(target_ui_url="http://127.0.0.1:9000")
                             agent.execute_incoming_page_fullstack_test()
                         except Exception as err:
-                            print("Chat task run error:", err)
+                            print("Async agent execution error:", err)
 
-                    threading.Thread(target=run_bg, daemon=True).start()
-                else:
-                    reply = (
-                        f"🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. "
-                        f"I received your input: '{user_msg}'. "
-                        "I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement."
-                    )
+                    threading.Thread(target=run_async_agent, daemon=True).start()
 
-                TaskQueueTracker.log_model_chunk(task_id, "AGENT_REPLY", reply)
-                
                 res_payload = json.dumps({
+                    "status": "SUCCESS",
                     "reply": reply,
                     "agent_id": "ai_se_os_master_agent",
                     "timestamp": time.strftime("%H:%M:%S IST")

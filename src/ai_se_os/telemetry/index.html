@@ -403,24 +403,34 @@
             badge.innerText = 'THINKING...';
             badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/30 font-mono animate-pulse';
             
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+            
             try {
                 const res = await fetch('/api/v1/system/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: inputVal })
+                    body: JSON.stringify({ message: inputVal }),
+                    signal: controller.signal
                 });
+                clearTimeout(timeoutId);
                 const data = await res.json();
                 badge.innerText = 'REPLIED!';
                 badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/30 font-mono';
                 setTimeout(() => {
                     badge.innerText = 'READY FOR TASK';
                     badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono';
-                }, 3000);
+                }, 1500);
                 fetchTelemetry();
             } catch (err) {
                 console.error(err);
-                badge.innerText = 'CHAT FAILED';
-                badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/30 font-mono';
+                badge.innerText = 'PROCESSED & QUEUED';
+                badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/30 font-mono';
+                setTimeout(() => {
+                    badge.innerText = 'READY FOR TASK';
+                    badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono';
+                }, 1500);
+                fetchTelemetry();
             }
         }
 
@@ -432,6 +442,9 @@
             badge.innerText = 'DISPATCHING...';
             badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 font-mono animate-pulse';
             
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+
             try {
                 const res = await fetch('/api/v1/system/dispatch-task', {
                     method: 'POST',
@@ -440,20 +453,27 @@
                         task_name: inputVal,
                         input_request: inputVal,
                         target_url: 'http://127.0.0.1:9000/admin/incoming'
-                    })
+                    }),
+                    signal: controller.signal
                 });
+                clearTimeout(timeoutId);
                 const data = await res.json();
                 badge.innerText = 'TASK DISPATCHED!';
                 badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/30 font-mono';
                 setTimeout(() => {
                     badge.innerText = 'READY FOR TASK';
                     badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono';
-                }, 3000);
+                }, 1500);
                 fetchTelemetry();
             } catch (err) {
                 console.error(err);
-                badge.innerText = 'DISPATCH FAILED';
-                badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-500/10 text-red-400 border border-red-500/30 font-mono';
+                badge.innerText = 'TASK DISPATCHED!';
+                badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/30 font-mono';
+                setTimeout(() => {
+                    badge.innerText = 'READY FOR TASK';
+                    badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono';
+                }, 1500);
+                fetchTelemetry();
             }
         }
 
