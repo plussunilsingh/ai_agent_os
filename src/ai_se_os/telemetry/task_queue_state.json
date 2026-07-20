@@ -1,13 +1,13 @@
 {
   "active_tasks": [
     {
-      "task_id": "task-api-1784568342",
+      "task_id": "task-api-1784568527",
       "task_name": "API Fuzzing Test Task",
       "target_url": "http://127.0.0.1:9000",
       "status": "EXECUTING",
       "current_step": "Initializing LLM Runner",
-      "start_time": "2026-07-20 22:55:42 IST",
-      "start_epoch": 1784568342.852779,
+      "start_time": "2026-07-20 22:58:47 IST",
+      "start_epoch": 1784568527.2513971,
       "progress_pct": 5
     }
   ],
@@ -414,41 +414,21 @@
       "progress_pct": 5,
       "end_time": "2026-07-20 22:55:27 IST",
       "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784568342",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "TIMED_OUT",
+      "current_step": "Initializing LLM Runner",
+      "start_time": "2026-07-20 22:55:42 IST",
+      "start_epoch": 1784568342.852779,
+      "progress_pct": 5,
+      "end_time": "2026-07-20 22:58:47 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
     }
   ],
   "model_chunks": [
-    {
-      "timestamp": "22:32:30 IST",
-      "task_id": "task-e2e-1784566950",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:32:30 IST",
-      "task_id": "task-e2e-1784566950",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:32:30 IST",
-      "task_id": "task-e2e-1784566950",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:32:30 IST",
-      "task_id": "task-e2e-1784566950",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
-      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
-      "model_name": "qwen2.5:7b"
-    },
     {
       "timestamp": "22:43:07 IST",
       "task_id": "langgraph-direct-test",
@@ -656,6 +636,38 @@
       "content": "[Iter 1] Planning tool action via Instructor...",
       "agent_response": "[Iter 1] Planning tool action via Instructor...",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:58:47 IST",
+      "task_id": "task-api-1784568527",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:58:47 IST",
+      "task_id": "task-api-1784568527",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:58:47 IST",
+      "task_id": "task-api-1784568527",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:58:49 IST",
+      "task_id": "task-api-1784568527",
+      "chunk_type": "LANGGRAPH_PLANNER",
+      "content": "[Iter 1] Planning tool action via Instructor...",
+      "agent_response": "[Iter 1] Planning tool action via Instructor...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
@@ -824,9 +836,14 @@
       "agent_id": "task-api-1784568342",
       "role": "LLM-Runner:API Fuzzing Test Task",
       "spawn_time": "22:55:42 IST"
+    },
+    {
+      "agent_id": "task-api-1784568527",
+      "role": "LLM-Runner:API Fuzzing Test Task",
+      "spawn_time": "22:58:47 IST"
     }
   ],
-  "active_agent_count": 12,
+  "active_agent_count": 13,
   "latest_model_chunks": [],
   "task_logs": {
     "task-api-1784560473": [
@@ -2401,6 +2418,40 @@
       {
         "timestamp": "22:55:44 IST",
         "task_id": "task-api-1784568342",
+        "chunk_type": "LANGGRAPH_PLANNER",
+        "content": "[Iter 1] Planning tool action via Instructor...",
+        "agent_response": "[Iter 1] Planning tool action via Instructor...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-api-1784568527": [
+      {
+        "timestamp": "22:58:47 IST",
+        "task_id": "task-api-1784568527",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: API Fuzzing Test Task",
+        "agent_response": "Started autonomous task: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:58:47 IST",
+        "task_id": "task-api-1784568527",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:58:47 IST",
+        "task_id": "task-api-1784568527",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:58:49 IST",
+        "task_id": "task-api-1784568527",
         "chunk_type": "LANGGRAPH_PLANNER",
         "content": "[Iter 1] Planning tool action via Instructor...",
         "agent_response": "[Iter 1] Planning tool action via Instructor...",

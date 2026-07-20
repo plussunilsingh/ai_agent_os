@@ -71,8 +71,8 @@ class LangGraphAgent:
         if not action:
             logger.warning(f"[LangGraph] Instructor returned None for iter {iteration + 1}, executing Ollama direct fallback...")
             try:
-                from ai_se_os.execution.ollama_adapter import OllamaClient
-                ollama = OllamaClient()
+                from ai_se_os.execution.ollama_adapter import OllamaAdapter
+                ollama = OllamaAdapter()
                 res = ollama.generate(prompt=user_msg, system_prompt=system_prompt, temperature=0.2)
                 if res.get("success"):
                     raw = res.get("response", "")
