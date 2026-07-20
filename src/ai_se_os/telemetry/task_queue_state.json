@@ -323,212 +323,222 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "19:04:09 IST",
-      "task_id": "debug-task-101",
+      "timestamp": "19:14:18 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field ...",
+      "agent_response": "{\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field is missing. Please...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:18 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
+      "agent_response": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:21 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 6] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"...",
+      "agent_response": "[[Iter 6] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:21 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field ...",
+      "agent_response": "{\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field is missing. Please...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:21 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
+      "agent_response": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:24 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 7] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"...",
+      "agent_response": "[[Iter 7] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:24 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field ...",
+      "agent_response": "{\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field is missing. Please...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:24 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
+      "agent_response": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:27 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 8] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"...",
+      "agent_response": "[[Iter 8] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:28 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field ...",
+      "agent_response": "{\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field is missing. Please...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:28 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Incoming Material Order Order ] (task-e2e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Incoming Material Order Order ] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:14:28 IST",
+      "task_id": "task-e2e-1784555040",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - [8 iters] Reached max 8 iterations. Last: {\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://localhost:9000/api/admin/inve...",
+      "agent_response": "Task Status: FAILED. Summary: [8 iters] Reached max 8 iterations. Last: {\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://localhost:9000/api/admi...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:12 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order",
+      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:12 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:12 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:12 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:14 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:14 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "TOOL_HTTP_GET",
+      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" c...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=de...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:14 IST",
+      "task_id": "task-e2e-1784555172",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "19:04:13 IST",
-      "task_id": "debug-task-101",
+      "timestamp": "19:16:21 IST",
+      "task_id": "task-e2e-1784555172",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
-      "agent_response": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
+      "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "19:04:13 IST",
-      "task_id": "debug-task-101",
+      "timestamp": "19:16:22 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 320,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 320,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:16:22 IST",
+      "task_id": "task-e2e-1784555172",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "19:04:14 IST",
-      "task_id": "debug-task-101",
+      "timestamp": "19:16:26 IST",
+      "task_id": "task-e2e-1784555172",
       "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 317.",
-      "agent_response": "Order created successfully with ID: 317....",
+      "content": "Task complete: Order created successfully with ID: 320.",
+      "agent_response": "Order created successfully with ID: 320....",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "19:04:14 IST",
-      "task_id": "debug-task-101",
+      "timestamp": "19:16:26 IST",
+      "task_id": "task-e2e-1784555172",
       "chunk_type": "AGENT_COMPLETE",
-      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
-      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: COMPLETE. ...",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "19:05:03 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
-      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:03 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:07 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
-      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:07 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 318,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 318,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:07 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:12 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
-      "agent_response": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:12 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:13 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] Parse Warning] LLM output not valid JSON, retrying...",
-      "agent_response": "[[Iter 3] Parse Warning] LLM output not valid JSON, retrying...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:13 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
-      "agent_response": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:14 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 318.",
-      "agent_response": "Order created successfully with ID: 318....",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:05:14 IST",
-      "task_id": "debug-task-102",
-      "chunk_type": "AGENT_COMPLETE",
-      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
-      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: COMPLETE. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:10:27 IST",
-      "task_id": "debug-task-103",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
-      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:10:27 IST",
-      "task_id": "debug-task-103",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:11:05 IST",
-      "task_id": "verify-fix-104",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:create a new incoming material] (verify-f): Executing task",
-      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:11:05 IST",
-      "task_id": "verify-fix-104",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:11:12 IST",
-      "task_id": "verify-fix-104",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
-      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:11:13 IST",
-      "task_id": "verify-fix-104",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 319,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 319,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:11:13 IST",
-      "task_id": "verify-fix-104",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:11:17 IST",
-      "task_id": "verify-fix-104",
-      "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 319",
-      "agent_response": "Order created successfully with ID: 319...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:11:17 IST",
-      "task_id": "verify-fix-104",
-      "chunk_type": "AGENT_COMPLETE",
-      "content": "Subagent [LLM-Runner:create a new incoming material] (verify-f): Executing task",
-      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: COMPLETE. ...",
+      "timestamp": "19:16:26 IST",
+      "task_id": "task-e2e-1784555172",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 320.",
+      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 320....",
       "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 22042,
-    "completion_tokens": 29542,
-    "total_tokens": 51584
+    "prompt_tokens": 23722,
+    "completion_tokens": 34296,
+    "total_tokens": 58018
   },
-  "ai_agent_os_task_failures": [],
+  "ai_agent_os_task_failures": [
+    {
+      "timestamp": "2026-07-20 19:14:28 IST",
+      "task_id": "task-e2e-1784555040",
+      "task_name": "Incoming Material Order Order Task",
+      "input_request": "Incoming Material Order Order Task",
+      "failure_reason": "[8 iters] Reached max 8 iterations. Last: {\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\": \"AB123456\", \"quantity\": 10, \"status\": \"Received\", \"dispatchType\": \"IncomingMaterial\", \"productName\": \"Botanic Extract\"}}}, \"result\": {\"success\": false, \"status\": 4",
+      "response_payload": "[{\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\": \"AB123456\", \"quantity\": 10, \"status\": \"Received\", \"dispatchTyp",
+      "llm_failure": "None"
+    }
+  ],
   "active_subagents": [
     {
       "agent_id": "task-api-1784553895",
