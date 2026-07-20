@@ -371,70 +371,6 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "21:33:14 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "AGENT_COMPLETE",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:33:14 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 333.",
-      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 333....",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:38:52 IST",
-      "task_id": "task-e2e-1784563732",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:38:52 IST",
-      "task_id": "task-e2e-1784563732",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:38:52 IST",
-      "task_id": "task-e2e-1784563732",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:38:52 IST",
-      "task_id": "task-e2e-1784563732",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:38:58 IST",
-      "task_id": "task-e2e-1784563732",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
-      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:38:58 IST",
-      "task_id": "task-e2e-1784563732",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maxi...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
       "timestamp": "21:38:58 IST",
       "task_id": "task-e2e-1784563732",
       "chunk_type": "MODEL_CHUNK",
@@ -609,6 +545,70 @@
       "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
       "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:03:29 IST",
+      "task_id": "task-e2e-1784565209",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:03:29 IST",
+      "task_id": "task-e2e-1784565209",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:03:29 IST",
+      "task_id": "task-e2e-1784565209",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:03:29 IST",
+      "task_id": "task-e2e-1784565209",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:06:13 IST",
+      "task_id": "task-api-1784565373",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:06:14 IST",
+      "task_id": "task-api-1784565373",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:06:14 IST",
+      "task_id": "task-api-1784565373",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:06:14 IST",
+      "task_id": "task-api-1784565373",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
@@ -638,6 +638,24 @@
     {
       "timestamp": "2026-07-20 22:00:35 IST",
       "task_id": "task-api-1784565035",
+      "task_name": "API Fuzzing Test Task",
+      "input_request": "API Fuzzing Test Task",
+      "failure_reason": "Unhandled error: '\"tool\"'",
+      "response_payload": "{}",
+      "llm_failure": "None"
+    },
+    {
+      "timestamp": "2026-07-20 22:03:29 IST",
+      "task_id": "task-e2e-1784565209",
+      "task_name": "Test http://localhost:9000/admin/incoming page and place order with mango powder",
+      "input_request": "Test http://localhost:9000/admin/incoming page and place order with mango powder",
+      "failure_reason": "Unhandled error: '\"tool\"'",
+      "response_payload": "{}",
+      "llm_failure": "None"
+    },
+    {
+      "timestamp": "2026-07-20 22:06:14 IST",
+      "task_id": "task-api-1784565373",
       "task_name": "API Fuzzing Test Task",
       "input_request": "API Fuzzing Test Task",
       "failure_reason": "Unhandled error: '\"tool\"'",
@@ -1583,6 +1601,74 @@
       {
         "timestamp": "22:00:35 IST",
         "task_id": "task-api-1784565035",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+        "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-e2e-1784565209": [
+      {
+        "timestamp": "22:03:29 IST",
+        "task_id": "task-e2e-1784565209",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+        "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:03:29 IST",
+        "task_id": "task-e2e-1784565209",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order with mango powder",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:03:29 IST",
+        "task_id": "task-e2e-1784565209",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:03:29 IST",
+        "task_id": "task-e2e-1784565209",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+        "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-api-1784565373": [
+      {
+        "timestamp": "22:06:13 IST",
+        "task_id": "task-api-1784565373",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: API Fuzzing Test Task",
+        "agent_response": "Started autonomous task: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:06:14 IST",
+        "task_id": "task-api-1784565373",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:06:14 IST",
+        "task_id": "task-api-1784565373",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:06:14 IST",
+        "task_id": "task-api-1784565373",
         "chunk_type": "TASK_COMPLETE",
         "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
         "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",

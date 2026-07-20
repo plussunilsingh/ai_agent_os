@@ -258,7 +258,10 @@
                         <h3 class="text-sm font-bold text-white font-mono flex items-center gap-2">📜 Dedicated Task Execution Logs</h3>
                         <p class="text-xs font-mono text-slate-400" id="modal-task-id-label">Task ID: --</p>
                     </div>
-                    <button onclick="closeTaskLogModal()" class="text-xs font-mono px-3 py-1 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 transition">✕ Close</button>
+                    <div class="flex items-center gap-2">
+                        <button onclick="copyAllTaskLogs(this)" class="text-xs font-mono px-3 py-1 rounded bg-blue-950 text-blue-400 border border-blue-800/60 hover:bg-blue-900 transition font-bold">📋 Copy All Logs</button>
+                        <button onclick="closeTaskLogModal()" class="text-xs font-mono px-3 py-1 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 transition">✕ Close</button>
+                    </div>
                 </div>
                 <div id="modal-logs-container" class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-slate-300 space-y-2 h-80 overflow-y-auto border border-slate-800 shadow-inner">
                     <div class="text-slate-500">Loading task logs...</div>
@@ -312,12 +315,15 @@
                         card.innerHTML = `
                             <div class="flex items-center justify-between">
                                 <span class="font-bold text-red-400 text-xs">${f.task_name}</span>
-                                <span class="text-[10px] text-slate-500 font-mono">${f.timestamp}</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] text-slate-500 font-mono">${f.timestamp}</span>
+                                    <button onclick="copyFailureLog(this)" class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-900/60 text-red-300 border border-red-800/60 font-bold hover:bg-red-800 transition">📋 Copy Log</button>
+                                </div>
                             </div>
                             <div class="text-[11px] text-slate-300 font-mono"><strong class="text-slate-400">Input Request:</strong> ${f.input_request}</div>
                             <div class="text-[11px] text-red-300 font-mono"><strong class="text-red-400">Failure Reason:</strong> ${f.failure_reason}</div>
-                            <div class="text-[11px] text-slate-400 font-mono truncate"><strong class="text-slate-500">Response Payload:</strong> ${f.response_payload}</div>
-                            <div class="text-[11px] text-amber-300 font-mono truncate"><strong class="text-amber-400">LLM Error:</strong> ${f.llm_failure}</div>
+                            <div class="text-[11px] text-slate-400 font-mono break-all"><strong class="text-slate-500">Response Payload:</strong> ${f.response_payload}</div>
+                            <div class="text-[11px] text-amber-300 font-mono break-all"><strong class="text-amber-400">LLM Error:</strong> ${f.llm_failure}</div>
                         `;
                         failConsole.appendChild(card);
                     });
@@ -557,7 +563,10 @@
                     <div class="max-w-[80%] rounded-2xl px-4 py-2.5 ${isUser ? 'bg-purple-600 text-white rounded-br-none' : 'bg-slate-900 border border-purple-500/30 text-slate-200 rounded-bl-none'} space-y-1 shadow-md">
                         <div class="flex items-center justify-between gap-4 text-[10px] font-bold opacity-75">
                             <span>${isUser ? 'YOU' : '🤖 AI-SE OS AGENT'}</span>
-                            <span>${m.timestamp}</span>
+                            <div class="flex items-center gap-2">
+                                <span>${m.timestamp}</span>
+                                <button onclick="copyBubbleText(this)" class="hover:text-cyan-300 transition text-[10px] underline font-mono cursor-pointer">📋 Copy</button>
+                            </div>
                         </div>
                         <div class="text-xs leading-relaxed break-words font-mono">${m.text}</div>
                     </div>
@@ -714,6 +723,40 @@
                 }
             } catch(err) {
                 container.innerHTML = `<div class="text-red-400 font-mono text-xs">Error loading logs: ${err.message}</div>`;
+            }
+        }
+
+        function copyToClipboard(text, btnElement) {
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                if (btnElement) {
+                    const orig = btnElement.innerText;
+                    btnElement.innerText = '✅ Copied!';
+                    setTimeout(() => btnElement.innerText = orig, 1500);
+                }
+            }).catch(err => console.error("Copy failed:", err));
+        }
+
+        function copyFailureLog(btnElement) {
+            const card = btnElement.closest('.p-3');
+            if (card) {
+                const text = card.innerText.replace('📋 Copy Log', '').trim();
+                copyToClipboard(text, btnElement);
+            }
+        }
+
+        function copyBubbleText(btnElement) {
+            const bubble = btnElement.closest('.max-w-\\[80\\%\\]');
+            if (bubble) {
+                const textEl = bubble.querySelector('.text-xs');
+                if (textEl) copyToClipboard(textEl.innerText, btnElement);
+            }
+        }
+
+        function copyAllTaskLogs(btnElement) {
+            const container = document.getElementById('modal-logs-container');
+            if (container) {
+                copyToClipboard(container.innerText, btnElement);
             }
         }
 
