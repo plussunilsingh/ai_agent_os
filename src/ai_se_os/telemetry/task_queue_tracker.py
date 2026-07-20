@@ -17,6 +17,8 @@ class TaskQueueTracker:
         if not os.path.exists(TRACKER_FILE):
             return {
                 "active_tasks": [],
+                "active_subagents": [],
+                "active_agent_count": 0,
                 "history": [],
                 "model_chunks": [],
                 "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270},
@@ -27,6 +29,10 @@ class TaskQueueTracker:
                 data = json.load(f)
                 if "model_chunks" not in data:
                     data["model_chunks"] = []
+                if "active_subagents" not in data:
+                    data["active_subagents"] = []
+                if "active_agent_count" not in data:
+                    data["active_agent_count"] = len(data["active_subagents"])
                 if "token_usage" not in data:
                     data["token_usage"] = {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270}
                 if "ai_agent_os_task_failures" not in data:
@@ -35,11 +41,35 @@ class TaskQueueTracker:
         except Exception:
             return {
                 "active_tasks": [],
+                "active_subagents": [],
+                "active_agent_count": 0,
                 "history": [],
                 "model_chunks": [],
                 "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270},
                 "ai_agent_os_task_failures": []
             }
+
+    @classmethod
+    def log_subagent_event(cls, event_type: str, agent_role: str, agent_id: str, details: str = ""):
+        """Logs subagent lifecycle events and updates active agent count."""
+        state = cls._read_state()
+        agents = state.get("active_subagents", [])
+        if event_type == "SPAWN":
+            agents = [a for a in agents if a["agent_id"] != agent_id]
+            agents.append({"agent_id": agent_id, "role": agent_role, "spawn_time": time.strftime("%H:%M:%S IST")})
+        elif event_type in ("COMPLETE", "TERMINATE"):
+            agents = [a for a in agents if a["agent_id"] != agent_id]
+        
+        state["active_subagents"] = agents
+        state["active_agent_count"] = len(agents)
+        cls._write_state(state)
+        
+        cls.log_model_chunk(
+            task_id=agent_id,
+            chunk_type=f"AGENT_{event_type}",
+            content=f"Subagent [{agent_role}] ({agent_id[:8]}): {details or 'Executing task'}",
+            agent_response=f"Subagent [{agent_role}] event: {event_type}. {details}"
+        )
 
     @classmethod
     def log_task_failure(cls, task_id: str, task_name: str, input_request: str, failure_reason: str, response_payload: str = None, llm_failure: str = None):

@@ -135,7 +135,7 @@
                 <div class="text-[10px] text-slate-400">Lifetime executions</div>
             </div>
 
-            <!-- Active Task Queue & Task Assign Status Card -->
+            <!-- Active Task Queue Card -->
             <div class="p-3.5 rounded-xl glass-card space-y-1 border border-yellow-500/30">
                 <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
                     <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-500 animate-ping"></span> Active Queue</span>
@@ -143,6 +143,16 @@
                 </div>
                 <div id="active-tasks" class="text-xl font-black text-yellow-400">0 Active</div>
                 <div id="queue-health" class="text-[10px] text-slate-400 truncate">READY FOR TASK</div>
+            </div>
+
+            <!-- Active Autonomous Subagents Card -->
+            <div class="p-3.5 rounded-xl glass-card space-y-1 border border-purple-500/30">
+                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span> Active Agents</span>
+                    <span id="active-agents-badge" class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-400 font-bold">Subagents</span>
+                </div>
+                <div id="active-subagent-count" class="text-xl font-black text-purple-400">0 Active</div>
+                <div id="subagents-names-list" class="text-[10px] text-slate-400 truncate">No subagents running</div>
             </div>
 
             <!-- AI-SE OS Task Failures Card -->
@@ -163,16 +173,6 @@
                 </div>
                 <div id="total-tokens-consumed" class="text-xl font-black text-cyan-400">0</div>
                 <div id="tokens-breakdown" class="text-[10px] text-slate-400 truncate">Prompt: 0 • Comp: 0</div>
-            </div>
-
-            <!-- Truth Governance Card -->
-            <div class="p-3.5 rounded-xl glass-card space-y-1">
-                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
-                    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-green-500"></span> Governance</span>
-                    <svg class="w-3.5 h-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                </div>
-                <div class="text-base font-bold text-green-400">100% Compliant</div>
-                <div class="text-[10px] text-slate-400">Chapter 42 Enforced</div>
             </div>
 
             <!-- Telemetry Sync Stream Card -->
@@ -269,11 +269,26 @@
             document.getElementById('sync-time').innerText = data.timestamp;
             document.getElementById('sync-latency').innerText = 'Socket: ' + data.telemetry_latency_ms + ' ms';
             
+            // Render Active Autonomous Subagents Metrics
+            const subagentsList = queueStatus.active_subagents || [];
+            const agentCount = queueStatus.active_agent_count || subagentsList.length || 0;
+            const subagentEl = document.getElementById('active-subagent-count');
+            if (subagentEl) subagentEl.innerText = `${agentCount} Active`;
+            
+            const namesEl = document.getElementById('subagents-names-list');
+            if (namesEl) {
+                if (subagentsList.length === 0) {
+                    namesEl.innerText = 'No subagents running';
+                } else {
+                    namesEl.innerText = subagentsList.map(a => a.role || a.agent_id).join(', ');
+                }
+            }
+            
             // Render AI-SE OS Ecosystem Task Failures
             const taskFailures = queueStatus.ai_agent_os_task_failures || [];
-            document.getElementById('total-failures-count').innerText = `${taskFailures.length} Failed Tasks`;
-            document.getElementById('failures-breakdown').innerText = `Incomplete task executions`;
-            document.getElementById('failures-status-badge').innerText = `${taskFailures.length} Errored Tasks`;
+            document.getElementById('total-failures-count').innerText = `${taskFailures.length} Failed`;
+            document.getElementById('failures-breakdown').innerText = `Incomplete tasks`;
+            document.getElementById('failures-status-badge').innerText = `${taskFailures.length} Errored`;
 
             const failConsole = document.getElementById('failure-incidents-console');
             if (failConsole) {
