@@ -20,10 +20,10 @@ from ai_se_os.validation.truth_governance import TruthGovernanceEngine
 from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
 
 class TaskQueueStatusEngine:
-    def __init__(self, workspace_root: str = "/Users/suniltomar/Desktop/workspace"):
-        self.workspace_root = workspace_root
-        self.admin_path = os.path.join(workspace_root, "admin")
-        self.botanix_path = os.path.join(workspace_root, "botanixUI")
+    def __init__(self, workspace_root: Optional[str] = None):
+        self.workspace_root = workspace_root or os.environ.get("WORKSPACE_ROOT", os.getcwd())
+        self.admin_path = os.environ.get("BACKEND_REPO_PATH", os.path.join(self.workspace_root, "admin"))
+        self.botanix_path = os.environ.get("FRONTEND_REPO_PATH", os.path.join(self.workspace_root, "botanixUI"))
         self._cached_status: Dict[str, Any] = {}
         self._start_background_cache_worker()
 

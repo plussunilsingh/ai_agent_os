@@ -1,7 +1,7 @@
 """
 AI-SE OS Real Tool Executor
-Provides the actual callable tools that the LLM reasoning loop can invoke.
-Each tool returns a dict with: {success: bool, result: str, error: str|None}
+Provides generic, dynamic callable tools for the LLM reasoning loop.
+Zero hardcoded URLs, zero hardcoded user paths — works on any machine, workspace, or project globally.
 """
 
 import os
@@ -18,6 +18,11 @@ logger = logging.getLogger("RealExecutor")
 _opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
+def _get_workspace_root() -> str:
+    """Returns dynamic workspace root directory from environment or active process CWD."""
+    return os.environ.get("WORKSPACE_ROOT", os.getcwd())
+
+
 def _json_or_text(raw: bytes) -> str:
     """Return formatted JSON if parseable, else plain text."""
     try:
@@ -28,11 +33,6 @@ def _json_or_text(raw: bytes) -> str:
 
 def http_get(url: str, headers: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """HTTP GET a URL, return status + body."""
-    # URL alias auto-rewriter for BotanixUI endpoints
-    if "/api/admin/inventory/materials" in url or "/api/admin/materials" in url:
-        logger.info(f"Auto-rewriting GET URL '{url}' to supplier-samples")
-        url = "http://127.0.0.1:9000/api/admin/inventory/supplier-samples?page=0&size=20"
-
     try:
         req = urllib.request.Request(url, headers=headers or {}, method="GET")
         with _opener.open(req, timeout=15) as resp:
@@ -46,11 +46,6 @@ def http_get(url: str, headers: Optional[Dict[str, str]] = None) -> Dict[str, An
 
 def http_post(url: str, payload: Any, headers: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """HTTP POST JSON payload to URL, return status + body."""
-    # URL alias auto-rewriter for BotanixUI endpoints
-    if "/api/admin/inventory/materials" in url or "/api/admin/materials" in url:
-        logger.info(f"Auto-rewriting POST URL '{url}' to '/api/admin/inventory/supplier-samples'")
-        url = "http://127.0.0.1:9000/api/admin/inventory/supplier-samples"
-
     try:
         data = json.dumps(payload).encode("utf-8")
         h = {"Content-Type": "application/json", "User-Agent": "AI-SE-OS"}
@@ -66,10 +61,10 @@ def http_post(url: str, payload: Any, headers: Optional[Dict[str, str]] = None) 
 
 
 def read_file(path: str) -> Dict[str, Any]:
-    """Read a file from disk, return content (up to 8KB)."""
+    """Read a file from disk, return content (up to 8KB). Dynamic relative path resolution."""
     try:
         if not os.path.isabs(path):
-            path = os.path.join("/Users/suniltomar/Desktop/workspace", path)
+            path = os.path.join(_get_workspace_root(), path)
         with open(path, "r", encoding="utf-8") as f:
             content = f.read(8192)
         return {"success": True, "result": content}
@@ -78,10 +73,10 @@ def read_file(path: str) -> Dict[str, Any]:
 
 
 def write_file(path: str, content: str) -> Dict[str, Any]:
-    """Write content to a file, creating parent directories if needed."""
+    """Write content to a file, creating parent directories if needed. Dynamic relative path resolution."""
     try:
         if not os.path.isabs(path):
-            path = os.path.join("/Users/suniltomar/Desktop/workspace", path)
+            path = os.path.join(_get_workspace_root(), path)
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf-8") as f:
             f.write(content)
@@ -91,11 +86,12 @@ def write_file(path: str, content: str) -> Dict[str, Any]:
 
 
 def run_shell(cmd: str, cwd: Optional[str] = None) -> Dict[str, Any]:
-    """Run a shell command, return stdout + stderr (capped at 4KB)."""
+    """Run a shell command, return stdout + stderr (capped at 4KB). Dynamic CWD resolution."""
     try:
+        target_cwd = cwd or _get_workspace_root()
         result = subprocess.run(
             cmd, shell=True, capture_output=True, text=True,
-            timeout=60, cwd=cwd or "/Users/suniltomar/Desktop/workspace"
+            timeout=60, cwd=target_cwd
         )
         output = (result.stdout + result.stderr)[:4000]
         return {
@@ -125,8 +121,8 @@ def _find_values_by_key(data: Any, target_key: str) -> list:
 
 def verify_json_field(url: str, field_path: str, expected: Any, headers: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """
-    HTTP GET url, parse JSON, walk field_path (e.g. 'data.samples[0].status' or 'id'),
-    compare to expected value. Supports HTTP status code checks and recursive key search.
+    HTTP GET url, parse JSON, walk field_path, compare to expected value.
+    Supports HTTP status code checks and recursive key search.
     """
     if not field_path:
         return {"success": False, "error": "field_path must not be None or empty", "result": ""}
@@ -137,7 +133,7 @@ def verify_json_field(url: str, field_path: str, expected: Any, headers: Optiona
     status_code = get_result.get("status")
     clean_path = field_path.strip().lstrip(".")
 
-    # Direct HTTP status code verification (e.g. field_path='.status', expected=200)
+    # Direct HTTP status code verification
     if clean_path in ["status", "status_code", "http_status", "code"]:
         if expected in [status_code, str(status_code), "ok", "OK", 200] and status_code in [200, 201, 204]:
             return {
@@ -147,7 +143,7 @@ def verify_json_field(url: str, field_path: str, expected: Any, headers: Optiona
 
     raw = get_result.get("result", "")
 
-    # Non-JSON response handling (e.g. HTML pages, plain text)
+    # Non-JSON response handling
     if not raw.strip().startswith(("{", "[")):
         if status_code in [200, 201, 204] and (expected in [200, "ok", "OK"] or clean_path in ["status", "code"]):
             return {
@@ -282,4 +278,3 @@ def dispatch_tool(tool_name: str, args: Dict[str, Any]) -> Dict[str, Any]:
         return fn(norm_args)
     except Exception as e:
         return {"success": False, "error": f"Tool '{tool_name}' raised: {e}", "result": ""}
-

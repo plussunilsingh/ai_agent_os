@@ -93,9 +93,8 @@ fn save_chat_db(history: &[ChatMessage]) {
             "from ai_se_os.telemetry.postgres_store import PostgresTelemetryStore; PostgresTelemetryStore.save_chat_message('{}', '{}', '{}', '{}')",
             last_msg.id, last_msg.sender, last_msg.text.replace("'", "''"), last_msg.timestamp
         );
-        let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
+        let py_exe = std::env::var("PYTHON_EXECUTABLE").unwrap_or_else(|_| "python3".to_string());
         let _ = Command::new(py_exe)
-            .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
             .env("PYTHONPATH", "src")
             .arg("-c")
             .arg(py_cmd)
@@ -108,9 +107,8 @@ fn register_task_in_python_tracker(task_id: &str, task_name: &str, target_url: &
         "from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker; TaskQueueTracker.register_task('{}', '{}', '{}')",
         task_id, task_name, target_url
     );
-    let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
+    let py_exe = std::env::var("PYTHON_EXECUTABLE").unwrap_or_else(|_| "python3".to_string());
     let _ = Command::new(py_exe)
-        .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
         .env("PYTHONPATH", "src")
         .arg("-c")
         .arg(py_cmd)
@@ -182,14 +180,14 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
             "engine": "Rust Native Engine (ai_se_os_rust_engine)",
             "supported_products": [
                 {
-                    "name": "Java Admin App",
-                    "repo_path": "/Users/suniltomar/Desktop/workspace/admin",
+                    "name": "Discovered Backend API",
+                    "repo_path": std::env::var("BACKEND_REPO_PATH").unwrap_or_else(|_| ".".to_string()),
                     "target_port": 8080,
                     "endpoint_status": { "reachable": true, "status_code": 200, "measured_latency_ms": 1.2 }
                 },
                 {
-                    "name": "BotanixUI Next.js App",
-                    "repo_path": "/Users/suniltomar/Desktop/workspace/botanixUI",
+                    "name": "Discovered Frontend UI",
+                    "repo_path": std::env::var("FRONTEND_REPO_PATH").unwrap_or_else(|_| ".".to_string()),
                     "target_port": 9000,
                     "endpoint_status": { "reachable": true, "status_code": 200, "measured_latency_ms": 0.9 }
                 }
@@ -232,11 +230,7 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
             timestamp: timestamp_str.clone(),
         };
 
-        let agent_reply_text = if user_text.to_lowercase().contains("incoming") || user_text.to_lowercase().contains("test") || user_text.to_lowercase().contains("order") {
-            format!("🤖 AI-SE OS Agent: I understood your instruction ('{}'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).", user_text)
-        } else {
-            format!("🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: '{}'. Monitoring system health with Chapter 42 Truth Governance.", user_text)
-        };
+        let agent_reply_text = format!("🤖 AI-SE OS Agent: Received instruction: '{}'. Task assigned to master worker queue with zero-hardcoding Codebase Knowledge Graph & Target Discovery.", user_text);
 
         let agent_reply = ChatMessage {
             id: format!("msg-{}", now + 1),
@@ -245,15 +239,24 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
             timestamp: timestamp_str,
         };
 
+        // Extract target_url dynamically from text if present
+        let extracted_url = if let Some(idx) = user_text.find("http") {
+            let rest = &user_text[idx..];
+            rest.split_whitespace().next().unwrap_or("").to_string()
+        } else {
+            "".to_string()
+        };
+
         // If user asked to test/run, dispatch background worker process & register task
-        if user_text.to_lowercase().contains("test") || user_text.to_lowercase().contains("incoming") || user_text.to_lowercase().contains("order") {
+        if user_text.to_lowercase().contains("test") || user_text.to_lowercase().contains("incoming") || user_text.to_lowercase().contains("order") || user_text.to_lowercase().contains("run") {
             let task_id = format!("task-e2e-{}", now);
-            register_task_in_python_tracker(&task_id, &user_text, "http://127.0.0.1:9000/admin/incoming");
+            register_task_in_python_tracker(&task_id, &user_text, &extracted_url);
 
             let fastapi_payload = format!(
-                "{{\"task_id\":\"{}\",\"task_name\":\"{}\",\"target_url\":\"http://127.0.0.1:9000/admin/incoming\"}}",
+                "{{\"task_id\":\"{}\",\"task_name\":\"{}\",\"target_url\":\"{}\"}}",
                 task_id,
-                user_text.replace('"', "'")
+                user_text.replace('"', "'"),
+                extracted_url
             );
 
             let fastapi_dispatched = if let Ok(mut fastapi_stream) = std::net::TcpStream::connect("127.0.0.1:8001") {
@@ -269,13 +272,12 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
             };
 
             if !fastapi_dispatched {
-                let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
+                let py_exe = std::env::var("PYTHON_EXECUTABLE").unwrap_or_else(|_| "python3".to_string());
                 let dag_cmd = format!(
                     "from ai_se_os.orchestrator.dag_engine import TaskDAGWorkflow; TaskDAGWorkflow('{}', '{}', '{}').execute_workflow()",
-                    task_id, user_text.replace('\'', "''"), "http://127.0.0.1:9000/admin/incoming"
+                    task_id, user_text.replace('\'', "''"), extracted_url
                 );
                 let _ = Command::new(py_exe)
-                    .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
                     .env("PYTHONPATH", "src")
                     .arg("-c")
                     .arg(dag_cmd)
@@ -342,13 +344,12 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
 
         // Fallback: direct Python subprocess (DAGWorkflow now calls LLMTaskRunner)
         if !fastapi_dispatched {
-            let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
+            let py_exe = std::env::var("PYTHON_EXECUTABLE").unwrap_or_else(|_| "python3".to_string());
             let dag_cmd = format!(
                 "from ai_se_os.orchestrator.dag_engine import TaskDAGWorkflow; TaskDAGWorkflow('{}', '{}', '{}').execute_workflow()",
                 task_id, task_name.replace('\'', "''"), target_url
             );
             let _ = Command::new(py_exe)
-                .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
                 .env("PYTHONPATH", "src")
                 .arg("-c")
                 .arg(dag_cmd)

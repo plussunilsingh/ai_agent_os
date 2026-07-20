@@ -22,11 +22,19 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
+from ai_se_os.orchestrator.target_discovery import TargetDiscoveryEngine
 
 class IncomingMaterialTestingAgent:
-    def __init__(self, target_ui_url: str = "http://127.0.0.1:9000", target_api_url: str = "http://127.0.0.1:8080/api/v1"):
-        self.target_ui_url = target_ui_url.rstrip("/")
-        self.target_api_url = target_api_url.rstrip("/")
+    def __init__(self, target_ui_url: Optional[str] = None, target_api_url: Optional[str] = None):
+        self.target_ui_url = (target_ui_url or os.environ.get("TARGET_UI_URL", "http://127.0.0.1:9000")).rstrip("/")
+        self.target_api_url = (target_api_url or os.environ.get("TARGET_API_URL", "http://127.0.0.1:8080/api/v1")).rstrip("/")
+        # Discover API endpoints dynamically via TargetDiscoveryEngine
+        discovery = TargetDiscoveryEngine.discover_target(self.target_ui_url)
+        discovered_eps = discovery.get("openapi_endpoints", [])
+        post_ep = next((e["full_url"] for e in discovered_eps if e["method"] == "POST"), f"{self.target_ui_url}/api")
+        get_ep = next((e["full_url"] for e in discovered_eps if e["method"] == "GET"), f"{self.target_ui_url}/api")
+        self.api_post_url = post_ep
+        self.api_get_url = get_ep
 
     def execute_incoming_page_fullstack_test(self) -> dict:
         """Executes complete end-to-end testing of /admin/incoming, UI forms, API endpoints, and DB state."""
@@ -79,16 +87,16 @@ class IncomingMaterialTestingAgent:
         # Step 2: Fetch Current Incoming Material & Sample Catalog
         # ------------------------------------------------------------------
         logger.info("STEP 2: Testing Initial Incoming Material Catalog Fetch...")
-        TaskQueueTracker.update_task_progress(task_id, 50, "2. API Catalog Inspection", "Fetching /api/admin/inventory/supplier-samples")
+        TaskQueueTracker.update_task_progress(task_id, 50, "2. API Catalog Inspection", f"Fetching {self.api_get_url}")
         step2_t = time.time()
         try:
-            req = urllib.request.Request(f"{self.target_ui_url}/api/admin/inventory/supplier-samples?page=0&size=100")
+            req = urllib.request.Request(self.api_get_url)
             with opener.open(req, timeout=5) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 step2_latency = round((time.time() - step2_t) * 1000, 2)
                 test_results["steps"].append({
                     "step": "2. Initial Catalog API Fetch",
-                    "url": f"{self.target_ui_url}/api/admin/inventory/supplier-samples",
+                    "url": self.api_get_url,
                     "status_code": resp.status,
                     "latency_ms": step2_latency,
                     "passed": resp.status == 200 and data.get("success", False)
@@ -96,7 +104,7 @@ class IncomingMaterialTestingAgent:
         except Exception as e:
             test_results["steps"].append({
                 "step": "2. Initial Catalog API Fetch",
-                "url": f"{self.target_ui_url}/api/admin/inventory/supplier-samples",
+                "url": self.api_get_url,
                 "status_code": 0,
                 "passed": False,
                 "error": str(e)
@@ -119,7 +127,7 @@ class IncomingMaterialTestingAgent:
         try:
             payload_bytes = json.dumps(order_payload).encode("utf-8")
             req = urllib.request.Request(
-                f"{self.target_ui_url}/api/admin/inventory/supplier-samples",
+                self.api_post_url,
                 data=payload_bytes,
                 headers={"Content-Type": "application/json"}
             )
@@ -128,7 +136,7 @@ class IncomingMaterialTestingAgent:
                 step3_latency = round((time.time() - step3_t) * 1000, 2)
                 test_results["steps"].append({
                     "step": "3. Form Submission & Order Creation (POST)",
-                    "url": f"{self.target_ui_url}/api/admin/inventory/supplier-samples",
+                    "url": self.api_post_url,
                     "status_code": resp.status,
                     "latency_ms": step3_latency,
                     "created_batch_id": sample_batch_id,
@@ -137,7 +145,7 @@ class IncomingMaterialTestingAgent:
         except Exception as e:
             test_results["steps"].append({
                 "step": "3. Form Submission & Order Creation (POST)",
-                "url": f"{self.target_ui_url}/api/admin/inventory/supplier-samples",
+                "url": self.api_post_url,
                 "status_code": 0,
                 "passed": False,
                 "error": str(e)
@@ -147,16 +155,16 @@ class IncomingMaterialTestingAgent:
         # Step 4: Verify Full-Stack Database Persistence
         # ------------------------------------------------------------------
         logger.info("STEP 4: Verifying Full-Stack Database Persistence...")
-        TaskQueueTracker.update_task_progress(task_id, 95, "4. Full-Stack DB Audit", "Auditing PostgreSQL persistence in Spring Boot")
+        TaskQueueTracker.update_task_progress(task_id, 95, "4. Full-Stack DB Audit", f"Auditing API persistence on {self.api_get_url}")
         step4_t = time.time()
         try:
-            req = urllib.request.Request(f"{self.target_ui_url}/api/admin/inventory/supplier-samples?page=0&size=100")
+            req = urllib.request.Request(self.api_get_url)
             with opener.open(req, timeout=5) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 step4_latency = round((time.time() - step4_t) * 1000, 2)
                 test_results["steps"].append({
                     "step": "4. Full-Stack Database Persistence Audit",
-                    "url": f"{self.target_ui_url}/api/admin/inventory/supplier-samples",
+                    "url": self.api_get_url,
                     "status_code": resp.status,
                     "latency_ms": step4_latency,
                     "db_persisted": True,

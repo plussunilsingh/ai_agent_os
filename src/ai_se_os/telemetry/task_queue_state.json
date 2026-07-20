@@ -371,38 +371,6 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "21:33:09 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"...",
-      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:33:09 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 333,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 333,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:33:09 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:33:14 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 333.",
-      "agent_response": "Order created successfully with ID: 333....",
-      "model_name": "qwen2.5:7b"
-    },
-    {
       "timestamp": "21:33:14 IST",
       "task_id": "task-e2e-1784563378",
       "chunk_type": "AGENT_COMPLETE",
@@ -609,6 +577,38 @@
       "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
       "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:00:35 IST",
+      "task_id": "task-api-1784565035",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:00:35 IST",
+      "task_id": "task-api-1784565035",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:00:35 IST",
+      "task_id": "task-api-1784565035",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:00:35 IST",
+      "task_id": "task-api-1784565035",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
@@ -629,6 +629,15 @@
     {
       "timestamp": "2026-07-20 21:45:50 IST",
       "task_id": "task-api-1784564149",
+      "task_name": "API Fuzzing Test Task",
+      "input_request": "API Fuzzing Test Task",
+      "failure_reason": "Unhandled error: '\"tool\"'",
+      "response_payload": "{}",
+      "llm_failure": "None"
+    },
+    {
+      "timestamp": "2026-07-20 22:00:35 IST",
+      "task_id": "task-api-1784565035",
       "task_name": "API Fuzzing Test Task",
       "input_request": "API Fuzzing Test Task",
       "failure_reason": "Unhandled error: '\"tool\"'",
@@ -1540,6 +1549,40 @@
       {
         "timestamp": "21:45:50 IST",
         "task_id": "task-api-1784564149",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+        "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-api-1784565035": [
+      {
+        "timestamp": "22:00:35 IST",
+        "task_id": "task-api-1784565035",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: API Fuzzing Test Task",
+        "agent_response": "Started autonomous task: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:00:35 IST",
+        "task_id": "task-api-1784565035",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:00:35 IST",
+        "task_id": "task-api-1784565035",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:00:35 IST",
+        "task_id": "task-api-1784565035",
         "chunk_type": "TASK_COMPLETE",
         "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
         "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
