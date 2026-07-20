@@ -88,6 +88,19 @@ fn save_chat_db(history: &[ChatMessage]) {
     if let Ok(data) = serde_json::to_string_pretty(history) {
         let _ = fs::write(db_path, data);
     }
+    if let Some(last_msg) = history.last() {
+        let py_cmd = format!(
+            "from ai_se_os.telemetry.postgres_store import PostgresTelemetryStore; PostgresTelemetryStore.save_chat_message('{}', '{}', '{}', '{}')",
+            last_msg.id, last_msg.sender, last_msg.text.replace("'", "''"), last_msg.timestamp
+        );
+        let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
+        let _ = Command::new(py_exe)
+            .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
+            .env("PYTHONPATH", "src")
+            .arg("-c")
+            .arg(py_cmd)
+            .spawn();
+    }
 }
 
 fn register_task_in_python_tracker(task_id: &str, task_name: &str, target_url: &str) {

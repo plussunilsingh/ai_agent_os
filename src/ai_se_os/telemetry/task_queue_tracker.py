@@ -7,6 +7,7 @@ import os
 import json
 import time
 from typing import Dict, Any, List
+from ai_se_os.telemetry.postgres_store import PostgresTelemetryStore
 
 TRACKER_FILE = os.path.join(os.path.dirname(__file__), "task_queue_state.json")
 
@@ -57,9 +58,12 @@ class TaskQueueTracker:
         failures.append(failure_entry)
         state["ai_agent_os_task_failures"] = failures[-20:] # Keep latest 20 AI-SE OS task failures
         cls._write_state(state)
+        
+        # Permanent Postgres persistence
+        PostgresTelemetryStore.log_failure(task_id, task_name, input_request, failure_reason, response_payload, llm_failure)
 
     @classmethod
-    def log_token_usage(cls, prompt_tokens: int, completion_tokens: int):
+    def log_token_usage(cls, prompt_tokens: int, completion_tokens: int, task_id: str = "task-gen"):
         """Logs tokens consumed by LLM prompt & completion generation."""
         state = cls._read_state()
         usage = state.get("token_usage", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
@@ -68,6 +72,9 @@ class TaskQueueTracker:
         usage["total_tokens"] = usage["prompt_tokens"] + usage["completion_tokens"]
         state["token_usage"] = usage
         cls._write_state(state)
+
+        # Permanent Postgres persistence
+        PostgresTelemetryStore.log_token_usage(task_id, prompt_tokens, completion_tokens)
 
     @staticmethod
     def _write_state(state: Dict[str, Any]):
@@ -108,6 +115,9 @@ class TaskQueueTracker:
         state["active_tasks"].append(task_entry)
         cls._write_state(state)
         cls.log_model_chunk(task_id, "TASK_START", f"Started autonomous task: {task_name}")
+        
+        # Permanent Postgres persistence
+        PostgresTelemetryStore.register_task(task_id, task_name, target_url)
         return task_entry
 
     @classmethod
