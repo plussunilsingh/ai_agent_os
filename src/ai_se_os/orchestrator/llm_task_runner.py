@@ -159,10 +159,12 @@ class LLMTaskRunner:
             "SPAWN", f"LLM-Runner:{self.task_name[:30]}", self.task_id
         )
 
-        # Perform dynamic discovery for target app schema
-        discovery_info = TargetDiscoveryEngine.discover_target(self.target_url) if self.target_url else {"discovered": False}
-        schema_ctx = json.dumps(discovery_info, indent=2) if discovery_info.get("discovered") else "Target URL: " + (self.target_url or "Generic Application")
-        compiled_system_prompt = GENERIC_SYSTEM_PROMPT_TEMPLATE.format(target_schema_context=schema_ctx)
+        # Compile zero-hardcode system prompt via Codebase Knowledge Graph & Target Discovery
+        from ai_se_os.orchestrator.graph_prompt_orchestrator import GraphPromptOrchestrator
+        compiled_system_prompt = GraphPromptOrchestrator.compile_graph_prompt(
+            repo_dir=os.getcwd(),
+            target_url=self.target_url
+        )
 
         final_summary = "Task completed"
         all_passed = False

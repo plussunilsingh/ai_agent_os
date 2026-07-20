@@ -1,26 +1,5 @@
 {
-  "active_tasks": [
-    {
-      "task_id": "task-api-1784563916",
-      "task_name": "API Fuzzing Test Task",
-      "target_url": "http://127.0.0.1:9000",
-      "status": "EXECUTING",
-      "current_step": "[Iter 1] LLM Reasoning",
-      "start_time": "2026-07-20 21:41:56 IST",
-      "start_epoch": 1784563916.45225,
-      "progress_pct": 0
-    },
-    {
-      "task_id": "task-api-1784563957",
-      "task_name": "API Fuzzing Test Task",
-      "target_url": "http://127.0.0.1:9000",
-      "status": "EXECUTING",
-      "current_step": "Initializing LLM Runner",
-      "start_time": "2026-07-20 21:42:37 IST",
-      "start_epoch": 1784563957.9008372,
-      "progress_pct": 5
-    }
-  ],
+  "active_tasks": [],
   "history": [
     {
       "task_id": "task-e2e-1784538656",
@@ -364,41 +343,33 @@
       "progress_pct": 0,
       "end_time": "2026-07-20 20:48:24 IST",
       "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784563916",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "TIMED_OUT",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 21:41:56 IST",
+      "start_epoch": 1784563916.45225,
+      "progress_pct": 0,
+      "end_time": "2026-07-20 21:45:49 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784563957",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "TIMED_OUT",
+      "current_step": "Initializing LLM Runner",
+      "start_time": "2026-07-20 21:42:37 IST",
+      "start_epoch": 1784563957.9008372,
+      "progress_pct": 5,
+      "end_time": "2026-07-20 21:45:49 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
     }
   ],
   "model_chunks": [
-    {
-      "timestamp": "21:32:59 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:33:01 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
-      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:33:01 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maxi...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:33:01 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
     {
       "timestamp": "21:33:09 IST",
       "task_id": "task-e2e-1784563378",
@@ -606,6 +577,38 @@
       "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
       "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:45:49 IST",
+      "task_id": "task-api-1784564149",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:45:49 IST",
+      "task_id": "task-api-1784564149",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:45:49 IST",
+      "task_id": "task-api-1784564149",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:45:50 IST",
+      "task_id": "task-api-1784564149",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
@@ -621,6 +624,15 @@
       "input_request": "Incoming Material Order Order Task",
       "failure_reason": "[8 iters] Reached max 8 iterations. Last: {\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\": \"AB123456\", \"quantity\": 10, \"status\": \"Received\", \"dispatchType\": \"IncomingMaterial\", \"productName\": \"Botanic Extract\"}}}, \"result\": {\"success\": false, \"status\": 4",
       "response_payload": "[{\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\": \"AB123456\", \"quantity\": 10, \"status\": \"Received\", \"dispatchTyp",
+      "llm_failure": "None"
+    },
+    {
+      "timestamp": "2026-07-20 21:45:50 IST",
+      "task_id": "task-api-1784564149",
+      "task_name": "API Fuzzing Test Task",
+      "input_request": "API Fuzzing Test Task",
+      "failure_reason": "Unhandled error: '\"tool\"'",
+      "response_payload": "{}",
       "llm_failure": "None"
     }
   ],
@@ -1497,6 +1509,40 @@
         "chunk_type": "AGENT_SPAWN",
         "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
         "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-api-1784564149": [
+      {
+        "timestamp": "21:45:49 IST",
+        "task_id": "task-api-1784564149",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: API Fuzzing Test Task",
+        "agent_response": "Started autonomous task: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:45:49 IST",
+        "task_id": "task-api-1784564149",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:45:49 IST",
+        "task_id": "task-api-1784564149",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:45:50 IST",
+        "task_id": "task-api-1784564149",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+        "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
         "model_name": "qwen2.5:7b"
       }
     ]
