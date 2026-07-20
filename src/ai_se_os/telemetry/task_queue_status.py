@@ -38,6 +38,14 @@ class TaskQueueStatusEngine:
             "http://127.0.0.1:9000", 9000
         )
         
+        # Log failure/timeout incidents if endpoints fail
+        if not backend_http.get("reachable", False):
+            is_timeout = "timeout" in str(backend_http.get("error", "")).lower()
+            TaskQueueTracker.log_failure_event(8080, "/api/v1/actuator/health", backend_http.get("status_code", 0), backend_http.get("error") or "Unreachable", is_timeout=is_timeout)
+        if not frontend_http.get("reachable", False):
+            is_timeout = "timeout" in str(frontend_http.get("error", "")).lower()
+            TaskQueueTracker.log_failure_event(9000, "/", frontend_http.get("status_code", 0), frontend_http.get("error") or "Unreachable", is_timeout=is_timeout)
+
         # 2. Check running processes on system
         lsof_8080 = subprocess.getoutput("lsof -t -i:8080 2>/dev/null")
         lsof_9000 = subprocess.getoutput("lsof -t -i:9000 2>/dev/null")

@@ -14,7 +14,13 @@ class TaskQueueTracker:
     @staticmethod
     def _read_state() -> Dict[str, Any]:
         if not os.path.exists(TRACKER_FILE):
-            return {"active_tasks": [], "history": [], "model_chunks": [], "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270}}
+            return {
+                "active_tasks": [],
+                "history": [],
+                "model_chunks": [],
+                "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270},
+                "failures_telemetry": {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}
+            }
         try:
             with open(TRACKER_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -22,9 +28,41 @@ class TaskQueueTracker:
                     data["model_chunks"] = []
                 if "token_usage" not in data:
                     data["token_usage"] = {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270}
+                if "failures_telemetry" not in data:
+                    data["failures_telemetry"] = {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}
                 return data
         except Exception:
-            return {"active_tasks": [], "history": [], "model_chunks": [], "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270}}
+            return {
+                "active_tasks": [],
+                "history": [],
+                "model_chunks": [],
+                "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270},
+                "failures_telemetry": {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}
+            }
+
+    @classmethod
+    def log_failure_event(cls, target_port: int, endpoint: str, status_code: int, error_msg: str, is_timeout: bool = False):
+        """Logs a target response timeout or HTTP failure incident."""
+        state = cls._read_state()
+        fail_data = state.get("failures_telemetry", {"total_timeouts": 0, "total_failures": 0, "failure_logs": []})
+        if is_timeout:
+            fail_data["total_timeouts"] += 1
+        else:
+            fail_data["total_failures"] += 1
+        
+        incident = {
+            "timestamp": time.strftime("%H:%M:%S IST"),
+            "target_port": target_port,
+            "endpoint": endpoint,
+            "status_code": status_code,
+            "is_timeout": is_timeout,
+            "error_msg": str(error_msg)[:120]
+        }
+        logs = fail_data.get("failure_logs", [])
+        logs.append(incident)
+        fail_data["failure_logs"] = logs[-20:] # Keep latest 20 failure logs
+        state["failures_telemetry"] = fail_data
+        cls._write_state(state)
 
     @classmethod
     def log_token_usage(cls, prompt_tokens: int, completion_tokens: int):
@@ -119,6 +157,7 @@ class TaskQueueTracker:
             "active_tasks": active_list,
             "latest_model_chunks": state.get("model_chunks", []),
             "token_usage": state.get("token_usage", {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270}),
+            "failures_telemetry": state.get("failures_telemetry", {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}),
             "governance_mode": "Chapter 42 Truth Enforcement (Zero Hardcoded Metrics)",
             "task_queue_health": "IN_PROGRESS" if len(active_list) > 0 else "HEALTHY (Non-blocking Asynchronous Mode)"
         }
