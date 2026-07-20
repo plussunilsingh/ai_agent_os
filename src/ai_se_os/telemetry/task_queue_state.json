@@ -1,16 +1,5 @@
 {
-  "active_tasks": [
-    {
-      "task_id": "task-e2e-test-1784543963",
-      "task_name": "Check if http://127.0.0.1:8000/api/v1/health returns status ok",
-      "target_url": "http://127.0.0.1:8000/api/v1/health",
-      "status": "RUNNING",
-      "current_step": "[Iter 3] LLM Reasoning",
-      "start_time": "2026-07-20 16:09:23 IST",
-      "start_epoch": 1784543963.68924,
-      "progress_pct": 25
-    }
-  ],
+  "active_tasks": [],
   "history": [
     {
       "task_id": "task-e2e-1784538656",
@@ -160,161 +149,21 @@
       "progress_pct": 100,
       "end_time": "2026-07-20 15:44:06 IST",
       "summary": "Multi-Stage DAG Workflow Passed (5/5 Stages Completed)"
+    },
+    {
+      "task_id": "task-e2e-test-1784543963",
+      "task_name": "Check if http://127.0.0.1:8000/api/v1/health returns status ok",
+      "target_url": "http://127.0.0.1:8000/api/v1/health",
+      "status": "FAILED",
+      "current_step": "[Iter 8] Tool: verify_json_field",
+      "start_time": "2026-07-20 16:09:23 IST",
+      "start_epoch": 1784543963.68924,
+      "progress_pct": 87,
+      "end_time": "2026-07-20 16:09:54 IST",
+      "summary": "[8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200}, \"result\": {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <"
     }
   ],
   "model_chunks": [
-    {
-      "timestamp": "15:42:15 IST",
-      "task_id": "task-e2e-1784542330",
-      "chunk_type": "DAG_STAGE_COMPLETE",
-      "content": "[5. Truth Governance Verification] Completed in 1005.05 ms",
-      "agent_response": "Stage [5. Truth Governance Verification] passed cleanly. Latency: 1005.05 ms...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:42:15 IST",
-      "task_id": "task-e2e-1784542330",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Multi-Stage DAG Workflow Passed (5/5 Stages Completed)",
-      "agent_response": "Task Status: SUCCESS. Summary: Multi-Stage DAG Workflow Passed (5/5 Stages Completed)...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:01 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order you need to create order and check what is the problem UI and ...",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order you need to create order and check what is the problem UI and ",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:01 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order you need to create order and check what is the problem UI and ...",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order you need to create order and check what is the problem UI and ",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:01 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[1. Intent & Requirement Analysis] Executing Analyze user instruction & build execution plan",
-      "agent_response": "[1. Intent & Requirement Analysis] Executing Analyze user instruction & build execution plan",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:02 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "DAG_STAGE_COMPLETE",
-      "content": "[1. Intent & Requirement Analysis] Completed in 1003.78 ms",
-      "agent_response": "Stage [1. Intent & Requirement Analysis] passed cleanly. Latency: 1003.78 ms...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:02 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[2. DOM & UI Form Inspection] Executing Inspect element structure at http://127.0.0.1:9000/admin/incoming",
-      "agent_response": "[2. DOM & UI Form Inspection] Executing Inspect element structure at http://127.0.0.1:9000/admin/incoming",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:03 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "DAG_STAGE_COMPLETE",
-      "content": "[2. DOM & UI Form Inspection] Completed in 1007.12 ms",
-      "agent_response": "Stage [2. DOM & UI Form Inspection] passed cleanly. Latency: 1007.12 ms...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:03 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[3. Full-Stack API Transaction Execution] Executing Submit sample/order payload to target backend",
-      "agent_response": "[3. Full-Stack API Transaction Execution] Executing Submit sample/order payload to target backend",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:04 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "DAG_STAGE_COMPLETE",
-      "content": "[3. Full-Stack API Transaction Execution] Completed in 1005.04 ms",
-      "agent_response": "Stage [3. Full-Stack API Transaction Execution] passed cleanly. Latency: 1005.04 ms...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:04 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[4. PostgreSQL Persistence Audit] Executing Audit database state and verify record creation",
-      "agent_response": "[4. PostgreSQL Persistence Audit] Executing Audit database state and verify record creation",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:05 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "DAG_STAGE_COMPLETE",
-      "content": "[4. PostgreSQL Persistence Audit] Completed in 1004.61 ms",
-      "agent_response": "Stage [4. PostgreSQL Persistence Audit] passed cleanly. Latency: 1004.61 ms...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:05 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[5. Truth Governance Verification] Executing Enforce Chapter 42 compliance & generate test report",
-      "agent_response": "[5. Truth Governance Verification] Executing Enforce Chapter 42 compliance & generate test report",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:06 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "DAG_STAGE_COMPLETE",
-      "content": "[5. Truth Governance Verification] Completed in 1007.14 ms",
-      "agent_response": "Stage [5. Truth Governance Verification] passed cleanly. Latency: 1007.14 ms...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "15:44:06 IST",
-      "task_id": "task-e2e-1784542441",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Multi-Stage DAG Workflow Passed (5/5 Stages Completed)",
-      "agent_response": "Task Status: SUCCESS. Summary: Multi-Stage DAG Workflow Passed (5/5 Stages Completed)...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:23 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Check if http://127.0.0.1:8000/api/v1/health returns status ok",
-      "agent_response": "Started autonomous task: Check if http://127.0.0.1:8000/api/v1/health returns status ok",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:23 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Check if http://127.0.0.1:8000/api/v1/health returns status ok",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Check if http://127.0.0.1:8000/api/v1/health returns status ok",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:23 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:23 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
     {
       "timestamp": "16:09:30 IST",
       "task_id": "task-e2e-test-1784543963",
@@ -362,20 +211,176 @@
       "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:41 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 3] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "agent_response": "[[Iter 3] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:42 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "TOOL_HTTP_GET",
+      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:42 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
+      "agent_response": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:44 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "agent_response": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:44 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html...",
+      "agent_response": "{\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:44 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 5] LLM Reasoning] Querying Ollama for iteration 5",
+      "agent_response": "[[Iter 5] LLM Reasoning] Querying Ollama for iteration 5",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:46 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 5] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "agent_response": "[[Iter 5] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:46 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "TOOL_HTTP_GET",
+      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:46 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
+      "agent_response": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:49 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 6] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "agent_response": "[[Iter 6] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:49 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html...",
+      "agent_response": "{\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:49 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
+      "agent_response": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:51 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 7] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "agent_response": "[[Iter 7] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:51 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "TOOL_HTTP_GET",
+      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:51 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
+      "agent_response": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:54 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 8] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "agent_response": "[[Iter 8] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:54 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html...",
+      "agent_response": "{\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:54 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "AGENT_TERMINATE",
+      "content": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] (task-e2e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] event: TERMINATE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:09:54 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\",...",
+      "agent_response": "Task Status: FAILED. Summary: [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/he...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 11062,
-    "completion_tokens": 6684,
-    "total_tokens": 17746
+    "prompt_tokens": 11978,
+    "completion_tokens": 8128,
+    "total_tokens": 20106
   },
-  "ai_agent_os_task_failures": [],
-  "active_subagents": [
+  "ai_agent_os_task_failures": [
     {
-      "agent_id": "task-e2e-test-1784543963",
-      "role": "LLM-Runner:Check if http://127.0.0.1:8000",
-      "spawn_time": "16:09:23 IST"
+      "timestamp": "2026-07-20 16:09:54 IST",
+      "task_id": "task-e2e-test-1784543963",
+      "task_name": "Check if http://127.0.0.1:8000/api/v1/health returns status ok",
+      "input_request": "Check if http://127.0.0.1:8000/api/v1/health returns status ok",
+      "failure_reason": "[8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200}, \"result\": {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <",
+      "response_payload": "[{\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200}, \"result\": {\"success\": false, \"error\": \"Field walk error: Expecting value: li",
+      "llm_failure": "None"
     }
   ],
-  "active_agent_count": 1
+  "active_subagents": [],
+  "active_agent_count": 0
 }
