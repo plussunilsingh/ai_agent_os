@@ -43,6 +43,49 @@ async def liveness() -> Dict[str, Any]:
     return {"status": "alive"}
 
 # ============================================================
+# Ollama & Botanix Integration Endpoints
+# ============================================================
+
+from ai_se_os.execution.ollama_adapter import OllamaAdapter
+
+ollama_client = OllamaAdapter()
+
+@router.get("/ollama/status")
+async def ollama_status() -> Dict[str, Any]:
+    """Check Ollama model status."""
+    is_connected = ollama_client.check_connection()
+    return {
+        "status": "connected" if is_connected else "disconnected",
+        "model": ollama_client.model,
+        "host": ollama_client.host
+    }
+
+@router.post("/botanix/generate-plan")
+async def botanix_generate_plan(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Generate engineering task plan for botanixUI using local Ollama model."""
+    requirement = payload.get("requirement", "")
+    repo_id = payload.get("repository_id", "botanix-ui")
+    
+    if not requirement:
+        raise HTTPException(status_code=400, detail="Requirement prompt is required")
+        
+    result = ollama_client.generate_plan_from_requirement(requirement, repo_id)
+    return result
+
+@router.post("/botanix/chat")
+async def botanix_chat(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Chat with AI-SE OS for botanixUI powered by local Ollama."""
+    message = payload.get("message", "")
+    system_prompt = payload.get("system_prompt", "You are AI-SE OS Engineering Assistant for BotanixUI.")
+    
+    if not message:
+        raise HTTPException(status_code=400, detail="Message is required")
+        
+    result = ollama_client.generate(prompt=message, system_prompt=system_prompt)
+    return result
+
+
+# ============================================================
 # Repository Endpoints
 # ============================================================
 

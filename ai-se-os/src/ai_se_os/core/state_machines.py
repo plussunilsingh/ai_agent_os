@@ -50,6 +50,15 @@ class RecoveryState(str, Enum):
     RESOLVED = "resolved"
 
 
+class RecoveryStrategyType(str, Enum):
+    RETRY = "retry"
+    ROLLBACK = "rollback"
+    REPLAN = "replan"
+    AUTO_FIX = "auto_fix"
+    HUMAN_ESCALATE = "human_escalate"
+
+
+
 class RepositoryState(str, Enum):
     UNREGISTERED = "unregistered"
     REGISTERED = "registered"
