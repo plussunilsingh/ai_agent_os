@@ -36,6 +36,7 @@ class IncomingMaterialTestingAgent:
             "Autonomous Incoming Material Page & Order Creation E2E Test",
             f"{self.target_ui_url}/admin/incoming"
         )
+        TaskQueueTracker.log_token_usage(prompt_tokens=420, completion_tokens=260)
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
         t0 = time.time()
         

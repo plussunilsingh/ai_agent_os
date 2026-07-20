@@ -40,45 +40,55 @@
         </header>
 
         <!-- Metric Overview Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
             <!-- Total Tasks Card -->
             <div class="p-6 rounded-2xl glass-card space-y-3">
                 <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
-                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> Total Tasks Handled</span>
-                    <span id="completed-count-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-bold">0 Completed</span>
+                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> Total Tasks</span>
+                    <span id="completed-count-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-bold">0 Done</span>
                 </div>
                 <div id="total-tasks-count" class="text-3xl font-black text-white">0</div>
-                <div class="text-xs text-slate-400 font-medium">Lifetime autonomous task executions</div>
+                <div class="text-xs text-slate-400 font-medium">Lifetime executions</div>
             </div>
 
             <!-- Active Task Queue Card -->
             <div class="p-6 rounded-2xl glass-card space-y-3">
                 <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
-                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-ping"></span> Active Task Queue</span>
-                    <span id="queue-health-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-400 font-bold">Asynchronous</span>
+                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-ping"></span> Active Queue</span>
+                    <span id="queue-health-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-400 font-bold">Async</span>
                 </div>
-                <div id="active-tasks" class="text-3xl font-black text-yellow-400">0 Active Tasks</div>
+                <div id="active-tasks" class="text-3xl font-black text-yellow-400">0 Active</div>
                 <div id="queue-health" class="text-xs text-slate-400 font-medium">---</div>
+            </div>
+
+            <!-- LLM Token Consumption Card -->
+            <div class="p-6 rounded-2xl glass-card space-y-3">
+                <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
+                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span> LLM Token Usage</span>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-400/10 text-cyan-400 font-bold">qwen2.5:7b</span>
+                </div>
+                <div id="total-tokens-consumed" class="text-3xl font-black text-cyan-400">0</div>
+                <div id="tokens-breakdown" class="text-xs text-slate-400 font-medium">Prompt: 0 • Completion: 0</div>
             </div>
 
             <!-- Truth Governance Card -->
             <div class="p-6 rounded-2xl glass-card space-y-3">
                 <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
-                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span> Chapter 42 Governance</span>
+                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span> Governance</span>
                     <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <div class="text-xl font-bold text-green-400">100% Compliant</div>
-                <div class="text-xs text-slate-400 font-medium">Non-blocking async socket sampling</div>
+                <div class="text-xs text-slate-400 font-medium">Non-blocking async</div>
             </div>
 
             <!-- Telemetry Sync Stream Card -->
             <div class="p-6 rounded-2xl glass-card space-y-3">
                 <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
                     <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> Live SSE Feed</span>
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 font-bold">Real-time Push</span>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 font-bold">Push</span>
                 </div>
                 <div id="sync-time" class="text-base font-mono font-bold text-purple-400">Loading...</div>
-                <div id="sync-latency" class="text-xs text-slate-400 font-medium">Socket latency: ---</div>
+                <div id="sync-latency" class="text-xs text-slate-400 font-medium">Socket: ---</div>
             </div>
         </div>
 
@@ -117,12 +127,18 @@
     <script>
         function renderData(data) {
             const queueStatus = data.task_queue_status || {};
+            const tokenUsage = queueStatus.token_usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 };
+            
             document.getElementById('total-tasks-count').innerText = queueStatus.total_tasks_count || 0;
-            document.getElementById('completed-count-badge').innerText = (queueStatus.completed_tasks_count || 0) + ' Completed';
-            document.getElementById('active-tasks').innerText = (queueStatus.active_tasks_count || 0) + ' Active Tasks';
+            document.getElementById('completed-count-badge').innerText = (queueStatus.completed_tasks_count || 0) + ' Done';
+            document.getElementById('active-tasks').innerText = (queueStatus.active_tasks_count || 0) + ' Active';
             document.getElementById('queue-health').innerText = queueStatus.task_queue_health || 'HEALTHY';
             document.getElementById('sync-time').innerText = data.timestamp;
-            document.getElementById('sync-latency').innerText = 'Telemetry Query Latency: ' + data.telemetry_latency_ms + ' ms';
+            document.getElementById('sync-latency').innerText = 'Socket: ' + data.telemetry_latency_ms + ' ms';
+            
+            // Render Token Usage Numbers
+            document.getElementById('total-tokens-consumed').innerText = Number(tokenUsage.total_tokens || 0).toLocaleString() + ' Tokens';
+            document.getElementById('tokens-breakdown').innerText = `Prompt: ${Number(tokenUsage.prompt_tokens || 0).toLocaleString()} • Completion: ${Number(tokenUsage.completion_tokens || 0).toLocaleString()}`;
             
             // Render Model Chunk Stream Console
             const consoleBox = document.getElementById('model-chunks-console');
