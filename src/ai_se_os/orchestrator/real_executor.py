@@ -107,10 +107,18 @@ def verify_json_field(url: str, field_path: str, expected: Any, headers: Optiona
     get_result = http_get(url, headers)
     if not get_result["success"]:
         return {"success": False, "error": f"GET failed: {get_result.get('error')}", "result": ""}
+    raw = get_result["result"]
+    # Ensure response is JSON before attempting field walk
+    if not raw.strip().startswith(("{", "[")):
+        return {
+            "success": False,
+            "error": f"Response is not JSON (starts with: {raw.strip()[:60]!r})",
+            "result": raw[:500]
+        }
     try:
-        data = json.loads(get_result["result"])
+        data = json.loads(raw)
         node = data
-        for part in field_path.replace("]", "").replace("[", ".").split("."):
+        for part in field_path.lstrip(".").replace("]", "").replace("[", ".").split("."):
             if part == "":
                 continue
             if isinstance(node, list):
@@ -123,7 +131,7 @@ def verify_json_field(url: str, field_path: str, expected: Any, headers: Optiona
             "result": f"Field '{field_path}' = {repr(node)}, expected {repr(expected)} -> {'PASS' if passed else 'FAIL'}"
         }
     except Exception as e:
-        return {"success": False, "error": f"Field walk error: {e}", "result": get_result["result"][:1000]}
+        return {"success": False, "error": f"Field walk error: {e}", "result": raw[:1000]}
 
 
 # Tool dispatch map — used by LLMTaskRunner
