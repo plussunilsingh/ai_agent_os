@@ -104,6 +104,8 @@ def verify_json_field(url: str, field_path: str, expected: Any, headers: Optiona
     HTTP GET url, parse JSON, walk field_path (e.g. 'data.samples[0].status'),
     compare to expected value.
     """
+    if not field_path:
+        return {"success": False, "error": "field_path must not be None or empty", "result": ""}
     get_result = http_get(url, headers)
     if not get_result["success"]:
         return {"success": False, "error": f"GET failed: {get_result.get('error')}", "result": ""}

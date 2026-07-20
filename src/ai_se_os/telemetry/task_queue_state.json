@@ -165,210 +165,210 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "16:09:30 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:17 IST",
+      "task_id": "audit-e2e-1784544497",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Create a new supplier sample o] (audit-e2): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a new supplier sample o] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:18:17 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
-      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:30 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
+      "timestamp": "16:18:28 IST",
+      "task_id": "audit-e2e-1784544497",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:30 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:29 IST",
+      "task_id": "audit-e2e-1784544497",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 302,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 302,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:18:29 IST",
+      "task_id": "audit-e2e-1784544497",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \".data.id\"...",
+      "agent_response": "[[Iter 1] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \".data.id\"",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:18:29 IST",
+      "task_id": "audit-e2e-1784544497",
+      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'data'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatc...",
+      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'data'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"AUDIT-LOOP-TE...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:18:29 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:37 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:35 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
-      "agent_response": "[[Iter 2] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "content": "[[Iter 2] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \".sampleDi...",
+      "agent_response": "[[Iter 2] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \".sampleDi",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:37 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:35 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\...",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"result\": \"Field '.sampleDispatches[0].id' = 302, expected '302' -> FAIL\"}",
+      "agent_response": "{\"success\": false, \"result\": \"Field '.sampleDispatches[0].id' = 302, expected '302' -> FAIL\"}...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:37 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:35 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:41 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:38 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
-      "agent_response": "[[Iter 3] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "content": "[[Iter 3] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"headers\": {}})",
+      "agent_response": "[[Iter 3] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"headers\": {}})",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:42 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:38 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
+      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"AUDIT-LOOP-TEST\\\",\\...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"AUDIT-LOOP-TEST\\\",\\n      \\\"createdA...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:42 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:38 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
       "agent_response": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:44 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:44 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
-      "agent_response": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
+      "content": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"sampleDis...",
+      "agent_response": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"sampleDis",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:44 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:45 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\...",
+      "content": "Tool 'verify_json_field': {\"success\": true, \"result\": \"Field 'sampleDispatches[0].status' = 'Pending', expected 'Pending' -> PASS\"}",
+      "agent_response": "{\"success\": true, \"result\": \"Field 'sampleDispatches[0].status' = 'Pending', expected 'Pending' -> PASS\"}...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:44 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:45 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 5] LLM Reasoning] Querying Ollama for iteration 5",
       "agent_response": "[[Iter 5] LLM Reasoning] Querying Ollama for iteration 5",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:46 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:48 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 5] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
-      "agent_response": "[[Iter 5] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
+      "content": "[[Iter 5] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/dispatch-sample\", \"payload\": {\"sampleId\": \"SMP-12345\"}...",
+      "agent_response": "[[Iter 5] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/dispatch-sample\", \"payload\": {\"sampleId\": \"SMP-12345\"}",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:46 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
+      "timestamp": "16:18:48 IST",
+      "task_id": "audit-e2e-1784544497",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": false, \"status\": 500, \"error\": \"HTTP Error 500: Internal Server Error\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"An u...",
+      "agent_response": "{\"success\": false, \"status\": 500, \"error\": \"HTTP Error 500: Internal Server Error\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"An unexpected error oc...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:46 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
-      "agent_response": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:49 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 6] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
-      "agent_response": "[[Iter 6] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:49 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:49 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
-      "agent_response": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:51 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 7] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
-      "agent_response": "[[Iter 7] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"headers\": {}})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:51 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <meta charset=\\\"UTF-8\\\">\\n    <meta name=\\...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:51 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
-      "agent_response": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:54 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 8] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
-      "agent_response": "[[Iter 8] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:54 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:09:54 IST",
-      "task_id": "task-e2e-test-1784543963",
+      "timestamp": "16:18:48 IST",
+      "task_id": "audit-e2e-1784544497",
       "chunk_type": "AGENT_TERMINATE",
-      "content": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Check if http://127.0.0.1:8000] event: TERMINATE. ...",
+      "content": "Subagent [LLM-Runner:Create a new supplier sample o] (audit-e2): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a new supplier sample o] event: TERMINATE. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "16:09:54 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: FAILED - [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\",...",
-      "agent_response": "Task Status: FAILED. Summary: [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/he...",
+      "timestamp": "16:28:15 IST",
+      "task_id": "audit2-e2e-1784545095",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Create a supplier sample order] (audit2-e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a supplier sample order] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:28:15 IST",
+      "task_id": "audit2-e2e-1784545095",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:28:25 IST",
+      "task_id": "audit2-e2e-1784545095",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:28:26 IST",
+      "task_id": "audit2-e2e-1784545095",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 303,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 303,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:28:26 IST",
+      "task_id": "audit2-e2e-1784545095",
+      "chunk_type": "DONE",
+      "content": "Task complete: Supplier sample order created with internalBatchNumber=GROUNDED-PROMPT-TEST.",
+      "agent_response": "Supplier sample order created with internalBatchNumber=GROUNDED-PROMPT-TEST....",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:28:26 IST",
+      "task_id": "audit2-e2e-1784545095",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Create a supplier sample order] (audit2-e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a supplier sample order] event: COMPLETE. ...",
       "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 11978,
-    "completion_tokens": 8128,
-    "total_tokens": 20106
+    "prompt_tokens": 13054,
+    "completion_tokens": 10772,
+    "total_tokens": 23826
   },
   "ai_agent_os_task_failures": [
     {

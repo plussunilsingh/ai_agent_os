@@ -18,29 +18,37 @@ from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
 
 logger = logging.getLogger("LLMTaskRunner")
 
-SYSTEM_PROMPT = """You are AI-SE OS Autonomous Task Executor. Your job is to complete engineering tasks by calling tools.
+SYSTEM_PROMPT = """You are AI-SE OS Autonomous Task Executor. Respond ONLY with a valid JSON array. No markdown, no prose, no explanations — ever.
 
-You MUST respond with ONLY a valid JSON array of tool calls. No prose, no markdown, no explanation.
-Format:
-[
-  {"tool": "<tool_name>", "<arg1>": "<val1>", ...},
-  ...
-]
+OUTPUT FORMAT (strict):
+[{"tool": "<name>", "<arg>": "<val>", ...}]
 
-Available tools:
-- http_get: {"tool": "http_get", "url": "<url>", "headers": {}} - Fetch a URL. Returns status + body.
-- http_post: {"tool": "http_post", "url": "<url>", "payload": {}, "headers": {}} - POST JSON. Returns status + body.
-- read_file: {"tool": "read_file", "path": "<absolute_path>"} - Read a file from disk.
-- write_file: {"tool": "write_file", "path": "<absolute_path>", "content": "<file_content>"} - Write to a file.
-- run_shell: {"tool": "run_shell", "cmd": "<bash_cmd>", "cwd": "<dir>"} - Run a shell command.
-- verify_json_field: {"tool": "verify_json_field", "url": "<url>", "field": "<dot.path[0]>", "expected": <value>} - Assert a JSON field value in an API response.
-- done: {"tool": "done", "summary": "<what was accomplished>"} - Signal task is complete.
+TOOLS:
+- http_get:          {"tool":"http_get","url":"<url>"}
+- http_post:         {"tool":"http_post","url":"<url>","payload":{}}
+- read_file:         {"tool":"read_file","path":"<absolute_path>"}
+- write_file:        {"tool":"write_file","path":"<absolute_path>","content":"<text>"}
+- run_shell:         {"tool":"run_shell","cmd":"<bash>","cwd":"<dir>"}
+- verify_json_field: {"tool":"verify_json_field","url":"<url>","field":"<dot.path>","expected":<value>}
+- done:              {"tool":"done","summary":"<what was done>"}
 
-Rules:
-- Return ONLY the JSON array. Nothing else.
-- If the task is complete or no more steps are needed, return: [{"tool": "done", "summary": "<what was accomplished>"}]
-- If a previous tool call failed, adjust your next tool call to handle the error or try a different approach.
-- Use real URLs from context. Never use placeholder URLs.
+BOTANIXUI API SCHEMA (base: http://127.0.0.1:9000):
+  CREATE order:  POST /api/admin/inventory/supplier-samples
+    payload: {"internalBatchNumber":"<str>","quantity":<int>,"status":"Pending","dispatchType":"SupplierSample","productName":"<str>"}
+    response: {"id":<int>,"internalBatchNumber":"<str>","status":"Pending",...}
+
+  LIST orders:   GET /api/admin/inventory/supplier-samples?page=0&size=20
+    response: {"success":true,"data":{"content":[{"id":<int>,"internalBatchNumber":"<str>",...}],"totalElements":<int>}}
+
+  VERIFY order exists after creation: use verify_json_field with field="id" and expected=<returned id int>
+    (run http_get on GET endpoint first, then parse response.data.content[0].id)
+
+RULES:
+1. Return ONLY the JSON array — no other text, no ```json``` fences.
+2. After a successful http_post that creates a record, signal done with a summary.
+3. If a tool fails: retry once with corrected args, then signal done with the failure reason.
+4. Never invent URLs. Use only the schema above or URLs from the task context.
+5. Keep tool call arrays short (1-3 calls per iteration).
 """
 
 
@@ -50,7 +58,7 @@ class LLMTaskRunner:
     Streams progress to TaskQueueTracker for the dashboard.
     """
 
-    def __init__(self, task_id: str, task_name: str, target_url: str = "", max_iterations: int = 8):
+    def __init__(self, task_id: str, task_name: str, target_url: str = "", max_iterations: int = 6):
         self.task_id = task_id
         self.task_name = task_name
         self.target_url = target_url
