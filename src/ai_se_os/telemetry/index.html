@@ -475,19 +475,7 @@
             const val = inputEl.value.trim();
             if (!val) return;
             inputEl.value = '';
-
-            try {
-                const res = await fetch('/api/v1/system/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: val })
-                });
-                const data = await res.json();
-                renderChatStream(data.history || []);
-                fetchTelemetry();
-            } catch (err) {
-                console.error(err);
-            }
+            await processChatPayload(val);
         }
 
         async function sendInteractiveChat() {
@@ -498,34 +486,51 @@
             badge.innerText = 'THINKING...';
             badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/30 font-mono animate-pulse';
             
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000);
-            
+            await processChatPayload(inputVal);
+
+            badge.innerText = 'REPLIED!';
+            badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/30 font-mono';
+            setTimeout(() => {
+                badge.innerText = 'READY FOR TASK';
+                badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono';
+            }, 1500);
+        }
+
+        async function processChatPayload(userText) {
+            // Append temporary local user bubble instantly (<1ms UI response)
+            const container = document.getElementById('chat-messages-stream');
+            if (container) {
+                const placeholder = container.querySelector('.text-center');
+                if (placeholder) container.innerHTML = '';
+                
+                const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' IST';
+                const tempBubble = document.createElement('div');
+                tempBubble.className = 'flex justify-end mb-2';
+                tempBubble.innerHTML = `
+                    <div class="max-w-[80%] rounded-2xl px-4 py-2.5 bg-purple-600 text-white rounded-br-none space-y-1 shadow-md">
+                        <div class="flex items-center justify-between gap-4 text-[10px] font-bold opacity-75">
+                            <span>YOU</span>
+                            <span>${timeStr}</span>
+                        </div>
+                        <div class="text-xs leading-relaxed break-words font-mono">${userText}</div>
+                    </div>
+                `;
+                container.appendChild(tempBubble);
+                container.scrollTop = container.scrollHeight;
+            }
+
             try {
                 const res = await fetch('/api/v1/system/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: inputVal }),
-                    signal: controller.signal
+                    body: JSON.stringify({ message: userText })
                 });
-                clearTimeout(timeoutId);
                 const data = await res.json();
-                badge.innerText = 'REPLIED!';
-                badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/30 font-mono';
-                setTimeout(() => {
-                    badge.innerText = 'READY FOR TASK';
-                    badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono';
-                }, 1500);
+                renderChatStream(data.history || []);
                 fetchTelemetry();
             } catch (err) {
                 console.error(err);
-                badge.innerText = 'PROCESSED & QUEUED';
-                badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-500/10 text-green-400 border border-green-500/30 font-mono';
-                setTimeout(() => {
-                    badge.innerText = 'READY FOR TASK';
-                    badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono';
-                }, 1500);
-                fetchTelemetry();
+                loadChatHistory();
             }
         }
 
