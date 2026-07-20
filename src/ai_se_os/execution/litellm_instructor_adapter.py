@@ -52,7 +52,7 @@ ToolCallUnion = Union[HTTPGetCall, HTTPPostCall, ReadFileCall, WriteFileCall, Ru
 
 
 class AgentActionStep(BaseModel):
-    action: ToolCallUnion = Field(description="The single tool action to execute")
+    action: Union[ToolCallUnion, List[ToolCallUnion]] = Field(description="The tool action or list of tool actions to execute")
 
 
 class LiteLLMInstructorRunner:
@@ -65,7 +65,7 @@ class LiteLLMInstructorRunner:
     def __init__(self, model_name: str = "ollama/qwen2.5:7b", api_base: str = "http://127.0.0.1:11434"):
         self.model_name = model_name
         self.api_base = api_base
-        self.client = instructor.from_litellm(completion)
+        self.client = instructor.from_litellm(completion, mode=instructor.Mode.JSON)
 
     def generate_tool_call(self, prompt: str, system_prompt: str) -> Optional[Dict[str, Any]]:
         """Generates a strictly validated Pydantic tool call using Instructor."""
@@ -74,14 +74,18 @@ class LiteLLMInstructorRunner:
                 model=self.model_name,
                 api_base=self.api_base,
                 response_model=AgentActionStep,
-                max_retries=2,
+                max_retries=3,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}
                 ]
             )
-            # Extract flat inner tool call object: {"tool": "http_get", ...}
-            action_dict = response.action.model_dump()
+            # Extract flat inner tool call object
+            if isinstance(response.action, list):
+                action_dict = response.action[0].model_dump() if response.action else None
+            else:
+                action_dict = response.action.model_dump()
+
             logger.info(f"Instructor successfully generated flat validated tool call: {action_dict}")
             return action_dict
         except Exception as e:

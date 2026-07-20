@@ -166,107 +166,17 @@ class LLMTaskRunner:
             target_url=self.target_url
         )
 
-        # Initialize Instructor + LiteLLM production runner
-        from ai_se_os.execution.litellm_instructor_adapter import LiteLLMInstructorRunner
-        instructor_runner = LiteLLMInstructorRunner(model_name="ollama/qwen2.5:7b")
-
-        final_summary = "Task completed"
-        all_passed = False
-
+        # Delegate execution to LangGraph Production Agent Graph
+        from ai_se_os.orchestrator.langgraph_agent import LangGraphAgent
         try:
-            for iteration in range(self.max_iterations):
-                user_msg = self._build_user_message(iteration)
-
-                self._heartbeat(iteration, "LLM Reasoning", f"Querying Instructor/Ollama for iteration {iteration + 1}")
-                logger.info(f"[Iter {iteration + 1}] Querying Instructor / Ollama...")
-
-                # 1. Primary: Try Instructor + Pydantic schema validation
-                tool_calls = None
-                instructor_action = instructor_runner.generate_tool_call(user_msg, compiled_system_prompt)
-                if instructor_action:
-                    tool_calls = [instructor_action]
-                    raw_response = json.dumps(tool_calls)
-                else:
-                    # 2. Fallback: Standard Ollama generation + Multi-tier parser
-                    llm_res = self.ollama.generate(
-                        prompt=user_msg,
-                        system_prompt=compiled_system_prompt,
-                        temperature=0.2
-                    )
-
-                    if not llm_res.get("success"):
-                        logger.error(f"Ollama call failed: {llm_res.get('error')}")
-                        self._heartbeat(iteration, "LLM Error", f"Ollama failed: {llm_res.get('error')}")
-                        break
-
-                    raw_response = llm_res.get("response", "")
-                    tool_calls = self._parse_tool_calls(raw_response)
-                if not tool_calls:
-                    logger.warning(f"Could not parse tool calls from: {raw_response[:300]}")
-                    self._heartbeat(iteration, "Parse Warning", "LLM output not valid JSON, retrying...")
-                    self.conversation_history.append({"role": "assistant", "content": raw_response})
-                    self.conversation_history.append({
-                        "role": "user",
-                        "content": "Your last response was not valid JSON. Return ONLY a JSON array of tool calls."
-                    })
-                    continue
-
-                self.conversation_history.append({"role": "assistant", "content": raw_response})
-
-                last_result = {}
-                all_passed = True
-                for tc in tool_calls:
-                    if not isinstance(tc, dict):
-                        continue
-                    tool_name = str(tc.get("tool") or "").strip()
-                    if not tool_name:
-                        logger.warning(f"Skipping malformed tool call missing 'tool' field: {tc}")
-                        continue
-
-                    if tool_name == "done":
-                        final_summary = tc.get("summary", "Task completed")
-                        logger.info(f"[LLMTaskRunner] DONE - {final_summary}")
-                        TaskQueueTracker.log_model_chunk(
-                            self.task_id, "DONE",
-                            f"Task complete: {final_summary}",
-                            agent_response=final_summary
-                        )
-                        return {
-                            "success": True,
-                            "summary": final_summary,
-                            "iterations": iteration + 1,
-                            "tool_results": self.tool_results
-                        }
-
-                    args = {k: v for k, v in tc.items() if k != "tool"}
-                    self._heartbeat(iteration, f"Tool: {tool_name}", f"Running {tool_name}({json.dumps(args)[:200]})")
-                    logger.info(f"[Iter {iteration + 1}] Running tool '{tool_name}' args={json.dumps(args)[:200]}")
-
-                    result = dispatch_tool(tool_name, args)
-                    last_result = {"tool": tool_name, "args": args, "result": result}
-                    self.tool_results.append(last_result)
-
-                    result_str = json.dumps(result)[:500]
-                    TaskQueueTracker.log_model_chunk(
-                        self.task_id, f"TOOL_{tool_name.upper()}",
-                        f"Tool '{tool_name}': {result_str}",
-                        agent_response=result_str
-                    )
-
-                    if not result.get("success"):
-                        all_passed = False
-                        logger.warning(f"Tool '{tool_name}' failed: {result.get('error')}")
-
-            final_summary = (
-                f"Reached max {self.max_iterations} iterations. "
-                f"Last: {json.dumps(self.tool_results[-1] if self.tool_results else {})[:300]}"
+            agent = LangGraphAgent(model_name="ollama/qwen2.5:7b")
+            return agent.run_task(
+                task_id=self.task_id,
+                task_name=self.task_name,
+                target_url=self.target_url,
+                system_prompt=compiled_system_prompt,
+                max_iterations=self.max_iterations
             )
-            return {
-                "success": all_passed,
-                "summary": final_summary,
-                "iterations": self.max_iterations,
-                "tool_results": self.tool_results
-            }
         finally:
             TaskQueueTracker.log_subagent_event(
                 "COMPLETE", f"LLM-Runner:{self.task_name[:30]}", self.task_id

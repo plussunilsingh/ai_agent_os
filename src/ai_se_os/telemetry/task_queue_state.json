@@ -1,14 +1,14 @@
 {
   "active_tasks": [
     {
-      "task_id": "task-api-1784566764",
+      "task_id": "task-api-1784567667",
       "task_name": "API Fuzzing Test Task",
       "target_url": "http://127.0.0.1:9000",
       "status": "EXECUTING",
-      "current_step": "[Iter 1] LLM Reasoning",
-      "start_time": "2026-07-20 22:29:24 IST",
-      "start_epoch": 1784566764.671807,
-      "progress_pct": 0
+      "current_step": "Initializing LLM Runner",
+      "start_time": "2026-07-20 22:44:27 IST",
+      "start_epoch": 1784567667.639182,
+      "progress_pct": 5
     }
   ],
   "history": [
@@ -378,233 +378,21 @@
       "progress_pct": 5,
       "end_time": "2026-07-20 21:45:49 IST",
       "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784566764",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "TIMED_OUT",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 22:29:24 IST",
+      "start_epoch": 1784566764.671807,
+      "progress_pct": 0,
+      "end_time": "2026-07-20 22:30:30 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
     }
   ],
   "model_chunks": [
-    {
-      "timestamp": "22:22:17 IST",
-      "task_id": "task-e2e-1784566337",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:22:18 IST",
-      "task_id": "task-e2e-1784566337",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
-      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:22:54 IST",
-      "task_id": "task-e2e-1784566374",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:22:54 IST",
-      "task_id": "task-e2e-1784566374",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:22:54 IST",
-      "task_id": "task-e2e-1784566374",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:22:54 IST",
-      "task_id": "task-e2e-1784566374",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
-      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:27:44 IST",
-      "task_id": "task-e2e-1784566664",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:27:44 IST",
-      "task_id": "task-e2e-1784566664",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order ginger as product",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:27:45 IST",
-      "task_id": "task-e2e-1784566664",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:27:45 IST",
-      "task_id": "task-e2e-1784566664",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
-      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:28:25 IST",
-      "task_id": "test-direct-1",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (test-dir): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:28:37 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (test-dir): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:28:41 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Instructor/Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Instructor/Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:05 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Parse Warning] LLM output not valid JSON, retrying...",
-      "agent_response": "[[Iter 1] Parse Warning] LLM output not valid JSON, retrying...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:05 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Instructor/Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Instructor/Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:08 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
-      "agent_response": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:08 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Instructor/Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Instructor/Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:10 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/admin/incoming\"})",
-      "agent_response": "[[Iter 3] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/admin/incoming\"})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:10 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, max...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:10 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] LLM Reasoning] Querying Instructor/Ollama for iteration 4",
-      "agent_response": "[[Iter 4] LLM Reasoning] Querying Instructor/Ollama for iteration 4",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:20 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://localhost:9000/admin/incoming\", \"field\": \"html.title\", \"expected\": \"Botanix Natural - Premium Herbal &amp; Fruit Extracts\"}...",
-      "agent_response": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://localhost:9000/admin/incoming\", \"field\": \"html.title\", \"expected\": \"Botanix Natural - Premium Herbal &amp; Fruit Extracts\"}",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:20 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Response is not JSON (HTTP 200, body starts with: '<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/>')\", \"result\": \"<!DOCTYPE html...",
-      "agent_response": "{\"success\": false, \"error\": \"Response is not JSON (HTTP 200, body starts with: '<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/>')\", \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:20 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 5] LLM Reasoning] Querying Instructor/Ollama for iteration 5",
-      "agent_response": "[[Iter 5] LLM Reasoning] Querying Instructor/Ollama for iteration 5",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:24 IST",
-      "task_id": "task-api-1784566764",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: API Fuzzing Test Task",
-      "agent_response": "Started autonomous task: API Fuzzing Test Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:24 IST",
-      "task_id": "task-api-1784566764",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:24 IST",
-      "task_id": "task-api-1784566764",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
-      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:26 IST",
-      "task_id": "task-api-1784566764",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Instructor/Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Instructor/Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "22:29:26 IST",
-      "task_id": "test-direct-2",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 5] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
-      "agent_response": "[[Iter 5] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
-      "model_name": "qwen2.5:7b"
-    },
     {
       "timestamp": "22:29:26 IST",
       "task_id": "test-direct-2",
@@ -620,12 +408,236 @@
       "content": "[[Iter 6] LLM Reasoning] Querying Instructor/Ollama for iteration 6",
       "agent_response": "[[Iter 6] LLM Reasoning] Querying Instructor/Ollama for iteration 6",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:29:48 IST",
+      "task_id": "test-direct-2",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 6] Parse Warning] LLM output not valid JSON, retrying...",
+      "agent_response": "[[Iter 6] Parse Warning] LLM output not valid JSON, retrying...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:29:48 IST",
+      "task_id": "test-direct-2",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (test-dir): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:30:30 IST",
+      "task_id": "task-e2e-1784566830",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:30:30 IST",
+      "task_id": "task-e2e-1784566830",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:30:30 IST",
+      "task_id": "task-e2e-1784566830",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:30:30 IST",
+      "task_id": "task-e2e-1784566830",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:32:30 IST",
+      "task_id": "task-e2e-1784566950",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:32:30 IST",
+      "task_id": "task-e2e-1784566950",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:32:30 IST",
+      "task_id": "task-e2e-1784566950",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:32:30 IST",
+      "task_id": "task-e2e-1784566950",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+      "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:07 IST",
+      "task_id": "langgraph-direct-test",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:10 IST",
+      "task_id": "langgraph-direct-test",
+      "chunk_type": "LANGGRAPH_PLANNER",
+      "content": "[Iter 1] Planning tool action via Instructor...",
+      "agent_response": "[Iter 1] Planning tool action via Instructor...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:26 IST",
+      "task_id": "langgraph-direct-test",
+      "chunk_type": "LANGGRAPH_DONE",
+      "content": "Task completed: Task complete (default fallback)",
+      "agent_response": "Task complete (default fallback)...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:26 IST",
+      "task_id": "langgraph-direct-test",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:42 IST",
+      "task_id": "langgraph-direct-test-2",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:43 IST",
+      "task_id": "langgraph-direct-test-2",
+      "chunk_type": "LANGGRAPH_PLANNER",
+      "content": "[Iter 1] Planning tool action via Instructor...",
+      "agent_response": "[Iter 1] Planning tool action via Instructor...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:59 IST",
+      "task_id": "langgraph-direct-test-2",
+      "chunk_type": "LANGGRAPH_DONE",
+      "content": "Task completed: Task complete (default fallback)",
+      "agent_response": "Task complete (default fallback)...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:43:59 IST",
+      "task_id": "langgraph-direct-test-2",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:11 IST",
+      "task_id": "langgraph-direct-test-3",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:13 IST",
+      "task_id": "langgraph-direct-test-3",
+      "chunk_type": "LANGGRAPH_PLANNER",
+      "content": "[Iter 1] Planning tool action via Instructor...",
+      "agent_response": "[Iter 1] Planning tool action via Instructor...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:17 IST",
+      "task_id": "langgraph-direct-test-3",
+      "chunk_type": "LANGGRAPH_TOOL_HTTP_POST",
+      "content": "Executing http_post({\"url\": \"http://localhost:9000/admin/incoming\", \"payload\": {\"product\": \"camel milk powder\"}})",
+      "agent_response": "Executing http_post({\"url\": \"http://localhost:9000/admin/incoming\", \"payload\": {\"product\": \"camel milk powder\"}})",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:17 IST",
+      "task_id": "langgraph-direct-test-3",
+      "chunk_type": "LANGGRAPH_PLANNER",
+      "content": "[Iter 2] Planning tool action via Instructor...",
+      "agent_response": "[Iter 2] Planning tool action via Instructor...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:21 IST",
+      "task_id": "langgraph-direct-test-3",
+      "chunk_type": "LANGGRAPH_DONE",
+      "content": "Task completed: Task complete (default fallback)",
+      "agent_response": "Task complete (default fallback)...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:21 IST",
+      "task_id": "langgraph-direct-test-3",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:27 IST",
+      "task_id": "task-api-1784567667",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:27 IST",
+      "task_id": "task-api-1784567667",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:27 IST",
+      "task_id": "task-api-1784567667",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "22:44:29 IST",
+      "task_id": "task-api-1784567667",
+      "chunk_type": "LANGGRAPH_PLANNER",
+      "content": "[Iter 1] Planning tool action via Instructor...",
+      "agent_response": "[Iter 1] Planning tool action via Instructor...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 30534,
-    "completion_tokens": 46372,
-    "total_tokens": 76906
+    "prompt_tokens": 30614,
+    "completion_tokens": 46448,
+    "total_tokens": 77062
   },
   "ai_agent_os_task_failures": [
     {
@@ -708,6 +720,24 @@
       "failure_reason": "Unhandled error: '\"tool\"'",
       "response_payload": "{}",
       "llm_failure": "None"
+    },
+    {
+      "timestamp": "2026-07-20 22:30:30 IST",
+      "task_id": "task-e2e-1784566830",
+      "task_name": "Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "input_request": "Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "failure_reason": "Unhandled error: '\"tool\"'",
+      "response_payload": "{}",
+      "llm_failure": "None"
+    },
+    {
+      "timestamp": "2026-07-20 22:32:30 IST",
+      "task_id": "task-e2e-1784566950",
+      "task_name": "Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "input_request": "Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+      "failure_reason": "Unhandled error: '\"tool\"'",
+      "response_payload": "{}",
+      "llm_failure": "None"
     }
   ],
   "active_subagents": [
@@ -752,14 +782,14 @@
       "spawn_time": "22:28:25 IST"
     },
     {
-      "agent_id": "test-direct-2",
-      "role": "LLM-Runner:Test http://localhost:9000/adm",
-      "spawn_time": "22:28:37 IST"
-    },
-    {
       "agent_id": "task-api-1784566764",
       "role": "LLM-Runner:API Fuzzing Test Task",
       "spawn_time": "22:29:24 IST"
+    },
+    {
+      "agent_id": "task-api-1784567667",
+      "role": "LLM-Runner:API Fuzzing Test Task",
+      "spawn_time": "22:44:27 IST"
     }
   ],
   "active_agent_count": 10,
@@ -2003,6 +2033,22 @@
         "content": "[[Iter 6] LLM Reasoning] Querying Instructor/Ollama for iteration 6",
         "agent_response": "[[Iter 6] LLM Reasoning] Querying Instructor/Ollama for iteration 6",
         "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:29:48 IST",
+        "task_id": "test-direct-2",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 6] Parse Warning] LLM output not valid JSON, retrying...",
+        "agent_response": "[[Iter 6] Parse Warning] LLM output not valid JSON, retrying...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:29:48 IST",
+        "task_id": "test-direct-2",
+        "chunk_type": "AGENT_COMPLETE",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (test-dir): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+        "model_name": "qwen2.5:7b"
       }
     ],
     "task-api-1784566764": [
@@ -2036,6 +2082,226 @@
         "chunk_type": "MODEL_CHUNK",
         "content": "[[Iter 1] LLM Reasoning] Querying Instructor/Ollama for iteration 1",
         "agent_response": "[[Iter 1] LLM Reasoning] Querying Instructor/Ollama for iteration 1",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-e2e-1784566830": [
+      {
+        "timestamp": "22:30:30 IST",
+        "task_id": "task-e2e-1784566830",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:30:30 IST",
+        "task_id": "task-e2e-1784566830",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:30:30 IST",
+        "task_id": "task-e2e-1784566830",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:30:30 IST",
+        "task_id": "task-e2e-1784566830",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+        "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-e2e-1784566950": [
+      {
+        "timestamp": "22:32:30 IST",
+        "task_id": "task-e2e-1784566950",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:32:30 IST",
+        "task_id": "task-e2e-1784566950",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add camel milk powder",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:32:30 IST",
+        "task_id": "task-e2e-1784566950",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:32:30 IST",
+        "task_id": "task-e2e-1784566950",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: FAILED - Unhandled error: '\"tool\"'",
+        "agent_response": "Task Status: FAILED. Summary: Unhandled error: '\"tool\"'...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "langgraph-direct-test": [
+      {
+        "timestamp": "22:43:07 IST",
+        "task_id": "langgraph-direct-test",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:43:10 IST",
+        "task_id": "langgraph-direct-test",
+        "chunk_type": "LANGGRAPH_PLANNER",
+        "content": "[Iter 1] Planning tool action via Instructor...",
+        "agent_response": "[Iter 1] Planning tool action via Instructor...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:43:26 IST",
+        "task_id": "langgraph-direct-test",
+        "chunk_type": "LANGGRAPH_DONE",
+        "content": "Task completed: Task complete (default fallback)",
+        "agent_response": "Task complete (default fallback)...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:43:26 IST",
+        "task_id": "langgraph-direct-test",
+        "chunk_type": "AGENT_COMPLETE",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "langgraph-direct-test-2": [
+      {
+        "timestamp": "22:43:42 IST",
+        "task_id": "langgraph-direct-test-2",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:43:43 IST",
+        "task_id": "langgraph-direct-test-2",
+        "chunk_type": "LANGGRAPH_PLANNER",
+        "content": "[Iter 1] Planning tool action via Instructor...",
+        "agent_response": "[Iter 1] Planning tool action via Instructor...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:43:59 IST",
+        "task_id": "langgraph-direct-test-2",
+        "chunk_type": "LANGGRAPH_DONE",
+        "content": "Task completed: Task complete (default fallback)",
+        "agent_response": "Task complete (default fallback)...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:43:59 IST",
+        "task_id": "langgraph-direct-test-2",
+        "chunk_type": "AGENT_COMPLETE",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "langgraph-direct-test-3": [
+      {
+        "timestamp": "22:44:11 IST",
+        "task_id": "langgraph-direct-test-3",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:13 IST",
+        "task_id": "langgraph-direct-test-3",
+        "chunk_type": "LANGGRAPH_PLANNER",
+        "content": "[Iter 1] Planning tool action via Instructor...",
+        "agent_response": "[Iter 1] Planning tool action via Instructor...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:17 IST",
+        "task_id": "langgraph-direct-test-3",
+        "chunk_type": "LANGGRAPH_TOOL_HTTP_POST",
+        "content": "Executing http_post({\"url\": \"http://localhost:9000/admin/incoming\", \"payload\": {\"product\": \"camel milk powder\"}})",
+        "agent_response": "Executing http_post({\"url\": \"http://localhost:9000/admin/incoming\", \"payload\": {\"product\": \"camel milk powder\"}})",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:17 IST",
+        "task_id": "langgraph-direct-test-3",
+        "chunk_type": "LANGGRAPH_PLANNER",
+        "content": "[Iter 2] Planning tool action via Instructor...",
+        "agent_response": "[Iter 2] Planning tool action via Instructor...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:21 IST",
+        "task_id": "langgraph-direct-test-3",
+        "chunk_type": "LANGGRAPH_DONE",
+        "content": "Task completed: Task complete (default fallback)",
+        "agent_response": "Task complete (default fallback)...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:21 IST",
+        "task_id": "langgraph-direct-test-3",
+        "chunk_type": "AGENT_COMPLETE",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (langgrap): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-api-1784567667": [
+      {
+        "timestamp": "22:44:27 IST",
+        "task_id": "task-api-1784567667",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: API Fuzzing Test Task",
+        "agent_response": "Started autonomous task: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:27 IST",
+        "task_id": "task-api-1784567667",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:27 IST",
+        "task_id": "task-api-1784567667",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "22:44:29 IST",
+        "task_id": "task-api-1784567667",
+        "chunk_type": "LANGGRAPH_PLANNER",
+        "content": "[Iter 1] Planning tool action via Instructor...",
+        "agent_response": "[Iter 1] Planning tool action via Instructor...",
         "model_name": "qwen2.5:7b"
       }
     ]
