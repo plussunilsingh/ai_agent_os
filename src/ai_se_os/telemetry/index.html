@@ -388,7 +388,10 @@
                                 </div>
                             </div>
                             <div class="flex flex-col items-end gap-1">
-                                <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono">IN_PROGRESS (${t.progress_pct || 10}%)</span>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewTaskLogModal('${t.task_id}')" class="text-[10px] font-mono px-2.5 py-1 rounded bg-blue-950/80 text-blue-400 border border-blue-800/60 font-bold hover:bg-blue-900 transition shadow">📜 View Live Task Logs</button>
+                                    <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono">IN_PROGRESS (${t.progress_pct || 10}%)</span>
+                                </div>
                                 <span class="text-[10px] font-mono text-cyan-400 font-bold">⏱️ Running: ${elapsedFmt}</span>
                             </div>
                         `;
