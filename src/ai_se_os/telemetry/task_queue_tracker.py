@@ -10,6 +10,7 @@ from typing import Dict, Any, List
 from ai_se_os.telemetry.postgres_store import PostgresTelemetryStore
 
 from ai_se_os.telemetry.task_state_machine import TaskManager, TaskState, InvalidStateTransitionError
+from ai_se_os.telemetry.heartbeat_monitor import HeartbeatMonitor
 
 TRACKER_FILE = os.path.join(os.path.dirname(__file__), "task_queue_state.json")
 
@@ -133,12 +134,14 @@ class TaskQueueTracker:
 
     @classmethod
     def reap_stale_tasks(cls):
-        """Automatically reaps orphaned or stale tasks that have been in RUNNING state for >60s without completion."""
+        """Automatically reaps orphaned or stale tasks that have missed worker heartbeats or exceeded 60s."""
         state = cls._read_state()
         active = state.get("active_tasks", [])
         now_ts = time.time()
         still_active = []
         reaped_count = 0
+        stale_hb_ids = set(HeartbeatMonitor.get_stale_tasks())
+
         for t in active:
             start_ts = t.get("start_epoch", 0)
             if start_ts == 0:
@@ -147,17 +150,21 @@ class TaskQueueTracker:
                 except Exception:
                     start_ts = now_ts - 120
 
-            if now_ts - start_ts > 60:
-                t_id = t.get("task_id", "")
+            t_id = t.get("task_id", "")
+            is_stale_hb = t_id in stale_hb_ids
+            is_stale_timer = (now_ts - start_ts > 60) and not HeartbeatMonitor.is_alive(t_id)
+
+            if is_stale_hb or is_stale_timer:
                 try:
-                    TaskManager.transition(t_id, TaskState.TIMED_OUT, reason="Stale process reaped after 60s")
+                    TaskManager.transition(t_id, TaskState.TIMED_OUT, reason="Stale worker process or expired heartbeat")
                 except InvalidStateTransitionError:
                     pass
                 t["status"] = TaskState.TIMED_OUT.value
                 t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
-                t["summary"] = "Auto-reaped by AI-SE OS Master Queue (Stale Process Cleaned)"
+                t["summary"] = "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
                 state["history"].append(t)
                 reaped_count += 1
+                HeartbeatMonitor.unregister(t_id)
             else:
                 still_active.append(t)
 
@@ -172,6 +179,7 @@ class TaskQueueTracker:
         now_ts = time.time()
 
         TaskManager.register(task_id, TaskState.CREATED)
+        HeartbeatMonitor.send_heartbeat(task_id, stage_name="Initializing", timeout_sec=60)
 
         # Check if already registered
         existing = [t for t in state.get("active_tasks", []) if t.get("task_id") == task_id]
@@ -220,6 +228,7 @@ class TaskQueueTracker:
                 t["progress_pct"] = progress_pct
                 t["current_step"] = current_step
         cls._write_state(state)
+        HeartbeatMonitor.send_heartbeat(task_id, stage_name=current_step, timeout_sec=60)
         if chunk_snippet:
             cls.log_model_chunk(task_id, "MODEL_CHUNK", f"[{current_step}] {chunk_snippet}")
 
@@ -235,6 +244,8 @@ class TaskQueueTracker:
             TaskManager.transition(task_id, target_state, reason=result_summary)
         except InvalidStateTransitionError:
             pass
+
+        HeartbeatMonitor.unregister(task_id)
 
         for t in state.get("active_tasks", []):
             if t.get("task_id") == task_id:
