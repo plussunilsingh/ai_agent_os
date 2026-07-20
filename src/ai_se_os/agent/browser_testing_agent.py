@@ -50,6 +50,7 @@ class IncomingMaterialTestingAgent:
         # Step 1: Render /admin/incoming Page (UI DOM Check)
         # ------------------------------------------------------------------
         logger.info("STEP 1: Testing UI Page Rendering at /admin/incoming...")
+        TaskQueueTracker.update_task_progress(task_id, 25, "1. DOM Rendering Check", "Opening http://127.0.0.1:9000/admin/incoming")
         step1_t = time.time()
         try:
             req = urllib.request.Request(f"{self.target_ui_url}/admin/incoming")
@@ -77,6 +78,7 @@ class IncomingMaterialTestingAgent:
         # Step 2: Fetch Current Incoming Material & Sample Catalog
         # ------------------------------------------------------------------
         logger.info("STEP 2: Testing Initial Incoming Material Catalog Fetch...")
+        TaskQueueTracker.update_task_progress(task_id, 50, "2. API Catalog Inspection", "Fetching /api/admin/inventory/supplier-samples")
         step2_t = time.time()
         try:
             req = urllib.request.Request(f"{self.target_ui_url}/api/admin/inventory/supplier-samples?page=0&size=100")
@@ -103,8 +105,9 @@ class IncomingMaterialTestingAgent:
         # Step 3: Simulate Form Submission - Create New Supplier Sample Order
         # ------------------------------------------------------------------
         logger.info("STEP 3: Simulating Form Submission (Placing New Material Order)...")
-        step3_t = time.time()
         sample_batch_id = f"BATCH-AI-OS-{int(time.time())}"
+        TaskQueueTracker.update_task_progress(task_id, 75, "3. Form Submission & Order Placement", f"Submitting sample payload {sample_batch_id}")
+        step3_t = time.time()
         order_payload = {
             "dispatchType": "SupplierSample",
             "internalBatchNumber": sample_batch_id,
@@ -143,6 +146,7 @@ class IncomingMaterialTestingAgent:
         # Step 4: Verify Full-Stack Database Persistence
         # ------------------------------------------------------------------
         logger.info("STEP 4: Verifying Full-Stack Database Persistence...")
+        TaskQueueTracker.update_task_progress(task_id, 95, "4. Full-Stack DB Audit", "Auditing PostgreSQL persistence in Spring Boot")
         step4_t = time.time()
         try:
             req = urllib.request.Request(f"{self.target_ui_url}/api/admin/inventory/supplier-samples?page=0&size=100")
