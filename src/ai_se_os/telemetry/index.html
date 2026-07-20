@@ -130,19 +130,40 @@
             </div>
         </div>
 
+        <!-- Real-Time System Telemetry & Agent Throughput Chart -->
+        <div class="p-6 rounded-2xl glass-card space-y-3 bg-slate-900/80 border border-slate-800">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 rounded-full bg-blue-500 animate-ping"></span>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-300">AI-SE OS Task Throughput & Real-Time Response Chart</h2>
+                </div>
+                <div class="flex items-center gap-4 text-xs font-mono">
+                    <span class="text-blue-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500"></span> Completed Tasks</span>
+                    <span class="text-yellow-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-500"></span> Active Queue</span>
+                    <span class="text-red-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500"></span> Failure Logs</span>
+                </div>
+            </div>
+            
+            <!-- SVG Real-Time Telemetry Sparkline -->
+            <div class="h-28 w-full bg-slate-950/60 rounded-xl p-3 border border-slate-800/80 flex items-end gap-2 overflow-x-auto" id="telemetry-sparkline-chart">
+                <!-- Sparkline bars rendered dynamically via JS -->
+                <div class="text-slate-500 font-mono text-xs my-auto mx-auto">Initializing live telemetry chart stream...</div>
+            </div>
+        </div>
+
         <!-- Live Model Feed & Failure Incidents Console Panels -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Model Chunk Stream -->
+            <!-- Model Chunk Stream & Agent Responses -->
             <div class="space-y-3">
                 <div class="flex items-center justify-between">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-blue-400 animate-pulse"></span>
-                        Live Model Chunk & Subtask Feed
+                        Live Agent Responses & Subtask Feed
                     </h2>
-                    <span class="text-xs font-mono text-slate-500">qwen2.5:7b • Execution Stream</span>
+                    <span class="text-xs font-mono text-slate-500">qwen2.5:7b • Model Reasoning Stream</span>
                 </div>
-                <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 font-mono text-xs text-slate-300 space-y-2 h-56 overflow-y-auto shadow-inner" id="model-chunks-console">
-                    <div class="text-slate-500">Waiting for live task model chunks...</div>
+                <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 font-mono text-xs text-slate-300 space-y-2 h-64 overflow-y-auto shadow-inner" id="model-chunks-console">
+                    <div class="text-slate-500">Waiting for live task model chunks & agent responses...</div>
                 </div>
             </div>
 
@@ -227,7 +248,34 @@
             document.getElementById('total-tokens-consumed').innerText = Number(tokenUsage.total_tokens || 0).toLocaleString() + ' Tokens';
             document.getElementById('tokens-breakdown').innerText = `Prompt: ${Number(tokenUsage.prompt_tokens || 0).toLocaleString()} • Completion: ${Number(tokenUsage.completion_tokens || 0).toLocaleString()}`;
             
-            // Render Model Chunk Stream Console
+            // Render Real-Time Sparkline Bar Chart
+            const chartBox = document.getElementById('telemetry-sparkline-chart');
+            if (chartBox) {
+                const totalDone = queueStatus.completed_tasks_count || 1;
+                const activeCount = queueStatus.active_tasks_count || 0;
+                const failCount = taskFailures.length || 0;
+                
+                chartBox.innerHTML = `
+                    <div class="flex-1 flex flex-col justify-end items-center gap-1 group">
+                        <div class="w-full bg-blue-500/80 hover:bg-blue-400 rounded-t transition-all" style="height: ${Math.min(Math.max(totalDone * 6, 20), 80)}px"></div>
+                        <span class="text-[9px] font-mono text-slate-400">Done (${totalDone})</span>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end items-center gap-1 group">
+                        <div class="w-full bg-yellow-500/80 hover:bg-yellow-400 rounded-t transition-all" style="height: ${Math.min(Math.max(activeCount * 25 + 15, 15), 80)}px"></div>
+                        <span class="text-[9px] font-mono text-slate-400">Active (${activeCount})</span>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end items-center gap-1 group">
+                        <div class="w-full bg-red-500/80 hover:bg-red-400 rounded-t transition-all" style="height: ${Math.min(Math.max(failCount * 25 + 15, 15), 80)}px"></div>
+                        <span class="text-[9px] font-mono text-slate-400">Failed (${failCount})</span>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end items-center gap-1 group">
+                        <div class="w-full bg-cyan-500/80 hover:bg-cyan-400 rounded-t transition-all" style="height: 65px"></div>
+                        <span class="text-[9px] font-mono text-slate-400">Tokens (${Math.round((tokenUsage.total_tokens || 0)/1000)}k)</span>
+                    </div>
+                `;
+            }
+
+            // Render Model Chunk Stream & Agent Response Console
             const consoleBox = document.getElementById('model-chunks-console');
             if (consoleBox) {
                 const chunks = queueStatus.latest_model_chunks || [];
@@ -237,11 +285,11 @@
                     consoleBox.innerHTML = '';
                     chunks.forEach(c => {
                         const line = document.createElement('div');
-                        line.className = 'flex items-start gap-3 py-1 border-b border-slate-900/60 last:border-0';
+                        line.className = 'flex items-start gap-3 py-1.5 border-b border-slate-900/60 last:border-0';
                         line.innerHTML = `
                             <span class="text-slate-600 font-mono text-[10px] shrink-0">${c.timestamp}</span>
-                            <span class="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 text-[10px] font-bold shrink-0 font-mono">${c.chunk_type}</span>
-                            <span class="text-slate-300 font-mono text-xs break-all">${c.content}</span>
+                            <span class="px-1.5 py-0.5 rounded ${c.chunk_type === 'USER_INPUT' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' : c.chunk_type === 'AGENT_REPLY' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-blue-500/10 text-blue-400'} text-[10px] font-bold shrink-0 font-mono">${c.chunk_type}</span>
+                            <span class="text-slate-300 font-mono text-xs break-all">${c.agent_response || c.content}</span>
                         `;
                         consoleBox.appendChild(line);
                     });

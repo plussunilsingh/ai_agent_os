@@ -11,6 +11,7 @@ import sys
 import json
 import time
 import subprocess
+import threading
 from typing import Dict, Any, List
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -19,12 +20,33 @@ from ai_se_os.validation.truth_governance import TruthGovernanceEngine
 from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
 
 class TaskQueueStatusEngine:
-    def __init__(self, workspace_root: str):
+    def __init__(self, workspace_root: str = "/Users/suniltomar/Desktop/workspace"):
         self.workspace_root = workspace_root
         self.admin_path = os.path.join(workspace_root, "admin")
         self.botanix_path = os.path.join(workspace_root, "botanixUI")
+        self._cached_status: Dict[str, Any] = {}
+        self._start_background_cache_worker()
+
+    def _start_background_cache_worker(self):
+        """Runs a background thread that continuously updates telemetry cache every 2s without blocking HTTP requests."""
+        def cache_loop():
+            while True:
+                try:
+                    self._cached_status = self._gather_status_internal()
+                except Exception as err:
+                    print("Telemetry cache worker error:", err)
+                time.sleep(2)
+
+        t = threading.Thread(target=cache_loop, daemon=True)
+        t.start()
 
     def get_system_status(self) -> Dict[str, Any]:
+        """Returns instantaneous non-blocking cached telemetry payload (<1ms latency)."""
+        if not self._cached_status:
+            self._cached_status = self._gather_status_internal()
+        return self._cached_status
+
+    def _gather_status_internal(self) -> Dict[str, Any]:
         """Gathers comprehensive task queue, build status, and endpoint health telemetry."""
         t0 = time.time()
         
@@ -56,6 +78,7 @@ class TaskQueueStatusEngine:
         status_payload = {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S IST"),
             "telemetry_latency_ms": round((time.time() - t0) * 1000, 2),
+            "non_blocking_mode": True,
             "supported_products": [
                 {
                     "name": "Java Admin App",

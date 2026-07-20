@@ -136,7 +136,7 @@ class TaskQueueTracker:
                 active.append(t)
         state["active_tasks"] = active
         cls._write_state(state)
-        cls.log_model_chunk(task_id, "TASK_COMPLETE", f"Task finished: {'SUCCESS' if success else 'FAILED'} - {result_summary}")
+        cls.log_model_chunk(task_id, "TASK_COMPLETE", f"Task finished: {'SUCCESS' if success else 'FAILED'} - {result_summary}", agent_response=f"Task Status: {'SUCCESS' if success else 'FAILED'}. Summary: {result_summary}")
         
         if not success:
             cls.log_task_failure(
