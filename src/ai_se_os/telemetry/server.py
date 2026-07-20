@@ -12,7 +12,7 @@ import json
 import time
 import subprocess
 import threading
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -345,7 +345,7 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
 
 def run_server(port=8000):
     server_address = ("0.0.0.0", port)
-    httpd = HTTPServer(server_address, ControlPlaneHandler)
+    httpd = ThreadingHTTPServer(server_address, ControlPlaneHandler)
     print(f"🚀 AI-SE OS Control Plane & Telemetry Dashboard running on http://localhost:{port}")
     httpd.serve_forever()
 
