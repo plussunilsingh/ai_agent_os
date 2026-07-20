@@ -93,10 +93,20 @@
                         <p class="text-xs text-slate-400">Zero-config In-Memory Chat DB • Ask questions & converse with AI-SE OS in real-time</p>
                     </div>
                 </div>
-                <button onclick="clearChatHistory()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-bold font-mono transition border border-slate-700 flex items-center gap-1.5 cursor-pointer">
-                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                    <span>Clear Chat</span>
-                </button>
+                <div class="flex items-center gap-2">
+                    <button onclick="scrollToTop()" title="Scroll to Top of Chat" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold font-mono transition border border-slate-700 flex items-center gap-1 cursor-pointer shadow">
+                        <svg class="w-3.5 h-3.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"></path></svg>
+                        <span>Top</span>
+                    </button>
+                    <button onclick="scrollToBottom()" title="Scroll to Bottom (Latest Message)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold font-mono transition border border-slate-700 flex items-center gap-1 cursor-pointer shadow">
+                        <svg class="w-3.5 h-3.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        <span>Bottom</span>
+                    </button>
+                    <button onclick="clearChatHistory()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-bold font-mono transition border border-slate-700 flex items-center gap-1.5 cursor-pointer">
+                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        <span>Clear Chat</span>
+                    </button>
+                </div>
             </div>
 
             <!-- In-Memory Chat Bubble Stream -->
@@ -451,6 +461,16 @@
             }
         }
 
+        function scrollToTop() {
+            const container = document.getElementById('chat-messages-stream');
+            if (container) container.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToBottom() {
+            const container = document.getElementById('chat-messages-stream');
+            if (container) container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+        }
+
         function renderChatStream(history) {
             const container = document.getElementById('chat-messages-stream');
             if (!container) return;
@@ -474,7 +494,7 @@
                 `;
                 container.appendChild(bubble);
             });
-            container.scrollTop = container.scrollHeight;
+            scrollToBottom();
         }
 
         async function clearChatHistory() {
