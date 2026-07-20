@@ -45,11 +45,11 @@ class OllamaAdapter:
         """
         Generate completion using Ollama local model via native /api/chat or /api/generate endpoints.
         """
-        # Inject Truth Governance Policy into System Prompt
         truth_directive = (
             "TRUTH GOVERNANCE POLICY: Never generate simulated metrics, hardcoded response times, "
             "or mock reports. Output only valid executable code targeting the correct repository without markdown prose at the bottom."
         )
+        messages = []
         if system_prompt:
             messages.append({"role": "system", "content": f"{system_prompt}\n\n{truth_directive}"})
         else:

@@ -1,0 +1,189 @@
+{
+  "active_tasks": [
+    {
+      "task_id": "task-e2e-1784533384",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "RUNNING",
+      "start_time": "2026-07-20 13:13:04 IST",
+      "progress_pct": 10
+    }
+  ],
+  "history": [
+    {
+      "task_id": "task-e2e-1784533390",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:13:10 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:13:11 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533560",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:16:00 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:16:01 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533611",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:16:51 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:16:51 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533621",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:17:01 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:17:02 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533658",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:17:38 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:17:38 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533669",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:17:49 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:17:51 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533707",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:18:27 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:18:27 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533718",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:18:38 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:18:40 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533766",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:19:26 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:19:26 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533783",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:19:43 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:19:45 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533828",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "FAILED",
+      "start_time": "2026-07-20 13:20:28 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:20:28 IST",
+      "summary": "Incoming Material E2E Flow completed with status: False"
+    },
+    {
+      "task_id": "task-e2e-1784533846",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "start_time": "2026-07-20 13:20:46 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 13:20:47 IST",
+      "summary": "Incoming Material E2E Flow completed with status: True"
+    },
+    {
+      "task_id": "task-e2e-1784534299",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 13:28:19 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 13:28:20 IST",
+      "summary": "Incoming Material E2E Flow completed with status: True"
+    }
+  ],
+  "model_chunks": [
+    {
+      "timestamp": "13:28:19 IST",
+      "task_id": "task-e2e-1784534299",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "13:28:19 IST",
+      "task_id": "task-e2e-1784534299",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "13:28:19 IST",
+      "task_id": "task-e2e-1784534299",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "13:28:19 IST",
+      "task_id": "task-e2e-1784534299",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784534299",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "13:28:20 IST",
+      "task_id": "task-e2e-1784534299",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "13:28:20 IST",
+      "task_id": "task-e2e-1784534299",
+      "chunk_type": "TASK_COMPLETE",
+      "content": "Task finished: SUCCESS - Incoming Material E2E Flow completed with status: True",
+      "model_name": "qwen2.5:7b"
+    }
+  ]
+}
