@@ -174,10 +174,17 @@ class IncomingMaterialTestingAgent:
         test_results["total_execution_time_ms"] = round((time.time() - t0) * 1000, 2)
         test_results["overall_passed"] = all(s.get("passed", False) for s in test_results["steps"])
 
+        failed_step = next((s for s in test_results["steps"] if not s.get("passed", False)), None)
+        failure_reason = f"Step Failed: {failed_step['step']} - Status: {failed_step.get('status_code', 0)}" if failed_step else "Task Completed Successfully"
+        response_payload = json.dumps(failed_step) if failed_step else "200 OK All Steps Passed"
+
         TaskQueueTracker.complete_task(
             task_id,
             test_results["overall_passed"],
-            f"Incoming Material E2E Flow completed with status: {test_results['overall_passed']}"
+            failure_reason,
+            input_request=f"Execute Incoming Material E2E Test on {self.target_ui_url}/admin/incoming",
+            response_payload=response_payload,
+            llm_failure="Syntax Error or Data Constraint Violation in target app" if failed_step else None
         )
 
         # Save Report Document

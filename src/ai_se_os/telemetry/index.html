@@ -61,14 +61,14 @@
                 <div id="queue-health" class="text-xs text-slate-400 font-medium">---</div>
             </div>
 
-            <!-- Response Timeouts & Failures Card -->
+            <!-- AI-SE OS Task Failures Card -->
             <div class="p-6 rounded-2xl glass-card space-y-3 border border-red-500/20">
                 <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
-                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span> Failures & Timeouts</span>
-                    <span id="failures-status-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-500/10 text-red-400 font-bold">0 Logged</span>
+                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span> AI-SE OS Task Failures</span>
+                    <span id="failures-status-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-500/10 text-red-400 font-bold">0 Failed</span>
                 </div>
-                <div id="total-failures-count" class="text-3xl font-black text-red-400">0 / 0</div>
-                <div id="failures-breakdown" class="text-xs text-slate-400 font-medium">Timeouts: 0 • Errors: 0</div>
+                <div id="total-failures-count" class="text-3xl font-black text-red-400">0 Failed Tasks</div>
+                <div id="failures-breakdown" class="text-xs text-slate-400 font-medium">Incomplete or errored tasks</div>
             </div>
 
             <!-- LLM Token Consumption Card -->
@@ -118,17 +118,17 @@
                 </div>
             </div>
 
-            <!-- Response Timeouts & Failure Incidents Console -->
+            <!-- AI-SE OS Ecosystem Task Failures Console -->
             <div class="space-y-3">
                 <div class="flex items-center justify-between">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-red-400 animate-pulse"></span>
-                        Response Timeouts & HTTP Failure Log
+                        AI-SE OS Incomplete Task Failure Logs
                     </h2>
-                    <span class="text-xs font-mono text-slate-500">Target App Socket & API Audit</span>
+                    <span class="text-xs font-mono text-slate-500">Inputs • Responses • LLM Errors</span>
                 </div>
-                <div class="p-4 rounded-2xl bg-slate-950/80 border border-red-950/60 font-mono text-xs text-slate-300 space-y-2 h-56 overflow-y-auto shadow-inner" id="failure-incidents-console">
-                    <div class="text-slate-500">No response timeouts or failure incidents logged. All target applications operating normally.</div>
+                <div class="p-4 rounded-2xl bg-slate-950/80 border border-red-950/60 font-mono text-xs text-slate-300 space-y-3 h-56 overflow-y-auto shadow-inner" id="failure-incidents-console">
+                    <div class="text-slate-500">No failed or incomplete AI-SE OS task executions. All autonomous tasks completed cleanly.</div>
                 </div>
             </div>
         </div>
@@ -164,32 +164,32 @@
             document.getElementById('sync-time').innerText = data.timestamp;
             document.getElementById('sync-latency').innerText = 'Socket: ' + data.telemetry_latency_ms + ' ms';
             
-            // Render Failure & Timeout Numbers
-            const totTimeouts = failData.total_timeouts || 0;
-            const totFailures = failData.total_failures || 0;
-            document.getElementById('total-failures-count').innerText = `${totTimeouts} T/O • ${totFailures} Err`;
-            document.getElementById('failures-breakdown').innerText = `Timeouts: ${totTimeouts} • Failures: ${totFailures}`;
-            document.getElementById('failures-status-badge').innerText = `${totTimeouts + totFailures} Incident Logged`;
+            // Render AI-SE OS Ecosystem Task Failures
+            const taskFailures = queueStatus.ai_agent_os_task_failures || [];
+            document.getElementById('total-failures-count').innerText = `${taskFailures.length} Failed Tasks`;
+            document.getElementById('failures-breakdown').innerText = `Incomplete task executions`;
+            document.getElementById('failures-status-badge').innerText = `${taskFailures.length} Errored Tasks`;
 
-            // Render Response Failure & Timeout Incident Console
             const failConsole = document.getElementById('failure-incidents-console');
             if (failConsole) {
-                const logs = failData.failure_logs || [];
-                if (logs.length === 0) {
-                    failConsole.innerHTML = '<div class="text-slate-500 font-mono text-xs">No response timeouts or failure incidents logged. All target applications operating normally.</div>';
+                if (taskFailures.length === 0) {
+                    failConsole.innerHTML = '<div class="text-slate-500 font-mono text-xs">No failed or incomplete AI-SE OS task executions. All autonomous tasks completed cleanly.</div>';
                 } else {
                     failConsole.innerHTML = '';
-                    logs.forEach(f => {
-                        const line = document.createElement('div');
-                        line.className = 'flex items-start gap-3 py-1 border-b border-red-950/40 last:border-0';
-                        line.innerHTML = `
-                            <span class="text-slate-600 font-mono text-[10px] shrink-0">${f.timestamp}</span>
-                            <span class="px-1.5 py-0.5 rounded ${f.is_timeout ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'} text-[10px] font-bold shrink-0 font-mono">
-                                ${f.is_timeout ? 'TIMEOUT' : 'HTTP ' + f.status_code}
-                            </span>
-                            <span class="text-slate-300 font-mono text-xs break-all">Port ${f.target_port} ${f.endpoint}: ${f.error_msg}</span>
+                    taskFailures.forEach(f => {
+                        const card = document.createElement('div');
+                        card.className = 'p-3 rounded-xl bg-red-950/30 border border-red-900/40 space-y-1.5';
+                        card.innerHTML = `
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-red-400 text-xs">${f.task_name}</span>
+                                <span class="text-[10px] text-slate-500 font-mono">${f.timestamp}</span>
+                            </div>
+                            <div class="text-[11px] text-slate-300 font-mono"><strong class="text-slate-400">Input Request:</strong> ${f.input_request}</div>
+                            <div class="text-[11px] text-red-300 font-mono"><strong class="text-red-400">Failure Reason:</strong> ${f.failure_reason}</div>
+                            <div class="text-[11px] text-slate-400 font-mono truncate"><strong class="text-slate-500">Response Payload:</strong> ${f.response_payload}</div>
+                            <div class="text-[11px] text-amber-300 font-mono truncate"><strong class="text-amber-400">LLM Error:</strong> ${f.llm_failure}</div>
                         `;
-                        failConsole.appendChild(line);
+                        failConsole.appendChild(card);
                     });
                     failConsole.scrollTop = failConsole.scrollHeight;
                 }

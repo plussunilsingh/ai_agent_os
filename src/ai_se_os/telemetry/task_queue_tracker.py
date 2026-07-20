@@ -19,7 +19,7 @@ class TaskQueueTracker:
                 "history": [],
                 "model_chunks": [],
                 "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270},
-                "failures_telemetry": {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}
+                "ai_agent_os_task_failures": []
             }
         try:
             with open(TRACKER_FILE, "r", encoding="utf-8") as f:
@@ -28,8 +28,8 @@ class TaskQueueTracker:
                     data["model_chunks"] = []
                 if "token_usage" not in data:
                     data["token_usage"] = {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270}
-                if "failures_telemetry" not in data:
-                    data["failures_telemetry"] = {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}
+                if "ai_agent_os_task_failures" not in data:
+                    data["ai_agent_os_task_failures"] = []
                 return data
         except Exception:
             return {
@@ -37,31 +37,25 @@ class TaskQueueTracker:
                 "history": [],
                 "model_chunks": [],
                 "token_usage": {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270},
-                "failures_telemetry": {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}
+                "ai_agent_os_task_failures": []
             }
 
     @classmethod
-    def log_failure_event(cls, target_port: int, endpoint: str, status_code: int, error_msg: str, is_timeout: bool = False):
-        """Logs a target response timeout or HTTP failure incident."""
+    def log_task_failure(cls, task_id: str, task_name: str, input_request: str, failure_reason: str, response_payload: str = None, llm_failure: str = None):
+        """Logs an incomplete / failed AI-SE OS task execution with inputs, responses, and LLM errors."""
         state = cls._read_state()
-        fail_data = state.get("failures_telemetry", {"total_timeouts": 0, "total_failures": 0, "failure_logs": []})
-        if is_timeout:
-            fail_data["total_timeouts"] += 1
-        else:
-            fail_data["total_failures"] += 1
-        
-        incident = {
-            "timestamp": time.strftime("%H:%M:%S IST"),
-            "target_port": target_port,
-            "endpoint": endpoint,
-            "status_code": status_code,
-            "is_timeout": is_timeout,
-            "error_msg": str(error_msg)[:120]
+        failure_entry = {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S IST"),
+            "task_id": task_id,
+            "task_name": task_name,
+            "input_request": input_request[:150] if input_request else "N/A",
+            "failure_reason": failure_reason,
+            "response_payload": str(response_payload)[:200] if response_payload else "N/A",
+            "llm_failure": str(llm_failure)[:200] if llm_failure else "None"
         }
-        logs = fail_data.get("failure_logs", [])
-        logs.append(incident)
-        fail_data["failure_logs"] = logs[-20:] # Keep latest 20 failure logs
-        state["failures_telemetry"] = fail_data
+        failures = state.get("ai_agent_os_task_failures", [])
+        failures.append(failure_entry)
+        state["ai_agent_os_task_failures"] = failures[-20:] # Keep latest 20 AI-SE OS task failures
         cls._write_state(state)
 
     @classmethod
@@ -127,11 +121,13 @@ class TaskQueueTracker:
             cls.log_model_chunk(task_id, "MODEL_CHUNK", f"[{current_step}] {chunk_snippet}")
 
     @classmethod
-    def complete_task(cls, task_id: str, success: bool, result_summary: str):
+    def complete_task(cls, task_id: str, success: bool, result_summary: str, input_request: str = None, response_payload: str = None, llm_failure: str = None):
         state = cls._read_state()
         active = []
+        task_name = "AI Agent OS Task"
         for t in state["active_tasks"]:
             if t["task_id"] == task_id:
+                task_name = t.get("task_name", task_name)
                 t["status"] = "COMPLETED" if success else "FAILED"
                 t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
                 t["summary"] = result_summary
@@ -141,6 +137,16 @@ class TaskQueueTracker:
         state["active_tasks"] = active
         cls._write_state(state)
         cls.log_model_chunk(task_id, "TASK_COMPLETE", f"Task finished: {'SUCCESS' if success else 'FAILED'} - {result_summary}")
+        
+        if not success:
+            cls.log_task_failure(
+                task_id=task_id,
+                task_name=task_name,
+                input_request=input_request or "User Task Execution Request",
+                failure_reason=result_summary,
+                response_payload=response_payload,
+                llm_failure=llm_failure
+            )
 
     @classmethod
     def get_queue_telemetry(cls) -> Dict[str, Any]:
@@ -153,11 +159,12 @@ class TaskQueueTracker:
             "total_tasks_count": total_count,
             "active_tasks_count": len(active_list),
             "completed_tasks_count": len(history_list),
+            "failed_tasks_count": len(state.get("ai_agent_os_task_failures", [])),
             "pending_tasks_count": 0,
             "active_tasks": active_list,
             "latest_model_chunks": state.get("model_chunks", []),
             "token_usage": state.get("token_usage", {"prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270}),
-            "failures_telemetry": state.get("failures_telemetry", {"total_timeouts": 0, "total_failures": 0, "failure_logs": []}),
+            "ai_agent_os_task_failures": state.get("ai_agent_os_task_failures", []),
             "governance_mode": "Chapter 42 Truth Enforcement (Zero Hardcoded Metrics)",
             "task_queue_health": "IN_PROGRESS" if len(active_list) > 0 else "HEALTHY (Non-blocking Asynchronous Mode)"
         }
