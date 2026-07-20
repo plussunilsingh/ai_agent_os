@@ -8,7 +8,7 @@
   {
     "id": "msg-1784536559525",
     "sender": "ai_se_os_agent",
-    "text": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'Hello AI-SE OS, please report system health'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'Hello AI-SE OS, please report system health'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
     "timestamp": "14:05:59 IST"
   },
   {
@@ -20,7 +20,7 @@
   {
     "id": "msg-1784536935590",
     "sender": "ai_se_os_agent",
-    "text": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'hi there'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'hi there'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
     "timestamp": "14:12:15 IST"
   },
   {
@@ -32,7 +32,7 @@
   {
     "id": "msg-1784536969599",
     "sender": "ai_se_os_agent",
-    "text": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'can you work on these task:'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'can you work on these task:'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
     "timestamp": "14:12:49 IST"
   },
   {
@@ -44,7 +44,7 @@
   {
     "id": "msg-1784536975211",
     "sender": "ai_se_os_agent",
-    "text": "\ud83e\udd16 AI-SE OS Agent: I understood your instruction ('Autonomous Sample Order Creation Flow 2026-07-20 13:39:43 IST Input Request: Execute incoming page material form submission at http://localhost:9000/admin/incoming Failure Reason: Step 3 Failed: HTTP 500 Internal Server Error Response Payload: {\"success\": false, \"message\": \"PSQLException: customer_id cannot be null\"} LLM Error: Invalid package import detected: javax.persistence.*'). I am now running full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080). All API proxies, Spring Boot JPA persistence, and DOM rendering steps are being audited.",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Autonomous Sample Order Creation Flow 2026-07-20 13:39:43 IST Input Request: Execute incoming page material form submission at http://localhost:9000/admin/incoming Failure Reason: Step 3 Failed: HTTP 500 Internal Server Error Response Payload: {\"success\": false, \"message\": \"PSQLException: customer_id cannot be null\"} LLM Error: Invalid package import detected: javax.persistence.*'). I am now running full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080). All API proxies, Spring Boot JPA persistence, and DOM rendering steps are being audited.",
     "timestamp": "14:12:55 IST"
   },
   {
@@ -56,7 +56,607 @@
   {
     "id": "msg-1784536999839",
     "sender": "ai_se_os_agent",
-    "text": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'keep me posted about the progess'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'keep me posted about the progess'. I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement.",
     "timestamp": "14:13:19 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #29",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #29'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #15",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #15'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #28",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #28'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #13",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #13'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #7",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #7'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #27",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #27'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #32",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #32'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #18",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #18'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #8",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #8'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #1",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #1'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "User Query",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'User Query'. Monitoring system health with Chapter 42 Truth Governance.",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #34",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #34'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #16",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #16'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #37",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #37'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #39",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #39'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #38",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #38'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #33",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #33'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #36",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #36'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #26",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #26'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #31",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #31'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #40",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #40'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #35",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #35'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #41",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #41'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #45",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #45'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #46",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #46'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #49",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #49'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #47",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #47'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #48",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #48'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #44",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #44'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538590",
+    "sender": "user",
+    "text": "Stress Test Message #43",
+    "timestamp": "14:28:00 IST"
+  },
+  {
+    "id": "msg-1784538591",
+    "sender": "ai_se_os_agent",
+    "text": "🤖 AI-SE OS Agent: I understood your instruction ('Stress Test Message #43'). I have assigned this task to the master worker queue and initiated full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080).",
+    "timestamp": "14:28:00 IST"
   }
 ]

@@ -75,7 +75,7 @@ class TaskQueueTracker:
             json.dump(state, f, indent=2)
 
     @classmethod
-    def log_model_chunk(cls, task_id: str, chunk_type: str, content: str, model_name: str = "qwen2.5:7b"):
+    def log_model_chunk(cls, task_id: str, chunk_type: str, content: str, model_name: str = "qwen2.5:7b", agent_response: str = None):
         """Logs a live prompt/response chunk given to/from the LLM."""
         state = cls._read_state()
         chunk_entry = {
@@ -83,6 +83,7 @@ class TaskQueueTracker:
             "task_id": task_id,
             "chunk_type": chunk_type, # e.g. 'PROMPT_CHUNK', 'MODEL_RESPONSE', 'SYNTAX_CHECK'
             "content": content[:150] + ("..." if len(content) > 150 else ""),
+            "agent_response": (agent_response[:150] + "...") if agent_response else content[:150],
             "model_name": model_name
         }
         chunks = state.get("model_chunks", [])
