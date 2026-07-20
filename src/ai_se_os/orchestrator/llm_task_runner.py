@@ -15,10 +15,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from ai_se_os.execution.ollama_adapter import OllamaAdapter
 from ai_se_os.orchestrator.real_executor import dispatch_tool
 from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
+from ai_se_os.orchestrator.target_discovery import TargetDiscoveryEngine
 
 logger = logging.getLogger("LLMTaskRunner")
 
-SYSTEM_PROMPT = """You are AI-SE OS Autonomous Task Executor. Respond ONLY with a valid JSON array. No markdown, no prose, no explanations — ever.
+GENERIC_SYSTEM_PROMPT_TEMPLATE = """You are AI-SE OS Autonomous Task Executor. Respond ONLY with a valid JSON array. No markdown, no prose, no explanations — ever.
 
 OUTPUT FORMAT (strict):
 [{"tool": "<name>", "<arg>": "<val>", ...}]
@@ -32,25 +33,18 @@ TOOLS:
 - verify_json_field: {"tool":"verify_json_field","url":"<url>","field":"<dot.path>","expected":<value>}
 - done:              {"tool":"done","summary":"<what was done>"}
 
-BOTANIXUI API — VERIFIED RESPONSE SHAPES (base: http://127.0.0.1:9000):
-
-  CREATE order — POST /api/admin/inventory/supplier-samples
-    payload: {"internalBatchNumber":"<str>","quantity":<int>,"status":"Pending","dispatchType":"SupplierSample","productName":"<str>"}
-    response top-level keys: ["id", "internalBatchNumber", "quantity", "status", "dispatchType", "success", "message"]
-    ✅ If response contains "id" key with an integer value → order was created successfully
-
-  LIST orders — GET /api/admin/inventory/supplier-samples?page=0&size=20
-    response top-level keys: ["sampleDispatches", "totalElements", "totalPages", "success", "samples"]
-    ✅ Items are in the "sampleDispatches" array (not "data.content")
+DYNAMIC DISCOVERED TARGET APP SCHEMA:
+{target_schema_context}
 
 RULES:
 1. Return ONLY the JSON array — no other text, no ```json``` fences.
-2. After http_post succeeds and response has an "id" field → immediately return done. Do NOT verify further.
-3. If a tool fails once: retry with corrected args. If it fails twice: return done with failure reason.
-4. Never invent URLs. Use only the schema above or URLs explicitly given in the task.
+2. After http_post succeeds and response contains an "id" or "success": true → immediately return done.
+3. If a tool fails once: retry with corrected parameters. If it fails twice: return done with failure summary.
+4. Use the discovered OpenAPI endpoints, target URLs, or explicit URLs given in the task.
 5. Keep tool calls short: 1-2 per iteration maximum.
-6. Return raw JSON objects inside the array: [{"tool":"name"}]. DO NOT wrap objects as stringified JSON strings like ["{\"tool\": ...}"].
+6. Return raw JSON objects inside the array: [{"tool":"name"}]. Never stringify objects inside array strings.
 """
+
 
 
 class LLMTaskRunner:
@@ -165,6 +159,11 @@ class LLMTaskRunner:
             "SPAWN", f"LLM-Runner:{self.task_name[:30]}", self.task_id
         )
 
+        # Perform dynamic discovery for target app schema
+        discovery_info = TargetDiscoveryEngine.discover_target(self.target_url) if self.target_url else {"discovered": False}
+        schema_ctx = json.dumps(discovery_info, indent=2) if discovery_info.get("discovered") else "Target URL: " + (self.target_url or "Generic Application")
+        compiled_system_prompt = GENERIC_SYSTEM_PROMPT_TEMPLATE.format(target_schema_context=schema_ctx)
+
         final_summary = "Task completed"
         all_passed = False
 
@@ -177,7 +176,7 @@ class LLMTaskRunner:
 
                 llm_res = self.ollama.generate(
                     prompt=user_msg,
-                    system_prompt=SYSTEM_PROMPT,
+                    system_prompt=compiled_system_prompt,
                     temperature=0.2
                 )
 

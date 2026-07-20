@@ -1,5 +1,26 @@
 {
-  "active_tasks": [],
+  "active_tasks": [
+    {
+      "task_id": "task-api-1784563916",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "EXECUTING",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 21:41:56 IST",
+      "start_epoch": 1784563916.45225,
+      "progress_pct": 0
+    },
+    {
+      "task_id": "task-api-1784563957",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "EXECUTING",
+      "current_step": "Initializing LLM Runner",
+      "start_time": "2026-07-20 21:42:37 IST",
+      "start_epoch": 1784563957.9008372,
+      "progress_pct": 5
+    }
+  ],
   "history": [
     {
       "task_id": "task-e2e-1784538656",
@@ -347,62 +368,6 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "21:31:35 IST",
-      "task_id": "task-e2e-1784563277",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:31:40 IST",
-      "task_id": "task-e2e-1784563277",
-      "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 332",
-      "agent_response": "Order created successfully with ID: 332...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:31:40 IST",
-      "task_id": "task-e2e-1784563277",
-      "chunk_type": "AGENT_COMPLETE",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:31:40 IST",
-      "task_id": "task-e2e-1784563277",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 332",
-      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 332...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:32:59 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:32:59 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "21:32:59 IST",
-      "task_id": "task-e2e-1784563378",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
       "timestamp": "21:32:59 IST",
       "task_id": "task-e2e-1784563378",
       "chunk_type": "MODEL_CHUNK",
@@ -585,12 +550,68 @@
       "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 334",
       "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 334...",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:41:56 IST",
+      "task_id": "task-api-1784563916",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:41:56 IST",
+      "task_id": "task-api-1784563916",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:41:56 IST",
+      "task_id": "task-api-1784563916",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:41:56 IST",
+      "task_id": "task-api-1784563916",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:42:37 IST",
+      "task_id": "task-api-1784563957",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:42:37 IST",
+      "task_id": "task-api-1784563957",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "21:42:37 IST",
+      "task_id": "task-api-1784563957",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 29482,
-    "completion_tokens": 44976,
-    "total_tokens": 74458
+    "prompt_tokens": 29562,
+    "completion_tokens": 45038,
+    "total_tokens": 74600
   },
   "ai_agent_os_task_failures": [
     {
@@ -628,9 +649,19 @@
       "agent_id": "task-api-1784560473",
       "role": "LLM-Runner:API Fuzzing Test Task",
       "spawn_time": "20:44:33 IST"
+    },
+    {
+      "agent_id": "task-api-1784563916",
+      "role": "LLM-Runner:API Fuzzing Test Task",
+      "spawn_time": "21:41:56 IST"
+    },
+    {
+      "agent_id": "task-api-1784563957",
+      "role": "LLM-Runner:API Fuzzing Test Task",
+      "spawn_time": "21:42:37 IST"
     }
   ],
-  "active_agent_count": 5,
+  "active_agent_count": 7,
   "latest_model_chunks": [],
   "task_logs": {
     "task-api-1784560473": [
@@ -1406,6 +1437,66 @@
         "chunk_type": "TASK_COMPLETE",
         "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 334",
         "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 334...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-api-1784563916": [
+      {
+        "timestamp": "21:41:56 IST",
+        "task_id": "task-api-1784563916",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: API Fuzzing Test Task",
+        "agent_response": "Started autonomous task: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:41:56 IST",
+        "task_id": "task-api-1784563916",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:41:56 IST",
+        "task_id": "task-api-1784563916",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:41:56 IST",
+        "task_id": "task-api-1784563916",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-api-1784563957": [
+      {
+        "timestamp": "21:42:37 IST",
+        "task_id": "task-api-1784563957",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: API Fuzzing Test Task",
+        "agent_response": "Started autonomous task: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:42:37 IST",
+        "task_id": "task-api-1784563957",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:42:37 IST",
+        "task_id": "task-api-1784563957",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
         "model_name": "qwen2.5:7b"
       }
     ]
