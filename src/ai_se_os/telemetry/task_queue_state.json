@@ -140,50 +140,265 @@
       "progress_pct": 95,
       "end_time": "2026-07-20 13:28:20 IST",
       "summary": "Incoming Material E2E Flow completed with status: True"
+    },
+    {
+      "task_id": "task-e2e-1784535189",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 13:43:09 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 13:43:11 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784536080",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 13:58:00 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 13:58:01 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784536277",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 14:01:17 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 14:01:18 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784536975",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 14:12:55 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 14:12:56 IST",
+      "summary": "Task Completed Successfully"
     }
   ],
   "model_chunks": [
     {
-      "timestamp": "13:28:19 IST",
-      "task_id": "task-e2e-1784534299",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "13:28:19 IST",
-      "task_id": "task-e2e-1784534299",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "13:28:19 IST",
-      "task_id": "task-e2e-1784534299",
+      "timestamp": "13:58:00 IST",
+      "task_id": "task-e2e-1784536080",
       "chunk_type": "MODEL_CHUNK",
       "content": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "13:28:19 IST",
-      "task_id": "task-e2e-1784534299",
+      "timestamp": "13:58:00 IST",
+      "task_id": "task-e2e-1784536080",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784534299",
+      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784536080",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "13:28:20 IST",
-      "task_id": "task-e2e-1784534299",
+      "timestamp": "13:58:01 IST",
+      "task_id": "task-e2e-1784536080",
       "chunk_type": "MODEL_CHUNK",
       "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "13:28:20 IST",
-      "task_id": "task-e2e-1784534299",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Incoming Material E2E Flow completed with status: True",
+      "timestamp": "14:01:17 IST",
+      "task_id": "chat-1784536277534",
+      "chunk_type": "USER_INPUT",
+      "content": "User query: Can you check status of BotanixUI on port 9000?",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:01:17 IST",
+      "task_id": "chat-1784536277534",
+      "chunk_type": "AGENT_REPLY",
+      "content": "\ud83e\udd16 AI-SE OS Agent: I understood your instruction ('Can you check status of BotanixUI on port 9000?'). I am now running full-stack verification on Botan...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:01:17 IST",
+      "task_id": "task-e2e-1784536277",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:01:17 IST",
+      "task_id": "task-e2e-1784536277",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:01:17 IST",
+      "task_id": "task-e2e-1784536277",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:01:17 IST",
+      "task_id": "task-e2e-1784536277",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784536277",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:01:18 IST",
+      "task_id": "task-e2e-1784536277",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:05:59 IST",
+      "task_id": "chat-1784536559524",
+      "chunk_type": "USER_INPUT",
+      "content": "User query: Hello AI-SE OS, please report system health",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:05:59 IST",
+      "task_id": "chat-1784536559524",
+      "chunk_type": "AGENT_REPLY",
+      "content": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'Hello AI-SE OS, please report system health'. I am co...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:15 IST",
+      "task_id": "chat-1784536935587",
+      "chunk_type": "USER_INPUT",
+      "content": "User query: hi there",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:15 IST",
+      "task_id": "chat-1784536935587",
+      "chunk_type": "AGENT_REPLY",
+      "content": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'hi there'. I am continuously monitoring Port 8080 (Ad...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:49 IST",
+      "task_id": "chat-1784536969597",
+      "chunk_type": "USER_INPUT",
+      "content": "User query: can you work on these task:",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:49 IST",
+      "task_id": "chat-1784536969597",
+      "chunk_type": "AGENT_REPLY",
+      "content": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'can you work on these task:'. I am continuously monit...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:55 IST",
+      "task_id": "chat-1784536975209",
+      "chunk_type": "USER_INPUT",
+      "content": "User query: Autonomous Sample Order Creation Flow 2026-07-20 13:39:43 IST Input Request: Execute incoming page material form submission at http://loca...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:55 IST",
+      "task_id": "chat-1784536975209",
+      "chunk_type": "AGENT_REPLY",
+      "content": "\ud83e\udd16 AI-SE OS Agent: I understood your instruction ('Autonomous Sample Order Creation Flow 2026-07-20 13:39:43 IST Input Request: Execute incoming page m...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:55 IST",
+      "task_id": "task-e2e-1784536975",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:55 IST",
+      "task_id": "task-e2e-1784536975",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:55 IST",
+      "task_id": "task-e2e-1784536975",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:55 IST",
+      "task_id": "task-e2e-1784536975",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784536975",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:12:56 IST",
+      "task_id": "task-e2e-1784536975",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:13:19 IST",
+      "task_id": "chat-1784536999837",
+      "chunk_type": "USER_INPUT",
+      "content": "User query: keep me posted about the progess",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "14:13:19 IST",
+      "task_id": "chat-1784536999837",
+      "chunk_type": "AGENT_REPLY",
+      "content": "\ud83e\udd16 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. I received your message: 'keep me posted about the progess'. I am continuously ...",
+      "model_name": "qwen2.5:7b"
+    }
+  ],
+  "token_usage": {
+    "prompt_tokens": 5130,
+    "completion_tokens": 2860,
+    "total_tokens": 7990
+  },
+  "failures_telemetry": {
+    "total_timeouts": 1,
+    "total_failures": 1,
+    "failure_logs": [
+      {
+        "timestamp": "13:36:33 IST",
+        "target_port": 8080,
+        "endpoint": "/api/v1/inventory/supplier-samples",
+        "status_code": 504,
+        "is_timeout": true,
+        "error_msg": "Gateway Read Timeout (socket connection timeout > 5000ms)"
+      },
+      {
+        "timestamp": "13:36:33 IST",
+        "target_port": 9000,
+        "endpoint": "/admin/incoming",
+        "status_code": 500,
+        "is_timeout": false,
+        "error_msg": "Internal Server Error (PostgreSQL connection refused)"
+      }
+    ]
+  },
+  "ai_agent_os_task_failures": [
+    {
+      "timestamp": "2026-07-20 13:39:43 IST",
+      "task_id": "task-demo-999",
+      "task_name": "Autonomous Sample Order Creation Flow",
+      "input_request": "Execute incoming page material form submission at http://localhost:9000/admin/incoming",
+      "failure_reason": "Step 3 Failed: HTTP 500 Internal Server Error",
+      "response_payload": "{\"success\": false, \"message\": \"PSQLException: customer_id cannot be null\"}",
+      "llm_failure": "Invalid package import detected: javax.persistence.*"
     }
   ]
 }
