@@ -160,6 +160,24 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
         pass  # Quiet HTTP logging
 
     def do_GET(self):
+        if self.path == "/api/v1/system/stream":
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream")
+            self.send_header("Cache-Control", "no-cache")
+            self.send_header("Connection", "keep-alive")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            try:
+                for _ in range(120): # Stream live updates for 2 minutes per connection
+                    status = telemetry_engine.get_system_status()
+                    data = f"data: {json.dumps(status)}\n\n"
+                    self.wfile.write(data.encode("utf-8"))
+                    self.wfile.flush()
+                    time.sleep(2)
+            except (ConnectionResetError, BrokenPipeError):
+                pass
+            return
+
         if self.path == "/api/v1/system/status":
             status = telemetry_engine.get_system_status()
             body = json.dumps(status).encode("utf-8")
