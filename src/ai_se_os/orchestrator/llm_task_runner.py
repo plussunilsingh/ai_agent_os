@@ -206,7 +206,12 @@ class LLMTaskRunner:
                 last_result = {}
                 all_passed = True
                 for tc in tool_calls:
-                    tool_name = tc.get("tool", "")
+                    if not isinstance(tc, dict):
+                        continue
+                    tool_name = str(tc.get("tool") or "").strip()
+                    if not tool_name:
+                        logger.warning(f"Skipping malformed tool call missing 'tool' field: {tc}")
+                        continue
 
                     if tool_name == "done":
                         final_summary = tc.get("summary", "Task completed")
