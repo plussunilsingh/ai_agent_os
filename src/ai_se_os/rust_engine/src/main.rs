@@ -291,13 +291,17 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
         // 1. Immediately register task in Python TaskQueueTracker
         register_task_in_python_tracker(&task_id, &task_name, &target_url);
 
-        // 2. Spawn background testing agent in non-blocking process
+        // 2. Spawn multi-stage Task DAG Workflow in non-blocking process
         let py_exe = "/Users/suniltomar/Desktop/workspace/AI_AGENT_OS/ai-se-os/venv/bin/python";
+        let dag_cmd = format!(
+            "from ai_se_os.orchestrator.dag_engine import TaskDAGWorkflow; TaskDAGWorkflow('{}', '{}', '{}').execute_workflow()",
+            task_id, task_name.replace("'", "''"), target_url
+        );
         let _ = Command::new(py_exe)
             .current_dir("/Users/suniltomar/Desktop/workspace/AI_AGENT_OS")
             .env("PYTHONPATH", "src")
-            .arg("-m")
-            .arg("ai_se_os.agent.browser_testing_agent")
+            .arg("-c")
+            .arg(dag_cmd)
             .spawn();
 
         let body = serde_json::json!({
