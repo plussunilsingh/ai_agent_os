@@ -1,5 +1,16 @@
 {
-  "active_tasks": [],
+  "active_tasks": [
+    {
+      "task_id": "task-api-1784557269",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "EXECUTING",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 19:51:09 IST",
+      "start_epoch": 1784557269.652811,
+      "progress_pct": 0
+    }
+  ],
   "history": [
     {
       "task_id": "task-e2e-1784538656",
@@ -323,38 +334,6 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "19:14:18 IST",
-      "task_id": "task-e2e-1784555040",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field ...",
-      "agent_response": "{\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field is missing. Please...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:14:18 IST",
-      "task_id": "task-e2e-1784555040",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
-      "agent_response": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:14:21 IST",
-      "task_id": "task-e2e-1784555040",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 6] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"...",
-      "agent_response": "[[Iter 6] Tool: http_post] Running http_post({\"args\": {\"url\": \"http://localhost:9000/api/admin/inventory/materials\", \"payload\": {\"internalBatchNumber\"",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "19:14:21 IST",
-      "task_id": "task-e2e-1784555040",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field ...",
-      "agent_response": "{\"success\": false, \"status\": 409, \"error\": \"HTTP Error 409: Conflict\", \"result\": \"{\\\"success\\\":false,\\\"message\\\":\\\"A required field is missing. Please...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
       "timestamp": "19:14:21 IST",
       "task_id": "task-e2e-1784555040",
       "chunk_type": "MODEL_CHUNK",
@@ -521,12 +500,44 @@
       "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 320.",
       "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 320....",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:51:09 IST",
+      "task_id": "task-api-1784557269",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: API Fuzzing Test Task",
+      "agent_response": "Started autonomous task: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:51:09 IST",
+      "task_id": "task-api-1784557269",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:51:09 IST",
+      "task_id": "task-api-1784557269",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
+      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:51:09 IST",
+      "task_id": "task-api-1784557269",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 23722,
-    "completion_tokens": 34296,
-    "total_tokens": 58018
+    "prompt_tokens": 23802,
+    "completion_tokens": 34358,
+    "total_tokens": 58160
   },
   "ai_agent_os_task_failures": [
     {
@@ -554,8 +565,13 @@
       "agent_id": "debug-task-103",
       "role": "LLM-Runner:create a new incoming material",
       "spawn_time": "19:10:27 IST"
+    },
+    {
+      "agent_id": "task-api-1784557269",
+      "role": "LLM-Runner:API Fuzzing Test Task",
+      "spawn_time": "19:51:09 IST"
     }
   ],
-  "active_agent_count": 3,
+  "active_agent_count": 4,
   "latest_model_chunks": []
 }

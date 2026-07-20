@@ -97,13 +97,14 @@ class LLMTaskRunner:
             except Exception as e:
                 logger.warning(f"Standard JSON parse failed: {e} | raw: {text[:300]}")
 
-        # Fallback: Extract tool call JSON dict objects using regex matching {"tool": ...}
+        # Fallback 1: Extract tool call JSON dict objects using regex matching {"tool": ...}
         dict_matches = re.findall(r'\{[^{}]*"tool"\s*:\s*"[^"]+"[^{}]*\}', text)
         if dict_matches:
             result = []
             for m in dict_matches:
                 try:
-                    obj = json.loads(m)
+                    cleaned = m.replace('\\"', '"')
+                    obj = json.loads(cleaned)
                     if isinstance(obj, dict) and "tool" in obj:
                         result.append(obj)
                 except Exception:
@@ -111,6 +112,18 @@ class LLMTaskRunner:
             if result:
                 logger.info(f"Successfully extracted {len(result)} tool call(s) via regex fallback parser.")
                 return result
+
+        # Fallback 2: Handle stringified array wrapper ["{"tool":"..."}"]
+        array_match = re.search(r'\[\s*"(\{[^}]*\})"\s*\]', text)
+        if array_match:
+            try:
+                inner = array_match.group(1).replace('\\"', '"')
+                obj = json.loads(inner)
+                if isinstance(obj, dict) and "tool" in obj:
+                    logger.info("Successfully extracted tool call via array pattern fallback parser.")
+                    return [obj]
+            except Exception:
+                pass
 
         return None
 
