@@ -250,12 +250,21 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
-            AI-SE OS Standalone Control Plane • Embedded Single-Page Telemetry Application • Strict Separation of Concerns
-        </footer>
-
-    </div>
+        <!-- Dedicated Task Logs Modal -->
+        <div id="task-logs-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full p-6 space-y-4 shadow-2xl">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div>
+                        <h3 class="text-sm font-bold text-white font-mono flex items-center gap-2">📜 Dedicated Task Execution Logs</h3>
+                        <p class="text-xs font-mono text-slate-400" id="modal-task-id-label">Task ID: --</p>
+                    </div>
+                    <button onclick="closeTaskLogModal()" class="text-xs font-mono px-3 py-1 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 transition">✕ Close</button>
+                </div>
+                <div id="modal-logs-container" class="p-4 bg-slate-950 rounded-xl font-mono text-xs text-slate-300 space-y-2 h-80 overflow-y-auto border border-slate-800 shadow-inner">
+                    <div class="text-slate-500">Loading task logs...</div>
+                </div>
+            </div>
+        </div>
 
     <script>
         function renderData(data) {
@@ -426,7 +435,10 @@
                             </div>
                             <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono">
                                 <span>Task ID: <strong class="text-blue-400">${h.task_id}</strong> • Started: <span class="text-slate-300">${h.start_time || 'N/A'}</span></span>
-                                <span class="${isSuccess ? 'text-green-400' : 'text-red-400'} font-bold">${h.summary || (isSuccess ? 'Completed' : 'Failed')}</span>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewTaskLogModal('${h.task_id}')" class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950/80 text-blue-400 border border-blue-800/60 font-bold hover:bg-blue-900 transition">📜 View Task Logs</button>
+                                    <span class="${isSuccess ? 'text-green-400' : 'text-red-400'} font-bold">${h.summary || (isSuccess ? 'Completed' : 'Failed')}</span>
+                                </div>
                             </div>
                         `;
                         historyTimeline.appendChild(card);
@@ -666,6 +678,45 @@
                 }, 1500);
                 fetchTelemetry();
             }
+        }
+
+        async function viewTaskLogModal(taskId) {
+            const modal = document.getElementById('task-logs-modal');
+            const label = document.getElementById('modal-task-id-label');
+            const container = document.getElementById('modal-logs-container');
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            label.innerText = `Task ID: ${taskId}`;
+            container.innerHTML = '<div class="text-slate-500 font-mono text-xs">Fetching dedicated execution logs...</div>';
+            
+            try {
+                const res = await fetch(`http://127.0.0.1:8001/api/v1/task/${taskId}/logs`);
+                const logs = await res.json();
+                if (!logs || logs.length === 0) {
+                    container.innerHTML = '<div class="text-slate-500 font-mono text-xs">No dedicated log entries found for this task.</div>';
+                } else {
+                    container.innerHTML = '';
+                    logs.forEach(l => {
+                        const item = document.createElement('div');
+                        item.className = 'p-2 rounded bg-slate-900 border border-slate-800/80 space-y-1';
+                        item.innerHTML = `
+                            <div class="flex items-center justify-between text-[10px]">
+                                <span class="font-bold text-cyan-400">${l.chunk_type || 'LOG'}</span>
+                                <span class="text-slate-500">${l.timestamp || ''}</span>
+                            </div>
+                            <div class="text-xs text-slate-200 leading-relaxed font-mono">${l.content || ''}</div>
+                        `;
+                        container.appendChild(item);
+                    });
+                }
+            } catch(err) {
+                container.innerHTML = `<div class="text-red-400 font-mono text-xs">Error loading logs: ${err.message}</div>`;
+            }
+        }
+
+        function closeTaskLogModal() {
+            const modal = document.getElementById('task-logs-modal');
+            if (modal) modal.classList.add('hidden');
         }
 
         async function clearChatFeed() {

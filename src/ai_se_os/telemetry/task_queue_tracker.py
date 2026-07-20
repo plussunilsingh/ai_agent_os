@@ -133,21 +133,39 @@ class TaskQueueTracker:
 
     @classmethod
     def log_model_chunk(cls, task_id: str, chunk_type: str, content: str, model_name: str = "qwen2.5:7b", agent_response: str = None):
-        """Logs a live prompt/response chunk given to/from the LLM."""
+        """Logs a live prompt/response chunk given to/from the LLM, storing both globally and in per-task dedicated logs."""
         state = cls._read_state()
         chunk_entry = {
             "timestamp": time.strftime("%H:%M:%S IST"),
             "task_id": task_id,
             "chunk_type": chunk_type, # e.g. 'PROMPT_CHUNK', 'MODEL_RESPONSE', 'SYNTAX_CHECK'
-            "content": content[:150] + ("..." if len(content) > 150 else ""),
-            "agent_response": (agent_response[:150] + "...") if agent_response else content[:150],
+            "content": content[:200] + ("..." if len(content) > 200 else ""),
+            "agent_response": (agent_response[:200] + "...") if agent_response else content[:200],
             "model_name": model_name
         }
         chunks = state.get("model_chunks", [])
         chunks.append(chunk_entry)
-        # Keep latest 25 chunks for lightweight streaming
-        state["model_chunks"] = chunks[-25:]
+        state["model_chunks"] = chunks[-30:]
+
+        # Per-task dedicated logs
+        task_logs = state.get("task_logs", {})
+        if task_id not in task_logs:
+            task_logs[task_id] = []
+        task_logs[task_id].append(chunk_entry)
+        task_logs[task_id] = task_logs[task_id][-50:]  # Keep up to 50 entries per task
+        state["task_logs"] = task_logs
+
         cls._write_state(state)
+
+    @classmethod
+    def get_task_logs(cls, task_id: str) -> List[Dict[str, Any]]:
+        """Retrieves dedicated execution logs for a specific task_id."""
+        state = cls._read_state()
+        task_logs = state.get("task_logs", {})
+        if task_id in task_logs:
+            return task_logs[task_id]
+        return [c for c in state.get("model_chunks", []) if c.get("task_id") == task_id]
+
 
     @classmethod
     def reap_stale_tasks(cls):

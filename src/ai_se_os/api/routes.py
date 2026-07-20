@@ -458,3 +458,11 @@ async def get_task_history(task_id: str):
     return [{"timestamp": e.timestamp, "status": e.status.value, "step": e.step, "progress": e.progress} for e in events]
 
 
+@router.get("/task/{task_id}/logs")
+async def get_task_logs(task_id: str):
+    """Get dedicated execution logs for a specific task."""
+    from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
+    return TaskQueueTracker.get_task_logs(task_id)
+
+
+
