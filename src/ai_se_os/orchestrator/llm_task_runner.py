@@ -166,6 +166,10 @@ class LLMTaskRunner:
             target_url=self.target_url
         )
 
+        # Initialize Instructor + LiteLLM production runner
+        from ai_se_os.execution.litellm_instructor_adapter import LiteLLMInstructorRunner
+        instructor_runner = LiteLLMInstructorRunner(model_name="ollama/qwen2.5:7b")
+
         final_summary = "Task completed"
         all_passed = False
 
@@ -173,24 +177,30 @@ class LLMTaskRunner:
             for iteration in range(self.max_iterations):
                 user_msg = self._build_user_message(iteration)
 
-                self._heartbeat(iteration, "LLM Reasoning", f"Querying Ollama for iteration {iteration + 1}")
-                logger.info(f"[Iter {iteration + 1}] Querying Ollama...")
+                self._heartbeat(iteration, "LLM Reasoning", f"Querying Instructor/Ollama for iteration {iteration + 1}")
+                logger.info(f"[Iter {iteration + 1}] Querying Instructor / Ollama...")
 
-                llm_res = self.ollama.generate(
-                    prompt=user_msg,
-                    system_prompt=compiled_system_prompt,
-                    temperature=0.2
-                )
+                # 1. Primary: Try Instructor + Pydantic schema validation
+                tool_calls = None
+                instructor_action = instructor_runner.generate_tool_call(user_msg, compiled_system_prompt)
+                if instructor_action:
+                    tool_calls = [instructor_action]
+                    raw_response = json.dumps(tool_calls)
+                else:
+                    # 2. Fallback: Standard Ollama generation + Multi-tier parser
+                    llm_res = self.ollama.generate(
+                        prompt=user_msg,
+                        system_prompt=compiled_system_prompt,
+                        temperature=0.2
+                    )
 
-                if not llm_res.get("success"):
-                    logger.error(f"Ollama call failed: {llm_res.get('error')}")
-                    self._heartbeat(iteration, "LLM Error", f"Ollama failed: {llm_res.get('error')}")
-                    break
+                    if not llm_res.get("success"):
+                        logger.error(f"Ollama call failed: {llm_res.get('error')}")
+                        self._heartbeat(iteration, "LLM Error", f"Ollama failed: {llm_res.get('error')}")
+                        break
 
-                raw_response = llm_res.get("response", "")
-                logger.info(f"[Iter {iteration + 1}] LLM raw: {raw_response[:300]}")
-
-                tool_calls = self._parse_tool_calls(raw_response)
+                    raw_response = llm_res.get("response", "")
+                    tool_calls = self._parse_tool_calls(raw_response)
                 if not tool_calls:
                     logger.warning(f"Could not parse tool calls from: {raw_response[:300]}")
                     self._heartbeat(iteration, "Parse Warning", "LLM output not valid JSON, retrying...")

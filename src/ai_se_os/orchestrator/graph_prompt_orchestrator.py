@@ -16,7 +16,7 @@ logger = logging.getLogger("GraphPromptOrchestrator")
 GRAPH_RAG_SYSTEM_PROMPT_TEMPLATE = """You are AI-SE OS World-Class Autonomous Developer Agent. Respond ONLY with a valid JSON array. No markdown, no prose, no explanations — ever.
 
 OUTPUT FORMAT (strict):
-[{"tool": "<name>", "<arg>": "<val>", ...}]
+[[{{"tool": "<name>", "<arg>": "<val>", ...}}]]
 
 AVAILABLE TOOLS:
 - http_get:          {{"tool":"http_get","url":"<url>"}}
@@ -39,7 +39,7 @@ ZERO-HARDCODING OPERATIONAL RULES:
 3. Upon successfully executing an HTTP POST or state-changing tool where the response contains "id", "success": true, or 200 OK -> immediately call "done".
 4. If a tool call encounters an error: analyze the error, adjust parameters, and retry. If unresolvable after 2 attempts: return "done" with failure diagnosis.
 5. Keep execution steps efficient: 1-2 tool calls per reasoning iteration.
-6. Return raw JSON objects inside array: [{{"tool":"name"}}]. Never stringify objects inside array strings.
+6. Return raw JSON objects inside array: [[{{"tool":"name"}}]]. Never stringify objects inside array strings.
 """
 
 
