@@ -441,6 +441,15 @@ async def clear_failures():
     return {"status": "cleared", "message": "Failure logs cleared successfully."}
 
 
+@router.post("/telemetry/clear-chat")
+async def clear_chat():
+    """Clear model chunks and agent response chat feed."""
+    from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
+    TaskQueueTracker.clear_chat()
+    return {"status": "cleared", "message": "Live agent chat feed cleared successfully."}
+
+
+
 
 @router.get("/task/{task_id}/history")
 async def get_task_history(task_id: str):

@@ -102,6 +102,15 @@ class TaskQueueTracker:
         state["ai_agent_os_task_failures"] = []
         cls._write_state(state)
 
+    @classmethod
+    def clear_chat(cls):
+        """Clears model chunks and chat response feed from telemetry state."""
+        state = cls._read_state()
+        state["model_chunks"] = []
+        state["latest_model_chunks"] = []
+        cls._write_state(state)
+
+
 
     @classmethod
     def log_token_usage(cls, prompt_tokens: int = 0, completion_tokens: int = 0, task_id: str = "default"):
