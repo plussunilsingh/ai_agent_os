@@ -96,6 +96,14 @@ class TaskQueueTracker:
         PostgresTelemetryStore.log_failure(task_id, task_name, input_request, failure_reason, response_payload, llm_failure)
 
     @classmethod
+    def clear_failures(cls):
+        """Clears all historical task failure logs from telemetry state."""
+        state = cls._read_state()
+        state["ai_agent_os_task_failures"] = []
+        cls._write_state(state)
+
+
+    @classmethod
     def log_token_usage(cls, prompt_tokens: int = 0, completion_tokens: int = 0, task_id: str = "default"):
         """Logs tokens consumed by LLM prompt & completion generation."""
         state = cls._read_state()
@@ -259,11 +267,11 @@ class TaskQueueTracker:
                 t["duration_sec"] = round(max(0.0, now_epoch - start_ep), 1)
                 t["summary"] = result_summary
                 t["progress_pct"] = 100
-                state["history"].append(t)
-            else:
-                active.append(t)
-
         state["active_tasks"] = active
+        # Purge subagents associated with completed task_id
+        agents = [a for a in state.get("active_subagents", []) if a.get("agent_id") != task_id]
+        state["active_subagents"] = agents
+        state["active_agent_count"] = len(agents)
 
         # If not found in active_tasks, check history to update existing entry
         if not task_found:

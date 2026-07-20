@@ -125,91 +125,91 @@ class LLMTaskRunner:
         final_summary = "Task completed"
         all_passed = False
 
-        for iteration in range(self.max_iterations):
-            user_msg = self._build_user_message(iteration)
+        try:
+            for iteration in range(self.max_iterations):
+                user_msg = self._build_user_message(iteration)
 
-            self._heartbeat(iteration, "LLM Reasoning", f"Querying Ollama for iteration {iteration + 1}")
-            logger.info(f"[Iter {iteration + 1}] Querying Ollama...")
+                self._heartbeat(iteration, "LLM Reasoning", f"Querying Ollama for iteration {iteration + 1}")
+                logger.info(f"[Iter {iteration + 1}] Querying Ollama...")
 
-            llm_res = self.ollama.generate(
-                prompt=user_msg,
-                system_prompt=SYSTEM_PROMPT,
-                temperature=0.2
-            )
-
-            if not llm_res.get("success"):
-                logger.error(f"Ollama call failed: {llm_res.get('error')}")
-                self._heartbeat(iteration, "LLM Error", f"Ollama failed: {llm_res.get('error')}")
-                break
-
-            raw_response = llm_res.get("response", "")
-            logger.info(f"[Iter {iteration + 1}] LLM raw: {raw_response[:300]}")
-
-            tool_calls = self._parse_tool_calls(raw_response)
-            if not tool_calls:
-                logger.warning(f"Could not parse tool calls from: {raw_response[:300]}")
-                self._heartbeat(iteration, "Parse Warning", "LLM output not valid JSON, retrying...")
-                self.conversation_history.append({"role": "assistant", "content": raw_response})
-                self.conversation_history.append({
-                    "role": "user",
-                    "content": "Your last response was not valid JSON. Return ONLY a JSON array of tool calls."
-                })
-                continue
-
-            self.conversation_history.append({"role": "assistant", "content": raw_response})
-
-            last_result = {}
-            all_passed = True
-            for tc in tool_calls:
-                tool_name = tc.get("tool", "")
-
-                if tool_name == "done":
-                    final_summary = tc.get("summary", "Task completed")
-                    logger.info(f"[LLMTaskRunner] DONE - {final_summary}")
-                    TaskQueueTracker.log_model_chunk(
-                        self.task_id, "DONE",
-                        f"Task complete: {final_summary}",
-                        agent_response=final_summary
-                    )
-                    TaskQueueTracker.log_subagent_event(
-                        "COMPLETE", f"LLM-Runner:{self.task_name[:30]}", self.task_id
-                    )
-                    return {
-                        "success": True,
-                        "summary": final_summary,
-                        "iterations": iteration + 1,
-                        "tool_results": self.tool_results
-                    }
-
-                args = {k: v for k, v in tc.items() if k != "tool"}
-                self._heartbeat(iteration, f"Tool: {tool_name}", f"Running {tool_name}({json.dumps(args)[:200]})")
-                logger.info(f"[Iter {iteration + 1}] Running tool '{tool_name}' args={json.dumps(args)[:200]}")
-
-                result = dispatch_tool(tool_name, args)
-                last_result = {"tool": tool_name, "args": args, "result": result}
-                self.tool_results.append(last_result)
-
-                result_str = json.dumps(result)[:500]
-                TaskQueueTracker.log_model_chunk(
-                    self.task_id, f"TOOL_{tool_name.upper()}",
-                    f"Tool '{tool_name}': {result_str}",
-                    agent_response=result_str
+                llm_res = self.ollama.generate(
+                    prompt=user_msg,
+                    system_prompt=SYSTEM_PROMPT,
+                    temperature=0.2
                 )
 
-                if not result.get("success"):
-                    all_passed = False
-                    logger.warning(f"Tool '{tool_name}' failed: {result.get('error')}")
+                if not llm_res.get("success"):
+                    logger.error(f"Ollama call failed: {llm_res.get('error')}")
+                    self._heartbeat(iteration, "LLM Error", f"Ollama failed: {llm_res.get('error')}")
+                    break
 
-        final_summary = (
-            f"Reached max {self.max_iterations} iterations. "
-            f"Last: {json.dumps(self.tool_results[-1] if self.tool_results else {})[:300]}"
-        )
-        TaskQueueTracker.log_subagent_event(
-            "TERMINATE", f"LLM-Runner:{self.task_name[:30]}", self.task_id
-        )
-        return {
-            "success": all_passed,
-            "summary": final_summary,
-            "iterations": self.max_iterations,
-            "tool_results": self.tool_results
-        }
+                raw_response = llm_res.get("response", "")
+                logger.info(f"[Iter {iteration + 1}] LLM raw: {raw_response[:300]}")
+
+                tool_calls = self._parse_tool_calls(raw_response)
+                if not tool_calls:
+                    logger.warning(f"Could not parse tool calls from: {raw_response[:300]}")
+                    self._heartbeat(iteration, "Parse Warning", "LLM output not valid JSON, retrying...")
+                    self.conversation_history.append({"role": "assistant", "content": raw_response})
+                    self.conversation_history.append({
+                        "role": "user",
+                        "content": "Your last response was not valid JSON. Return ONLY a JSON array of tool calls."
+                    })
+                    continue
+
+                self.conversation_history.append({"role": "assistant", "content": raw_response})
+
+                last_result = {}
+                all_passed = True
+                for tc in tool_calls:
+                    tool_name = tc.get("tool", "")
+
+                    if tool_name == "done":
+                        final_summary = tc.get("summary", "Task completed")
+                        logger.info(f"[LLMTaskRunner] DONE - {final_summary}")
+                        TaskQueueTracker.log_model_chunk(
+                            self.task_id, "DONE",
+                            f"Task complete: {final_summary}",
+                            agent_response=final_summary
+                        )
+                        return {
+                            "success": True,
+                            "summary": final_summary,
+                            "iterations": iteration + 1,
+                            "tool_results": self.tool_results
+                        }
+
+                    args = {k: v for k, v in tc.items() if k != "tool"}
+                    self._heartbeat(iteration, f"Tool: {tool_name}", f"Running {tool_name}({json.dumps(args)[:200]})")
+                    logger.info(f"[Iter {iteration + 1}] Running tool '{tool_name}' args={json.dumps(args)[:200]}")
+
+                    result = dispatch_tool(tool_name, args)
+                    last_result = {"tool": tool_name, "args": args, "result": result}
+                    self.tool_results.append(last_result)
+
+                    result_str = json.dumps(result)[:500]
+                    TaskQueueTracker.log_model_chunk(
+                        self.task_id, f"TOOL_{tool_name.upper()}",
+                        f"Tool '{tool_name}': {result_str}",
+                        agent_response=result_str
+                    )
+
+                    if not result.get("success"):
+                        all_passed = False
+                        logger.warning(f"Tool '{tool_name}' failed: {result.get('error')}")
+
+            final_summary = (
+                f"Reached max {self.max_iterations} iterations. "
+                f"Last: {json.dumps(self.tool_results[-1] if self.tool_results else {})[:300]}"
+            )
+            return {
+                "success": all_passed,
+                "summary": final_summary,
+                "iterations": self.max_iterations,
+                "tool_results": self.tool_results
+            }
+        finally:
+            TaskQueueTracker.log_subagent_event(
+                "COMPLETE", f"LLM-Runner:{self.task_name[:30]}", self.task_id
+            )
+

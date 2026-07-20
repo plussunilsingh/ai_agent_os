@@ -1,43 +1,13 @@
 {
   "active_tasks": [
     {
-      "task_id": "task-api-1784553388",
-      "task_name": "Unnamed Task",
-      "target_url": "",
-      "status": "EXECUTING",
-      "current_step": "[Iter 1] LLM Reasoning",
-      "start_time": "2026-07-20 18:46:28 IST",
-      "start_epoch": 1784553388.525055,
-      "progress_pct": 0
-    },
-    {
-      "task_id": "task-api-1784553397",
-      "task_name": "Unnamed Task",
-      "target_url": "",
-      "status": "EXECUTING",
-      "current_step": "[Iter 1] LLM Reasoning",
-      "start_time": "2026-07-20 18:46:37 IST",
-      "start_epoch": 1784553397.157962,
-      "progress_pct": 0
-    },
-    {
-      "task_id": "task-api-1784553402",
-      "task_name": "Unnamed Task",
-      "target_url": "",
-      "status": "EXECUTING",
-      "current_step": "[Iter 1] LLM Reasoning",
-      "start_time": "2026-07-20 18:46:42 IST",
-      "start_epoch": 1784553402.426187,
-      "progress_pct": 0
-    },
-    {
-      "task_id": "task-api-1784553408",
+      "task_id": "task-api-1784553895",
       "task_name": "API Fuzzing Test Task",
       "target_url": "http://127.0.0.1:9000",
       "status": "EXECUTING",
       "current_step": "[Iter 1] LLM Reasoning",
-      "start_time": "2026-07-20 18:46:48 IST",
-      "start_epoch": 1784553408.548226,
+      "start_time": "2026-07-20 18:54:55 IST",
+      "start_epoch": 1784553895.05569,
       "progress_pct": 0
     }
   ],
@@ -286,204 +256,98 @@
       "progress_pct": 10,
       "end_time": "2026-07-20 18:46:28 IST",
       "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784553388",
+      "task_name": "Unnamed Task",
+      "target_url": "",
+      "status": "TIMED_OUT",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:28 IST",
+      "start_epoch": 1784553388.525055,
+      "progress_pct": 0,
+      "end_time": "2026-07-20 18:49:55 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784553397",
+      "task_name": "Unnamed Task",
+      "target_url": "",
+      "status": "TIMED_OUT",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:37 IST",
+      "start_epoch": 1784553397.157962,
+      "progress_pct": 0,
+      "end_time": "2026-07-20 18:49:55 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784553402",
+      "task_name": "Unnamed Task",
+      "target_url": "",
+      "status": "TIMED_OUT",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:42 IST",
+      "start_epoch": 1784553402.426187,
+      "progress_pct": 0,
+      "end_time": "2026-07-20 18:49:55 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-api-1784553408",
+      "task_name": "API Fuzzing Test Task",
+      "target_url": "http://127.0.0.1:9000",
+      "status": "TIMED_OUT",
+      "current_step": "[Iter 1] LLM Reasoning",
+      "start_time": "2026-07-20 18:46:48 IST",
+      "start_epoch": 1784553408.548226,
+      "progress_pct": 0,
+      "end_time": "2026-07-20 18:49:55 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
+    },
+    {
+      "task_id": "task-e2e-1784553595",
+      "task_name": "Startup Health Check Task",
+      "target_url": "http://127.0.0.1:9000/api/admin/inventory/supplier-samples",
+      "status": "COMPLETED",
+      "current_step": "[Iter 3] LLM Reasoning",
+      "start_time": "2026-07-20 18:49:55 IST",
+      "start_epoch": 1784553595.6349041,
+      "progress_pct": 100,
+      "end_time": "2026-07-20 18:50:11 IST",
+      "end_epoch": 1784553611.902434,
+      "duration_sec": 16.3,
+      "summary": "[3 iters] Order created successfully with ID: 313."
     }
   ],
   "model_chunks": [
     {
-      "timestamp": "17:07:05 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" c...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=de...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:05 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:13 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
-      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:13 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 312,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 312,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:13 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:18 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 312.",
-      "agent_response": "Order created successfully with ID: 312....",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:07:18 IST",
-      "task_id": "order-1784547423",
-      "chunk_type": "AGENT_COMPLETE",
-      "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (order-17): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:22:59 IST",
-      "task_id": "task-e2e-1784548379",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Restart Verification Task: Create sample order",
-      "agent_response": "Started autonomous task: Restart Verification Task: Create sample order",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:43:19 IST",
-      "task_id": "task-e2e-1784549599",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Timer Verification Task",
-      "agent_response": "Started autonomous task: Timer Verification Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:28 IST",
-      "task_id": "task-api-1784553388",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Unnamed Task",
-      "agent_response": "Started autonomous task: Unnamed Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:28 IST",
-      "task_id": "task-api-1784553388",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:28 IST",
-      "task_id": "task-api-1784553388",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Unnamed Task] (task-api): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Unnamed Task] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:28 IST",
-      "task_id": "task-api-1784553388",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:37 IST",
-      "task_id": "task-api-1784553397",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Unnamed Task",
-      "agent_response": "Started autonomous task: Unnamed Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:37 IST",
-      "task_id": "task-api-1784553397",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:37 IST",
-      "task_id": "task-api-1784553397",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Unnamed Task] (task-api): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Unnamed Task] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:37 IST",
-      "task_id": "task-api-1784553397",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:42 IST",
-      "task_id": "task-api-1784553402",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Unnamed Task",
-      "agent_response": "Started autonomous task: Unnamed Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:42 IST",
-      "task_id": "task-api-1784553402",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Unnamed Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:42 IST",
-      "task_id": "task-api-1784553402",
-      "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:Unnamed Task] (task-api): Executing task",
-      "agent_response": "Subagent [LLM-Runner:Unnamed Task] event: SPAWN. ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:42 IST",
-      "task_id": "task-api-1784553402",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:46:48 IST",
-      "task_id": "task-api-1784553408",
+      "timestamp": "18:54:55 IST",
+      "task_id": "task-api-1784553895",
       "chunk_type": "TASK_START",
       "content": "Started autonomous task: API Fuzzing Test Task",
       "agent_response": "Started autonomous task: API Fuzzing Test Task",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "18:46:48 IST",
-      "task_id": "task-api-1784553408",
+      "timestamp": "18:54:55 IST",
+      "task_id": "task-api-1784553895",
       "chunk_type": "MODEL_CHUNK",
       "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
       "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "18:46:48 IST",
-      "task_id": "task-api-1784553408",
+      "timestamp": "18:54:55 IST",
+      "task_id": "task-api-1784553895",
       "chunk_type": "AGENT_SPAWN",
       "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
       "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "18:46:48 IST",
-      "task_id": "task-api-1784553408",
+      "timestamp": "18:54:55 IST",
+      "task_id": "task-api-1784553895",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
@@ -491,60 +355,17 @@
     }
   ],
   "token_usage": {
-    "prompt_tokens": 19242,
-    "completion_tokens": 24346,
-    "total_tokens": 43588
+    "prompt_tokens": 19722,
+    "completion_tokens": 25236,
+    "total_tokens": 44958
   },
-  "ai_agent_os_task_failures": [
-    {
-      "timestamp": "2026-07-20 16:09:54 IST",
-      "task_id": "task-e2e-test-1784543963",
-      "task_name": "Check if http://127.0.0.1:8000/api/v1/health returns status ok",
-      "input_request": "Check if http://127.0.0.1:8000/api/v1/health returns status ok",
-      "failure_reason": "[8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200}, \"result\": {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"<!DOCTYPE html>\\n<html lang=\\\"en\\\" class=\\\"dark\\\">\\n<head>\\n    <",
-      "response_payload": "[{\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200}, \"result\": {\"success\": false, \"error\": \"Field walk error: Expecting value: li",
-      "llm_failure": "None"
-    },
-    {
-      "timestamp": "2026-07-20 16:36:40 IST",
-      "task_id": "task-e2e-1784545560",
-      "task_name": "Test http://localhost:9000/admin/incoming page and place order",
-      "input_request": "Test http://localhost:9000/admin/incoming page and place order",
-      "failure_reason": "[8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"expected\": 304}, \"result\": {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"BATCH_001\\\",\\n",
-      "response_payload": "[{\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"expected\": 304}, \"result\": {\"success\": false, \"error\": \"Field walk error: '",
-      "llm_failure": "None"
-    },
-    {
-      "timestamp": "2026-07-20 16:44:25 IST",
-      "task_id": "task-e2e-1784546023",
-      "task_name": "Check if http://127.0.0.1:8000/api/v1/health returns status ok 2026-07-20 16:09:54 IST Input Request: Check if http://127.0.0.1:8000/api/v1/health returns status ok Failure Reason: [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200}, \"result\": {\"success\": false, \"error\": \"Field walk error: Expecting value: line 1 column 1 (char 0)\", \"result\": \"\n\n\n < Response Payload: [{\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:8000/api/v1/health\", \"field\": \".status\", \"expected\": 200}, \"result\": {\"success\": false, \"error\": \"Field walk error: Expecting value: li LLM Error: None Test http://localhost:9000/admin/incoming page and place order 2026-07-20 16:36:40 IST Input Request: Test http://localhost:9000/admin/incoming page and place order Failure Reason: [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"expected\": 304}, \"result\": {\"success\": false, \"error\": \"Field walk error: id\", \"result\": \"{\n \"sampleDispatches\": [\n {\n \"internalBatchNumber\": \"BATCH_001\",\n Response Payload: [{\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"expected\": 304}, \"result\": {\"success\": false, \"error\": \"Field walk error:  LLM Error: None",
-      "input_request": "Check if http://127.0.0.1:8000/api/v1/health returns status ok 2026-07-20 16:09:54 IST Input Request: Check if http://127.0.0.1:8000/api/v1/health ret",
-      "failure_reason": "[8 iters] Reached max 8 iterations. Last: {\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH-123456\", \"quantity\": 10, \"status\": \"Pending\", \"dispatchType\": \"SupplierSample\", \"productName\": \"Product-X\"}}}, \"result\": {\"success\": false, \"error\": ",
-      "response_payload": "[{\"tool\": \"http_post\", \"args\": {\"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH-123456\", \"quantity\": 10, \"status\": \"Pending\", \"d",
-      "llm_failure": "None"
-    }
-  ],
+  "ai_agent_os_task_failures": [],
   "active_subagents": [
     {
-      "agent_id": "task-api-1784553388",
-      "role": "LLM-Runner:Unnamed Task",
-      "spawn_time": "18:46:28 IST"
-    },
-    {
-      "agent_id": "task-api-1784553397",
-      "role": "LLM-Runner:Unnamed Task",
-      "spawn_time": "18:46:37 IST"
-    },
-    {
-      "agent_id": "task-api-1784553402",
-      "role": "LLM-Runner:Unnamed Task",
-      "spawn_time": "18:46:42 IST"
-    },
-    {
-      "agent_id": "task-api-1784553408",
+      "agent_id": "task-api-1784553895",
       "role": "LLM-Runner:API Fuzzing Test Task",
-      "spawn_time": "18:46:48 IST"
+      "spawn_time": "18:54:55 IST"
     }
   ],
-  "active_agent_count": 4
+  "active_agent_count": 1
 }

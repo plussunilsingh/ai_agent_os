@@ -433,6 +433,15 @@ async def cancel_task(task_id: str):
     return {"status": "cancelled", "task_id": task_id}
 
 
+@router.post("/telemetry/clear-failures")
+async def clear_failures():
+    """Clear all historical task failure logs."""
+    from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
+    TaskQueueTracker.clear_failures()
+    return {"status": "cleared", "message": "Failure logs cleared successfully."}
+
+
+
 @router.get("/task/{task_id}/history")
 async def get_task_history(task_id: str):
     """Get event history for a task."""
