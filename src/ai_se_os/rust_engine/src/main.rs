@@ -1,7 +1,6 @@
 // AI-SE OS Ultra-High-Performance Rust Native Engine
 // Zero-cost memory safety, microsecond HTTP telemetry response (<0.5ms)
 
-use std::fs;
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
 use std::sync::{Arc, Mutex};
@@ -136,13 +135,9 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
         return;
     }
 
-    // Default: Serve HTML Dashboard
-    let html_path = "../telemetry/index.html";
-    if let Ok(content) = fs::read_to_string(html_path) {
-        send_html_response(&mut stream, 200, &content);
-    } else {
-        send_html_response(&mut stream, 200, "<h1>AI-SE OS Rust Native Engine</h1>");
-    }
+    // Serve Full AI-SE OS Control Plane Telemetry Dashboard HTML
+    let dashboard_html = include_str!("../../telemetry/index.html");
+    send_html_response(&mut stream, 200, dashboard_html);
 }
 
 fn send_json_response(stream: &mut TcpStream, code: u16, body: &str) {
