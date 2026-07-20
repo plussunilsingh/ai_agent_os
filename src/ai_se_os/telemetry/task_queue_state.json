@@ -480,14 +480,6 @@
     {
       "timestamp": "23:12:04 IST",
       "task_id": "task-api-1784569324",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "23:12:04 IST",
-      "task_id": "task-api-1784569324",
       "chunk_type": "AGENT_SPAWN",
       "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
       "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
@@ -857,40 +849,6 @@
         "chunk_type": "TASK_START",
         "content": "Started autonomous task: Stale Test Task",
         "agent_response": "Started autonomous task: Stale Test Task",
-        "model_name": "qwen2.5:7b"
-      }
-    ],
-    "task-api-1784569324": [
-      {
-        "timestamp": "23:12:04 IST",
-        "task_id": "task-api-1784569324",
-        "chunk_type": "TASK_START",
-        "content": "Started autonomous task: API Fuzzing Test Task",
-        "agent_response": "Started autonomous task: API Fuzzing Test Task",
-        "model_name": "qwen2.5:7b"
-      },
-      {
-        "timestamp": "23:12:04 IST",
-        "task_id": "task-api-1784569324",
-        "chunk_type": "MODEL_CHUNK",
-        "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
-        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
-        "model_name": "qwen2.5:7b"
-      },
-      {
-        "timestamp": "23:12:04 IST",
-        "task_id": "task-api-1784569324",
-        "chunk_type": "AGENT_SPAWN",
-        "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
-        "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
-        "model_name": "qwen2.5:7b"
-      },
-      {
-        "timestamp": "23:12:05 IST",
-        "task_id": "task-api-1784569324",
-        "chunk_type": "LANGGRAPH_PLANNER",
-        "content": "[Iter 1] Planning tool action via Instructor...",
-        "agent_response": "[Iter 1] Planning tool action via Instructor...",
         "model_name": "qwen2.5:7b"
       }
     ]
