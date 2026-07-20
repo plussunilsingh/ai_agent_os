@@ -32,23 +32,23 @@ TOOLS:
 - verify_json_field: {"tool":"verify_json_field","url":"<url>","field":"<dot.path>","expected":<value>}
 - done:              {"tool":"done","summary":"<what was done>"}
 
-BOTANIXUI API SCHEMA (base: http://127.0.0.1:9000):
-  CREATE order:  POST /api/admin/inventory/supplier-samples
+BOTANIXUI API — VERIFIED RESPONSE SHAPES (base: http://127.0.0.1:9000):
+
+  CREATE order — POST /api/admin/inventory/supplier-samples
     payload: {"internalBatchNumber":"<str>","quantity":<int>,"status":"Pending","dispatchType":"SupplierSample","productName":"<str>"}
-    response: {"id":<int>,"internalBatchNumber":"<str>","status":"Pending",...}
+    response top-level keys: ["id", "internalBatchNumber", "quantity", "status", "dispatchType", "success", "message"]
+    ✅ If response contains "id" key with an integer value → order was created successfully
 
-  LIST orders:   GET /api/admin/inventory/supplier-samples?page=0&size=20
-    response: {"success":true,"data":{"content":[{"id":<int>,"internalBatchNumber":"<str>",...}],"totalElements":<int>}}
-
-  VERIFY order exists after creation: use verify_json_field with field="id" and expected=<returned id int>
-    (run http_get on GET endpoint first, then parse response.data.content[0].id)
+  LIST orders — GET /api/admin/inventory/supplier-samples?page=0&size=20
+    response top-level keys: ["sampleDispatches", "totalElements", "totalPages", "success", "samples"]
+    ✅ Items are in the "sampleDispatches" array (not "data.content")
 
 RULES:
 1. Return ONLY the JSON array — no other text, no ```json``` fences.
-2. After a successful http_post that creates a record, signal done with a summary.
-3. If a tool fails: retry once with corrected args, then signal done with the failure reason.
-4. Never invent URLs. Use only the schema above or URLs from the task context.
-5. Keep tool call arrays short (1-3 calls per iteration).
+2. After http_post succeeds and response has an "id" field → immediately return done. Do NOT verify further.
+3. If a tool fails once: retry with corrected args. If it fails twice: return done with failure reason.
+4. Never invent URLs. Use only the schema above or URLs explicitly given in the task.
+5. Keep tool calls short: 1-2 per iteration maximum.
 """
 
 

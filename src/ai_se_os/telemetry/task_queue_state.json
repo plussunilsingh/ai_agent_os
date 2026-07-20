@@ -177,174 +177,6 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "16:36:08 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
-      "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:08 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "TOOL_HTTP_GET",
-      "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" c...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=de...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:08 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:16 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
-      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:17 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 304,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 304,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:17 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:23 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 3] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
-      "agent_response": "[[Iter 3] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:23 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"BATCH_001\\\",\\n ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:23 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
-      "agent_response": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:28 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
-      "agent_response": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:28 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"BATCH_001\\\",\\n ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:28 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 5] LLM Reasoning] Querying Ollama for iteration 5",
-      "agent_response": "[[Iter 5] LLM Reasoning] Querying Ollama for iteration 5",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:31 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 5] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
-      "agent_response": "[[Iter 5] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:31 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"BATCH_001\\\",\\n ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:31 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
-      "agent_response": "[[Iter 6] LLM Reasoning] Querying Ollama for iteration 6",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:34 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 6] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
-      "agent_response": "[[Iter 6] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:34 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"BATCH_001\\\",\\n ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:34 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
-      "agent_response": "[[Iter 7] LLM Reasoning] Querying Ollama for iteration 7",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:37 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 7] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
-      "agent_response": "[[Iter 7] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:37 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
-      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
-      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"BATCH_001\\\",\\n ...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "16:36:37 IST",
-      "task_id": "task-e2e-1784545560",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
-      "agent_response": "[[Iter 8] LLM Reasoning] Querying Ollama for iteration 8",
-      "model_name": "qwen2.5:7b"
-    },
-    {
       "timestamp": "16:36:40 IST",
       "task_id": "task-e2e-1784545560",
       "chunk_type": "MODEL_CHUNK",
@@ -375,12 +207,180 @@
       "content": "Task finished: FAILED - [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:9000/api/admin/inven...",
       "agent_response": "Task Status: FAILED. Summary: [8 iters] Reached max 8 iterations. Last: {\"tool\": \"verify_json_field\", \"args\": {\"url\": \"http://127.0.0.1:9000/api/admin...",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:36:58 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Create a supplier sample order] (final-ch): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a supplier sample order] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:36:58 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:02 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:03 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 305,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 305,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:03 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:09 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
+      "agent_response": "[[Iter 2] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:09 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
+      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"FINAL-AUDIT-CHE...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:09 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:14 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 3] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
+      "agent_response": "[[Iter 3] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:14 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
+      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"FINAL-AUDIT-CHE...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:14 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
+      "agent_response": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:16 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp...",
+      "agent_response": "[[Iter 4] Tool: verify_json_field] Running verify_json_field({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"field\": \"id\", \"exp",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:17 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "TOOL_VERIFY_JSON_FIELD",
+      "content": "Tool 'verify_json_field': {\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchN...",
+      "agent_response": "{\"success\": false, \"error\": \"Field walk error: 'id'\", \"result\": \"{\\n  \\\"sampleDispatches\\\": [\\n    {\\n      \\\"internalBatchNumber\\\": \\\"FINAL-AUDIT-CHE...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:37:17 IST",
+      "task_id": "final-check-1784545618",
+      "chunk_type": "AGENT_TERMINATE",
+      "content": "Subagent [LLM-Runner:Create a supplier sample order] (final-ch): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a supplier sample order] event: TERMINATE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:38:59 IST",
+      "task_id": "good-1784545739",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:Create a supplier sample order] (good-178): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a supplier sample order] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:38:59 IST",
+      "task_id": "good-1784545739",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:39:05 IST",
+      "task_id": "good-1784545739",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:39:05 IST",
+      "task_id": "good-1784545739",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 307,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 307,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:39:05 IST",
+      "task_id": "good-1784545739",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:39:10 IST",
+      "task_id": "good-1784545739",
+      "chunk_type": "DONE",
+      "content": "Task complete: Order created successfully with ID: 307.",
+      "agent_response": "Order created successfully with ID: 307....",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "16:39:10 IST",
+      "task_id": "good-1784545739",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:Create a supplier sample order] (good-178): Executing task",
+      "agent_response": "Subagent [LLM-Runner:Create a supplier sample order] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 14406,
-    "completion_tokens": 13372,
-    "total_tokens": 27778
+    "prompt_tokens": 15322,
+    "completion_tokens": 15388,
+    "total_tokens": 30710
   },
   "ai_agent_os_task_failures": [
     {
