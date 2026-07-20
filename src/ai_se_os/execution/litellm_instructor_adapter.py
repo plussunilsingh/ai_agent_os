@@ -74,7 +74,9 @@ class LiteLLMInstructorRunner:
                 model=self.model_name,
                 api_base=self.api_base,
                 response_model=AgentActionStep,
-                max_retries=3,
+                max_retries=2,
+                request_timeout=15.0,
+                timeout=15.0,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": prompt}

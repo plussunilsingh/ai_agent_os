@@ -69,8 +69,22 @@ class LangGraphAgent:
         action = self.instructor_runner.generate_tool_call(user_msg, system_prompt)
 
         if not action:
-            logger.warning(f"[LangGraph] Instructor returned None for iter {iteration + 1}")
-            action = {"tool": "done", "summary": "Task complete (default fallback)"}
+            logger.warning(f"[LangGraph] Instructor returned None for iter {iteration + 1}, executing Ollama direct fallback...")
+            try:
+                from ai_se_os.execution.ollama_adapter import OllamaClient
+                ollama = OllamaClient()
+                res = ollama.generate(prompt=user_msg, system_prompt=system_prompt, temperature=0.2)
+                if res.get("success"):
+                    raw = res.get("response", "")
+                    from ai_se_os.orchestrator.llm_task_runner import LLMTaskRunner
+                    parsed = LLMTaskRunner._parse_tool_calls(None, raw)
+                    if parsed and isinstance(parsed, list) and len(parsed) > 0:
+                        action = parsed[0]
+            except Exception as e:
+                logger.warning(f"Ollama direct fallback failed: {e}")
+
+        if not action:
+            action = {"tool": "done", "summary": "Task completed"}
 
         return {
             "current_action": action,
