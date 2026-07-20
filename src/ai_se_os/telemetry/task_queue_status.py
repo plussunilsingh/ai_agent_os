@@ -16,6 +16,7 @@ from typing import Dict, Any, List
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from ai_se_os.validation.truth_governance import TruthGovernanceEngine
+from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
 
 class TaskQueueStatusEngine:
     def __init__(self, workspace_root: str):
@@ -41,14 +42,8 @@ class TaskQueueStatusEngine:
         lsof_8080 = subprocess.getoutput("lsof -t -i:8080 2>/dev/null")
         lsof_9000 = subprocess.getoutput("lsof -t -i:9000 2>/dev/null")
         
-        # 3. Task Queue Status Summary
-        task_telemetry = {
-            "queue_name": "ai_se_os_master_queue",
-            "active_tasks_count": 0,  # Zero blocking tasks due to detached nohup execution
-            "pending_tasks_count": 0,
-            "governance_mode": "Chapter 42 Truth Enforcement (Zero Hardcoded Metrics)",
-            "task_queue_health": "HEALTHY (Non-blocking Asynchronous Mode)"
-        }
+        # 3. Dynamic Task Queue Status Summary from TaskQueueTracker
+        task_telemetry = TaskQueueTracker.get_queue_telemetry()
         
         status_payload = {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S IST"),

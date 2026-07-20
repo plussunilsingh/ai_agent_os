@@ -41,25 +41,6 @@
 
         <!-- Metric Overview Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Task Queue Card -->
-            <div class="p-6 rounded-2xl glass-card glow-blue space-y-3">
-                <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
-                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping"></span> Master Task Queue</span>
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-bold">Non-Blocking</span>
-                </div>
-                <div id="active-tasks" class="text-3xl font-black text-blue-400">Loading...</div>
-                <div id="queue-health" class="text-xs text-slate-400 font-medium">---</div>
-            </div>
-
-            <!-- Truth Governance Card -->
-            <div class="p-6 rounded-2xl glass-card glow-green space-y-3">
-                <div class="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center justify-between">
-                    <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-green-500"></span> Chapter 42 Truth Governance</span>
-                    <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                </div>
-                <div class="text-xl font-bold text-green-400 flex items-center gap-2">
-                    <span>100% Compliant</span>
-                </div>
                 <div class="text-xs text-slate-400 font-medium">Zero hardcoded fallbacks • Measured socket latencies</div>
             </div>
 
@@ -98,6 +79,31 @@
             document.getElementById('queue-health').innerText = data.task_queue_status.task_queue_health;
             document.getElementById('sync-time').innerText = data.timestamp;
             document.getElementById('sync-latency').innerText = 'Telemetry Query Latency: ' + data.telemetry_latency_ms + ' ms';
+            
+            const taskContainer = document.getElementById('active-tasks-list');
+            if (taskContainer) {
+                const activeList = data.task_queue_status.active_tasks || [];
+                if (activeList.length === 0) {
+                    taskContainer.innerHTML = '<div class="p-4 rounded-xl glass-card text-xs text-slate-500 font-mono">No active background tasks running. System operating in clean state.</div>';
+                } else {
+                    taskContainer.innerHTML = '';
+                    activeList.forEach(t => {
+                        const item = document.createElement('div');
+                        item.className = 'p-4 rounded-xl glass-card border border-blue-500/30 flex items-center justify-between';
+                        item.innerHTML = `
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 rounded-full bg-blue-500 animate-ping"></div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">${t.task_name}</h4>
+                                    <p class="text-xs font-mono text-slate-400">Target: ${t.target_url} • Started: ${t.start_time}</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono">IN_PROGRESS</span>
+                        `;
+                        taskContainer.appendChild(item);
+                    });
+                }
+            }
             
             const grid = document.getElementById('products-grid');
             grid.innerHTML = '';
