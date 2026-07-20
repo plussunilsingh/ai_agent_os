@@ -9,6 +9,8 @@ import time
 from typing import Dict, Any, List
 from ai_se_os.telemetry.postgres_store import PostgresTelemetryStore
 
+from ai_se_os.telemetry.task_state_machine import TaskManager, TaskState, InvalidStateTransitionError
+
 TRACKER_FILE = os.path.join(os.path.dirname(__file__), "task_queue_state.json")
 
 class TaskQueueTracker:
@@ -93,7 +95,7 @@ class TaskQueueTracker:
         PostgresTelemetryStore.log_failure(task_id, task_name, input_request, failure_reason, response_payload, llm_failure)
 
     @classmethod
-    def log_token_usage(cls, prompt_tokens: int, completion_tokens: int, task_id: str = "task-gen"):
+    def log_token_usage(cls, prompt_tokens: int = 0, completion_tokens: int = 0, task_id: str = "default"):
         """Logs tokens consumed by LLM prompt & completion generation."""
         state = cls._read_state()
         usage = state.get("token_usage", {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0})
@@ -146,7 +148,12 @@ class TaskQueueTracker:
                     start_ts = now_ts - 120
 
             if now_ts - start_ts > 60:
-                t["status"] = "FAILED"
+                t_id = t.get("task_id", "")
+                try:
+                    TaskManager.transition(t_id, TaskState.TIMED_OUT, reason="Stale process reaped after 60s")
+                except InvalidStateTransitionError:
+                    pass
+                t["status"] = TaskState.TIMED_OUT.value
                 t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
                 t["summary"] = "Auto-reaped by AI-SE OS Master Queue (Stale Process Cleaned)"
                 state["history"].append(t)
@@ -164,6 +171,8 @@ class TaskQueueTracker:
         state = cls._read_state()
         now_ts = time.time()
 
+        TaskManager.register(task_id, TaskState.CREATED)
+
         # Check if already registered
         existing = [t for t in state.get("active_tasks", []) if t.get("task_id") == task_id]
         if existing:
@@ -171,15 +180,24 @@ class TaskQueueTracker:
             task_entry = existing[0]
             task_entry["task_name"] = task_name
             task_entry["target_url"] = target_url
-            task_entry["status"] = "RUNNING"
+            task_entry["status"] = TaskState.EXECUTING.value
+            try:
+                TaskManager.transition(task_id, TaskState.EXECUTING, reason="Task re-registered")
+            except InvalidStateTransitionError:
+                pass
             cls._write_state(state)
             return task_entry
+
+        try:
+            TaskManager.transition(task_id, TaskState.EXECUTING, reason="Task initial registration")
+        except InvalidStateTransitionError:
+            pass
 
         task_entry = {
             "task_id": task_id,
             "task_name": task_name,
             "target_url": target_url,
-            "status": "RUNNING",
+            "status": TaskState.EXECUTING.value,
             "current_step": "Initializing task environment...",
             "start_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
             "start_epoch": now_ts,
@@ -211,12 +229,18 @@ class TaskQueueTracker:
         active = []
         task_found = False
         task_name = "AI Agent OS Task"
+        target_state = TaskState.COMPLETED if success else TaskState.FAILED
+
+        try:
+            TaskManager.transition(task_id, target_state, reason=result_summary)
+        except InvalidStateTransitionError:
+            pass
 
         for t in state.get("active_tasks", []):
             if t.get("task_id") == task_id:
                 task_found = True
                 task_name = t.get("task_name", task_name)
-                t["status"] = "COMPLETED" if success else "FAILED"
+                t["status"] = target_state.value
                 t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
                 t["summary"] = result_summary
                 t["progress_pct"] = 100
@@ -231,7 +255,7 @@ class TaskQueueTracker:
             for t in state.get("history", []):
                 if t.get("task_id") == task_id:
                     task_found = True
-                    t["status"] = "COMPLETED" if success else "FAILED"
+                    t["status"] = target_state.value
                     t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
                     t["summary"] = result_summary
                     t["progress_pct"] = 100
@@ -243,7 +267,7 @@ class TaskQueueTracker:
                 "task_id": task_id,
                 "task_name": input_request or "Autonomous Task",
                 "target_url": "",
-                "status": "COMPLETED" if success else "FAILED",
+                "status": target_state.value,
                 "current_step": "Execution Complete",
                 "start_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
                 "end_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
@@ -253,7 +277,7 @@ class TaskQueueTracker:
             state["history"].append(new_entry)
 
         cls._write_state(state)
-        cls.log_model_chunk(task_id, "TASK_COMPLETE", f"Task finished: {'SUCCESS' if success else 'FAILED'} - {result_summary}", agent_response=f"Task Status: {'SUCCESS' if success else 'FAILED'}. Summary: {result_summary}")
+        cls.log_model_chunk(task_id, "TASK_COMPLETE", f"Task finished: {target_state.value} - {result_summary}", agent_response=f"Task Status: {target_state.value}. Summary: {result_summary}")
 
         
         if not success:
