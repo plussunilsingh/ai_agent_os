@@ -11,6 +11,7 @@ import sys
 import json
 import time
 import subprocess
+import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -196,6 +197,50 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
             self.send_header("Content-Length", str(len(body)))
             self.end_headers()
             self.wfile.write(body)
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
+    def do_POST(self):
+        if self.path == "/api/v1/system/dispatch-task":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body_bytes = self.rfile.read(content_length)
+            try:
+                payload = json.loads(body_bytes.decode("utf-8")) if body_bytes else {}
+                task_name = payload.get("task_name", "User Dispatched Task")
+                input_request = payload.get("input_request", task_name)
+                target_url = payload.get("target_url", "http://127.0.0.1:9000/admin/incoming")
+                
+                # Launch autonomous execution in background thread
+                def run_task():
+                    try:
+                        from ai_se_os.agent.browser_testing_agent import IncomingMaterialTestingAgent
+                        agent = IncomingMaterialTestingAgent(target_ui_url="http://127.0.0.1:9000")
+                        agent.execute_incoming_page_fullstack_test()
+                    except Exception as err:
+                        print("Task execution error:", err)
+
+                threading.Thread(target=run_task, daemon=True).start()
+                
+                resp = json.dumps({"status": "DISPATCHED", "message": "Task dispatched to AI-SE OS Master Queue", "task_name": task_name}).encode("utf-8")
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.send_header("Content-Length", str(len(resp)))
+                self.end_headers()
+                self.wfile.write(resp)
+            except Exception as e:
+                resp = json.dumps({"error": str(e)}).encode("utf-8")
+                self.send_response(400)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(resp)
+            return
 
 def run_server(port=8000):
     server_address = ("0.0.0.0", port)
