@@ -194,12 +194,26 @@ class TaskQueueTracker:
         state = cls._read_state()
         active_list = state.get("active_tasks", [])
         history_list = state.get("history", [])
-        total_count = len(active_list) + len(history_list)
+        
+        # Read permanent completed task count from Postgres
+        pg_tasks_count = 0
+        try:
+            with PostgresTelemetryStore.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute("SELECT COUNT(*) FROM telemetry_tasks;")
+                    pg_tasks_count = cur.fetchone()[0]
+        except Exception:
+            pg_tasks_count = 0
+
+        completed_count = max(len(history_list), pg_tasks_count)
+        active_count = len(active_list)
+        total_count = active_count + completed_count
+
         return {
             "queue_name": "ai_se_os_master_queue",
             "total_tasks_count": total_count,
-            "active_tasks_count": len(active_list),
-            "completed_tasks_count": len(history_list),
+            "active_tasks_count": active_count,
+            "completed_tasks_count": completed_count,
             "failed_tasks_count": len(state.get("ai_agent_os_task_failures", [])),
             "pending_tasks_count": 0,
             "active_tasks": active_list,

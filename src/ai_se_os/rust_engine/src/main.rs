@@ -153,20 +153,31 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
         let state_json = fs::read_to_string(&state_path)
             .unwrap_or_else(|_| r#"{}"#.to_string());
         
-        let parsed_status: serde_json::Value = serde_json::from_str(&state_json)
-            .unwrap_or_else(|_| serde_json::json!({
-                "queue_name": "ai_se_os_master_queue",
-                "total_tasks_count": 15,
-                "active_tasks_count": 0,
-                "completed_tasks_count": 15,
-                "active_tasks": [],
-                "latest_model_chunks": [],
-                "token_usage": { "prompt_tokens": 3450, "completion_tokens": 1820, "total_tokens": 5270 },
-                "ai_agent_os_task_failures": []
-            }));
+        let mut parsed_status: serde_json::Value = serde_json::from_str(&state_json)
+            .unwrap_or_else(|_| serde_json::json!({}));
+
+        let active_tasks = parsed_status.get("active_tasks").and_then(|v| v.as_array()).cloned().unwrap_or_default();
+        let history_tasks = parsed_status.get("history").and_then(|v| v.as_array()).cloned().unwrap_or_default();
+        let failures_tasks = parsed_status.get("ai_agent_os_task_failures").and_then(|v| v.as_array()).cloned().unwrap_or_default();
+
+        let active_count = active_tasks.len();
+        let completed_count = history_tasks.len();
+        let total_count = active_count + completed_count;
+        let failed_count = failures_tasks.len();
+
+        if let Some(obj) = parsed_status.as_object_mut() {
+            obj.insert("total_tasks_count".to_string(), serde_json::json!(total_count));
+            obj.insert("active_tasks_count".to_string(), serde_json::json!(active_count));
+            obj.insert("completed_tasks_count".to_string(), serde_json::json!(completed_count));
+            obj.insert("failed_tasks_count".to_string(), serde_json::json!(failed_count));
+            obj.insert("queue_name".to_string(), serde_json::json!("ai_se_os_master_queue"));
+        }
+
+        let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs();
+        let time_str = format!("{} s (Epoch)", now);
 
         let response_json = serde_json::json!({
-            "timestamp": "2026-07-20 14:32:00 IST",
+            "timestamp": time_str,
             "telemetry_latency_ms": 0.38,
             "engine": "Rust Native Engine (ai_se_os_rust_engine)",
             "supported_products": [

@@ -631,6 +631,7 @@
         fetchTelemetry();
         loadChatHistory();
         initSSEStream();
+        setInterval(fetchTelemetry, 1500);
     </script>
 </body>
 </html>
