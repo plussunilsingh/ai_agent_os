@@ -1,5 +1,16 @@
 {
-  "active_tasks": [],
+  "active_tasks": [
+    {
+      "task_id": "task-e2e-1784549599",
+      "task_name": "Timer Verification Task",
+      "target_url": "http://127.0.0.1:9000/api/admin/inventory/supplier-samples",
+      "status": "EXECUTING",
+      "current_step": "Initializing task environment...",
+      "start_time": "2026-07-20 17:43:19 IST",
+      "start_epoch": 1784549599.600993,
+      "progress_pct": 10
+    }
+  ],
   "history": [
     {
       "task_id": "task-e2e-1784538656",
@@ -221,25 +232,21 @@
       "progress_pct": 12,
       "end_time": "2026-07-20 16:58:12 IST",
       "summary": "[2 iters] Order created successfully with ID: 310."
+    },
+    {
+      "task_id": "task-e2e-1784548379",
+      "task_name": "Restart Verification Task: Create sample order",
+      "target_url": "http://127.0.0.1:9000/api/admin/inventory/supplier-samples",
+      "status": "TIMED_OUT",
+      "current_step": "Initializing task environment...",
+      "start_time": "2026-07-20 17:22:59 IST",
+      "start_epoch": 1784548379.20092,
+      "progress_pct": 10,
+      "end_time": "2026-07-20 17:43:19 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Worker Heartbeat Expired)"
     }
   ],
   "model_chunks": [
-    {
-      "timestamp": "17:06:15 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": false, \"error\": \"Tool 'http_post' raised: 'url'\", \"result\": \"\"}",
-      "agent_response": "{\"success\": false, \"error\": \"Tool 'http_post' raised: 'url'\", \"result\": \"\"}...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "17:06:15 IST",
-      "task_id": "health-1784547355",
-      "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
-      "agent_response": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
-      "model_name": "qwen2.5:7b"
-    },
     {
       "timestamp": "17:06:19 IST",
       "task_id": "health-1784547355",
@@ -422,6 +429,22 @@
       "chunk_type": "AGENT_COMPLETE",
       "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (order-17): Executing task",
       "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:22:59 IST",
+      "task_id": "task-e2e-1784548379",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Restart Verification Task: Create sample order",
+      "agent_response": "Started autonomous task: Restart Verification Task: Create sample order",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "17:43:19 IST",
+      "task_id": "task-e2e-1784549599",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Timer Verification Task",
+      "agent_response": "Started autonomous task: Timer Verification Task",
       "model_name": "qwen2.5:7b"
     }
   ],

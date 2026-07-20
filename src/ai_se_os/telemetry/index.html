@@ -385,7 +385,7 @@
                 }
             }
 
-            // Render Active Tasks List
+            // Render Active Tasks List with Live Elapsed Timer & Start Time
             const taskContainer = document.getElementById('active-tasks-list');
             if (taskContainer) {
                 const activeList = queueStatus.active_tasks || [];
@@ -393,25 +393,43 @@
                     taskContainer.innerHTML = '<div class="p-4 rounded-xl glass-card text-xs text-slate-500 font-mono">No active background tasks running. System operating in clean state.</div>';
                 } else {
                     taskContainer.innerHTML = '';
+                    const nowTs = Date.now() / 1000;
                     activeList.forEach(t => {
+                        let startEp = t.start_epoch;
+                        if (!startEp && t.start_time) {
+                            try {
+                                startEp = new Date(t.start_time.replace(' IST', '')).getTime() / 1000;
+                            } catch(e) { startEp = nowTs; }
+                        }
+                        const elapsedSec = Math.max(0, Math.floor(nowTs - (startEp || nowTs)));
+                        const elapsedFmt = elapsedSec < 60 ? `${elapsedSec}s` : `${Math.floor(elapsedSec / 60)}m ${elapsedSec % 60}s`;
+
                         const item = document.createElement('div');
                         item.className = 'p-4 rounded-xl glass-card border border-blue-500/30 flex items-center justify-between';
                         item.innerHTML = `
                             <div class="flex items-center gap-3">
-                                <div class="w-3 h-3 rounded-full bg-blue-500 animate-ping"></div>
+                                <div class="w-3 h-3 rounded-full bg-blue-500 animate-ping shrink-0"></div>
                                 <div>
-                                    <h4 class="text-sm font-bold text-white">${t.task_name}</h4>
-                                    <p class="text-xs font-mono text-slate-400">Step: <span class="text-yellow-400 font-bold">${t.current_step || 'In Progress'}</span> (${t.progress_pct || 10}%) • Target: ${t.target_url}</p>
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="text-sm font-bold text-white">${t.task_name}</h4>
+                                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/80 text-cyan-400 border border-cyan-800/60 font-bold">⏱️ Elapsed: ${elapsedFmt}</span>
+                                    </div>
+                                    <p class="text-xs font-mono text-slate-400 mt-0.5">
+                                        Started: <span class="text-slate-200">${t.start_time || 'Just now'}</span> • Step: <span class="text-yellow-400 font-bold">${t.current_step || 'In Progress'}</span> (${t.progress_pct || 10}%)
+                                    </p>
                                 </div>
                             </div>
-                            <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono">IN_PROGRESS (${t.progress_pct || 10}%)</span>
+                            <div class="flex flex-col items-end gap-1">
+                                <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/30 font-mono">IN_PROGRESS (${t.progress_pct || 10}%)</span>
+                                <span class="text-[10px] font-mono text-cyan-400 font-bold">⏱️ Running: ${elapsedFmt}</span>
+                            </div>
                         `;
                         taskContainer.appendChild(item);
                     });
                 }
             }
 
-            // Render Task History & DAG Stage Timeline Panel
+            // Render Task History & DAG Stage Timeline Panel with Duration & Timers
             const historyTimeline = document.getElementById('task-history-dag-timeline');
             if (historyTimeline) {
                 const historyList = queueStatus.history || [];
@@ -420,19 +438,36 @@
                 } else {
                     historyTimeline.innerHTML = '';
                     historyList.slice(-10).reverse().forEach(h => {
+                        let durationText = h.duration_sec != null ? `${h.duration_sec}s` : null;
+                        if (!durationText && h.start_time && h.end_time) {
+                            try {
+                                const s = new Date(h.start_time.replace(' IST', '')).getTime();
+                                const e = new Date(h.end_time.replace(' IST', '')).getTime();
+                                if (!isNaN(s) && !isNaN(e)) {
+                                    const diff = Math.max(0, Math.round((e - s) / 1000));
+                                    durationText = diff < 60 ? `${diff}s` : `${Math.floor(diff / 60)}m ${diff % 60}s`;
+                                }
+                            } catch(err) {}
+                        }
+                        const isSuccess = (h.status === 'COMPLETED' || h.status === 'SUCCESS');
+                        const statusColor = isSuccess ? 'text-green-400 bg-green-500/10 border-green-500/30' : 'text-red-400 bg-red-500/10 border-red-500/30';
+
                         const card = document.createElement('div');
                         card.className = 'p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2';
                         card.innerHTML = `
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-2">
-                                    <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                                    <span class="w-2 h-2 rounded-full ${isSuccess ? 'bg-green-400' : 'bg-red-400'}"></span>
                                     <span class="font-bold text-white text-xs font-mono">${h.task_name}</span>
                                 </div>
-                                <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">${h.end_time || h.start_time || 'Just now'}</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] font-mono text-yellow-400 bg-yellow-950/80 px-2 py-0.5 rounded border border-yellow-800/60 font-bold">⏱️ Duration: ${durationText || 'N/A'}</span>
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded border ${statusColor} uppercase font-bold">${h.status || 'DONE'}</span>
+                                </div>
                             </div>
                             <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                                <span>Task ID: <strong class="text-blue-400">${h.task_id}</strong></span>
-                                <span class="text-green-400 font-bold">${h.summary || '5/5 Stages Passed (COMPLETED)'}</span>
+                                <span>Task ID: <strong class="text-blue-400">${h.task_id}</strong> • Started: <span class="text-slate-300">${h.start_time || 'N/A'}</span></span>
+                                <span class="${isSuccess ? 'text-green-400' : 'text-red-400'} font-bold">${h.summary || (isSuccess ? 'Completed' : 'Failed')}</span>
                             </div>
                         `;
                         historyTimeline.appendChild(card);

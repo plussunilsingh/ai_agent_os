@@ -247,12 +247,16 @@ class TaskQueueTracker:
 
         HeartbeatMonitor.unregister(task_id)
 
+        now_epoch = time.time()
         for t in state.get("active_tasks", []):
             if t.get("task_id") == task_id:
                 task_found = True
                 task_name = t.get("task_name", task_name)
                 t["status"] = target_state.value
                 t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
+                t["end_epoch"] = now_epoch
+                start_ep = t.get("start_epoch", now_epoch)
+                t["duration_sec"] = round(max(0.0, now_epoch - start_ep), 1)
                 t["summary"] = result_summary
                 t["progress_pct"] = 100
                 state["history"].append(t)
@@ -268,6 +272,9 @@ class TaskQueueTracker:
                     task_found = True
                     t["status"] = target_state.value
                     t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
+                    t["end_epoch"] = now_epoch
+                    start_ep = t.get("start_epoch", now_epoch)
+                    t["duration_sec"] = round(max(0.0, now_epoch - start_ep), 1)
                     t["summary"] = result_summary
                     t["progress_pct"] = 100
                     break
@@ -281,7 +288,10 @@ class TaskQueueTracker:
                 "status": target_state.value,
                 "current_step": "Execution Complete",
                 "start_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
+                "start_epoch": now_epoch,
                 "end_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
+                "end_epoch": now_epoch,
+                "duration_sec": 0.0,
                 "summary": result_summary,
                 "progress_pct": 100
             }
