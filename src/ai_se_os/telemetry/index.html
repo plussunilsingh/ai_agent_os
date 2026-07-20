@@ -65,6 +65,36 @@
                     <span>Talk / Interactive Chat</span>
                 </button>
             </div>
+        <!-- Dedicated AI-SE OS Interactive Chat Studio -->
+        <div class="p-6 rounded-2xl glass-card border border-purple-500/30 bg-slate-900/80 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 font-bold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-base font-bold text-white">AI-SE OS Dedicated Interactive Chat Studio</h2>
+                        <p class="text-xs text-slate-400">Zero-config In-Memory Chat DB • Ask questions & converse with AI-SE OS in real-time</p>
+                    </div>
+                </div>
+                <button onclick="clearChatHistory()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-bold font-mono transition border border-slate-700 flex items-center gap-1.5 cursor-pointer">
+                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    <span>Clear Chat</span>
+                </button>
+            </div>
+
+            <!-- In-Memory Chat Bubble Stream -->
+            <div id="chat-messages-stream" class="p-4 rounded-xl bg-slate-950/90 border border-slate-800 space-y-3 h-52 overflow-y-auto font-mono text-xs shadow-inner">
+                <div class="text-slate-500 text-center py-6">No chat conversation history in memory. Type a question or instruction below to start!</div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input id="chat-input-field" type="text" placeholder="Ask AI-SE OS a question or instruction e.g. How is BotanixUI and Spring Boot Admin App operating?" class="flex-1 px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 text-slate-200 text-xs focus:outline-none focus:border-purple-500 font-mono" onkeydown="if(event.key==='Enter') sendInteractiveStudioChat()" />
+                <button onclick="sendInteractiveStudioChat()" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition cursor-pointer flex items-center justify-center gap-2 active:scale-95 shadow-lg shrink-0">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    <span>Send Message</span>
+                </button>
+            </div>
         </div>
 
         <!-- Metric Overview Cards -->
@@ -395,6 +425,71 @@
             }
         }
 
+        async function loadChatHistory() {
+            try {
+                const res = await fetch('/api/v1/system/chat/history');
+                const data = await res.json();
+                renderChatStream(data.history || []);
+            } catch (err) {
+                console.error("Chat history fetch error:", err);
+            }
+        }
+
+        function renderChatStream(history) {
+            const container = document.getElementById('chat-messages-stream');
+            if (!container) return;
+            if (history.length === 0) {
+                container.innerHTML = '<div class="text-slate-500 text-center py-6">No chat conversation history in memory. Type a question or instruction below to start!</div>';
+                return;
+            }
+            container.innerHTML = '';
+            history.forEach(m => {
+                const isUser = m.sender === 'user';
+                const bubble = document.createElement('div');
+                bubble.className = `flex ${isUser ? 'justify-end' : 'justify-start'} mb-2`;
+                bubble.innerHTML = `
+                    <div class="max-w-[80%] rounded-2xl px-4 py-2.5 ${isUser ? 'bg-purple-600 text-white rounded-br-none' : 'bg-slate-900 border border-purple-500/30 text-slate-200 rounded-bl-none'} space-y-1 shadow-md">
+                        <div class="flex items-center justify-between gap-4 text-[10px] font-bold opacity-75">
+                            <span>${isUser ? 'YOU' : '🤖 AI-SE OS AGENT'}</span>
+                            <span>${m.timestamp}</span>
+                        </div>
+                        <div class="text-xs leading-relaxed break-words font-mono">${m.text}</div>
+                    </div>
+                `;
+                container.appendChild(bubble);
+            });
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function clearChatHistory() {
+            try {
+                await fetch('/api/v1/system/chat/clear', { method: 'POST' });
+                renderChatStream([]);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function sendInteractiveStudioChat() {
+            const inputEl = document.getElementById('chat-input-field');
+            const val = inputEl.value.trim();
+            if (!val) return;
+            inputEl.value = '';
+
+            try {
+                const res = await fetch('/api/v1/system/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: val })
+                });
+                const data = await res.json();
+                renderChatStream(data.history || []);
+                fetchTelemetry();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
         async function sendInteractiveChat() {
             const inputVal = document.getElementById('task-input-box').value.trim();
             if (!inputVal) return;
@@ -478,6 +573,7 @@
         }
 
         fetchTelemetry();
+        loadChatHistory();
         initSSEStream();
     </script>
 </body>

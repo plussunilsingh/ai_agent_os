@@ -179,6 +179,17 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
                 pass
             return
 
+        if self.path == "/api/v1/system/chat/history":
+            from ai_se_os.telemetry.in_memory_chat_store import InMemoryChatStore
+            body = json.dumps({"history": InMemoryChatStore.get_history()}).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
         if self.path == "/api/v1/system/status":
             status = telemetry_engine.get_system_status()
             body = json.dumps(status).encode("utf-8")
@@ -206,6 +217,18 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
+        if self.path == "/api/v1/system/chat/clear":
+            from ai_se_os.telemetry.in_memory_chat_store import InMemoryChatStore
+            InMemoryChatStore.clear_history()
+            resp = json.dumps({"status": "CLEARED", "message": "In-memory chat history cleared"}).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Content-Length", str(len(resp)))
+            self.end_headers()
+            self.wfile.write(resp)
+            return
+
         if self.path == "/api/v1/system/chat":
             content_length = int(self.headers.get("Content-Length", 0))
             body_bytes = self.rfile.read(content_length)
@@ -222,22 +245,24 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
                     self.wfile.write(resp)
                     return
 
-                # Record task & log model chunk immediately
+                from ai_se_os.telemetry.in_memory_chat_store import InMemoryChatStore
                 from ai_se_os.telemetry.task_queue_tracker import TaskQueueTracker
+                
+                # 1. Add user message to In-Memory DB
+                user_entry = InMemoryChatStore.add_message("user", user_msg)
+                
+                # Record task log
                 task_id = f"chat-{int(time.time() * 1000)}"
                 TaskQueueTracker.log_model_chunk(task_id, "USER_INPUT", f"User query: {user_msg}")
                 
-                # Formulate instant response
-                reply = (
-                    f"🤖 AI-SE OS Agent: Hello! I received your message ('{user_msg}'). "
-                    "I have logged this instruction in the AI-SE OS Master Task Queue. "
-                    "All target services (Port 8080 Admin App and Port 9000 BotanixUI) are being verified asynchronously."
-                )
-
-                TaskQueueTracker.log_model_chunk(task_id, "AGENT_REPLY", reply)
-                
-                # Asynchronously trigger background testing task if requested
+                # 2. Formulate instant AI-SE OS agent response
                 if any(k in user_msg.lower() for k in ["incoming", "test", "order", "run", "check"]):
+                    reply_text = (
+                        f"🤖 AI-SE OS Agent: I understood your instruction ('{user_msg}'). "
+                        "I am now running full-stack verification on BotanixUI (Port 9000) and Java Admin App (Port 8080). "
+                        "All API proxies, Spring Boot JPA persistence, and DOM rendering steps are being audited."
+                    )
+                    # Trigger background testing task
                     def run_async_agent():
                         try:
                             from ai_se_os.agent.browser_testing_agent import IncomingMaterialTestingAgent
@@ -247,11 +272,23 @@ class ControlPlaneHandler(BaseHTTPRequestHandler):
                             print("Async agent execution error:", err)
 
                     threading.Thread(target=run_async_agent, daemon=True).start()
+                else:
+                    reply_text = (
+                        f"🤖 AI-SE OS Agent: Hello! I am the AI-SE OS Systems Engineering Engine. "
+                        f"I received your message: '{user_msg}'. "
+                        "I am continuously monitoring Port 8080 (Admin App) and Port 9000 (BotanixUI) with Chapter 42 Truth Enforcement."
+                    )
+
+                # 3. Add Agent reply to In-Memory DB
+                agent_entry = InMemoryChatStore.add_message("ai_se_os_agent", reply_text)
+                TaskQueueTracker.log_model_chunk(task_id, "AGENT_REPLY", reply_text)
 
                 res_payload = json.dumps({
                     "status": "SUCCESS",
-                    "reply": reply,
-                    "agent_id": "ai_se_os_master_agent",
+                    "reply": reply_text,
+                    "user_msg": user_entry,
+                    "agent_msg": agent_entry,
+                    "history": InMemoryChatStore.get_history(),
                     "timestamp": time.strftime("%H:%M:%S IST")
                 }).encode("utf-8")
 
