@@ -1,16 +1,5 @@
 {
-  "active_tasks": [
-    {
-      "task_id": "task-api-1784554193",
-      "task_name": "API Fuzzing Test Task",
-      "target_url": "http://127.0.0.1:9000",
-      "status": "EXECUTING",
-      "current_step": "[Iter 1] LLM Reasoning",
-      "start_time": "2026-07-20 18:59:53 IST",
-      "start_epoch": 1784554193.1809301,
-      "progress_pct": 0
-    }
-  ],
+  "active_tasks": [],
   "history": [
     {
       "task_id": "task-e2e-1784538656",
@@ -334,42 +323,210 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "18:59:53 IST",
-      "task_id": "task-api-1784554193",
-      "chunk_type": "TASK_START",
-      "content": "Started autonomous task: API Fuzzing Test Task",
-      "agent_response": "Started autonomous task: API Fuzzing Test Task",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "18:59:53 IST",
-      "task_id": "task-api-1784554193",
+      "timestamp": "19:04:09 IST",
+      "task_id": "debug-task-101",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: API Fuzzing Test Task",
+      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "18:59:53 IST",
-      "task_id": "task-api-1784554193",
+      "timestamp": "19:04:13 IST",
+      "task_id": "debug-task-101",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
+      "agent_response": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:04:13 IST",
+      "task_id": "debug-task-101",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:04:14 IST",
+      "task_id": "debug-task-101",
+      "chunk_type": "DONE",
+      "content": "Task complete: Order created successfully with ID: 317.",
+      "agent_response": "Order created successfully with ID: 317....",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:04:14 IST",
+      "task_id": "debug-task-101",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
+      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:03 IST",
+      "task_id": "debug-task-102",
       "chunk_type": "AGENT_SPAWN",
-      "content": "Subagent [LLM-Runner:API Fuzzing Test Task] (task-api): Executing task",
-      "agent_response": "Subagent [LLM-Runner:API Fuzzing Test Task] event: SPAWN. ...",
+      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
+      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: SPAWN. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "18:59:53 IST",
-      "task_id": "task-api-1784554193",
+      "timestamp": "19:05:03 IST",
+      "task_id": "debug-task-102",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:07 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:07 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 318,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 318,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:07 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:12 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
+      "agent_response": "[[Iter 2] Parse Warning] LLM output not valid JSON, retrying...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:12 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:13 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 3] Parse Warning] LLM output not valid JSON, retrying...",
+      "agent_response": "[[Iter 3] Parse Warning] LLM output not valid JSON, retrying...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:13 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
+      "agent_response": "[[Iter 4] LLM Reasoning] Querying Ollama for iteration 4",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:14 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "DONE",
+      "content": "Task complete: Order created successfully with ID: 318.",
+      "agent_response": "Order created successfully with ID: 318....",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:05:14 IST",
+      "task_id": "debug-task-102",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
+      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:10:27 IST",
+      "task_id": "debug-task-103",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:create a new incoming material] (debug-ta): Executing task",
+      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:10:27 IST",
+      "task_id": "debug-task-103",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:11:05 IST",
+      "task_id": "verify-fix-104",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [LLM-Runner:create a new incoming material] (verify-f): Executing task",
+      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: SPAWN. ...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:11:05 IST",
+      "task_id": "verify-fix-104",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:11:12 IST",
+      "task_id": "verify-fix-104",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ...",
+      "agent_response": "[[Iter 1] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": ",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:11:13 IST",
+      "task_id": "verify-fix-104",
+      "chunk_type": "TOOL_HTTP_POST",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 319,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 319,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:11:13 IST",
+      "task_id": "verify-fix-104",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:11:17 IST",
+      "task_id": "verify-fix-104",
+      "chunk_type": "DONE",
+      "content": "Task complete: Order created successfully with ID: 319",
+      "agent_response": "Order created successfully with ID: 319...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "19:11:17 IST",
+      "task_id": "verify-fix-104",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [LLM-Runner:create a new incoming material] (verify-f): Executing task",
+      "agent_response": "Subagent [LLM-Runner:create a new incoming material] event: COMPLETE. ...",
+      "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 20202,
-    "completion_tokens": 26126,
-    "total_tokens": 46328
+    "prompt_tokens": 22042,
+    "completion_tokens": 29542,
+    "total_tokens": 51584
   },
   "ai_agent_os_task_failures": [],
   "active_subagents": [
@@ -382,8 +539,13 @@
       "agent_id": "task-api-1784554193",
       "role": "LLM-Runner:API Fuzzing Test Task",
       "spawn_time": "18:59:53 IST"
+    },
+    {
+      "agent_id": "debug-task-103",
+      "role": "LLM-Runner:create a new incoming material",
+      "spawn_time": "19:10:27 IST"
     }
   ],
-  "active_agent_count": 2,
+  "active_agent_count": 3,
   "latest_model_chunks": []
 }

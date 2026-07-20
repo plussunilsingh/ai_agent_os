@@ -49,6 +49,7 @@ RULES:
 3. If a tool fails once: retry with corrected args. If it fails twice: return done with failure reason.
 4. Never invent URLs. Use only the schema above or URLs explicitly given in the task.
 5. Keep tool calls short: 1-2 per iteration maximum.
+6. Return raw JSON objects inside the array: [{"tool":"name"}]. DO NOT wrap objects as stringified JSON strings like ["{\"tool\": ...}"].
 """
 
 
@@ -68,21 +69,50 @@ class LLMTaskRunner:
         self.tool_results = []
 
     def _parse_tool_calls(self, llm_response: str):
-        """Extract JSON array of tool calls from LLM output. Robust parser."""
+        """Extract JSON array of tool calls from LLM output. Robust parser with stringified JSON unwrapping and regex fallback."""
+        import re
         text = llm_response.strip()
         # Strip markdown code fences
         if text.startswith("```"):
             lines = text.split("\n")
             text = "\n".join(lines[1:-1] if lines[-1].startswith("```") else lines[1:])
+        
         start = text.find("[")
         end = text.rfind("]")
-        if start == -1 or end == -1:
-            return None
-        try:
-            return json.loads(text[start:end + 1])
-        except Exception as e:
-            logger.warning(f"JSON parse failed: {e} | raw: {text[:300]}")
-            return None
+        if start != -1 and end != -1:
+            try:
+                parsed = json.loads(text[start:end + 1])
+                if isinstance(parsed, list):
+                    result = []
+                    for item in parsed:
+                        if isinstance(item, str):
+                            try:
+                                item = json.loads(item)
+                            except Exception:
+                                pass
+                        if isinstance(item, dict):
+                            result.append(item)
+                    if result:
+                        return result
+            except Exception as e:
+                logger.warning(f"Standard JSON parse failed: {e} | raw: {text[:300]}")
+
+        # Fallback: Extract tool call JSON dict objects using regex matching {"tool": ...}
+        dict_matches = re.findall(r'\{[^{}]*"tool"\s*:\s*"[^"]+"[^{}]*\}', text)
+        if dict_matches:
+            result = []
+            for m in dict_matches:
+                try:
+                    obj = json.loads(m)
+                    if isinstance(obj, dict) and "tool" in obj:
+                        result.append(obj)
+                except Exception:
+                    pass
+            if result:
+                logger.info(f"Successfully extracted {len(result)} tool call(s) via regex fallback parser.")
+                return result
+
+        return None
 
     def _build_user_message(self, iteration: int) -> str:
         """Build the user message for this iteration."""
