@@ -258,7 +258,7 @@ fn handle_connection(mut stream: TcpStream, state: Arc<AppState>) {
 
             let fastapi_dispatched = if let Ok(mut fastapi_stream) = std::net::TcpStream::connect("127.0.0.1:8001") {
                 let http_req = format!(
-                    "POST /agent/execute HTTP/1.1\r\nHost: 127.0.0.1:8001\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
+                    "POST /api/v1/agent/execute HTTP/1.1\r\nHost: 127.0.0.1:8001\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}",
                     fastapi_payload.len(),
                     fastapi_payload
                 );

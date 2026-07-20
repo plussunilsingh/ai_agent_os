@@ -347,250 +347,250 @@
   ],
   "model_chunks": [
     {
-      "timestamp": "20:49:22 IST",
-      "task_id": "task-e2e-1784560752",
+      "timestamp": "21:31:35 IST",
+      "task_id": "task-e2e-1784563277",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:49:27 IST",
-      "task_id": "task-e2e-1784560752",
+      "timestamp": "21:31:40 IST",
+      "task_id": "task-e2e-1784563277",
       "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 329",
-      "agent_response": "Order created successfully with ID: 329...",
+      "content": "Task complete: Order created successfully with ID: 332",
+      "agent_response": "Order created successfully with ID: 332...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:49:27 IST",
-      "task_id": "task-e2e-1784560752",
+      "timestamp": "21:31:40 IST",
+      "task_id": "task-e2e-1784563277",
       "chunk_type": "AGENT_COMPLETE",
       "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
       "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:49:27 IST",
-      "task_id": "task-e2e-1784560752",
+      "timestamp": "21:31:40 IST",
+      "task_id": "task-e2e-1784563277",
       "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 329",
-      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 329...",
+      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 332",
+      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 332...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:44 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:32:59 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add now ajmin",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order add now ajmin",
+      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:44 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:32:59 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add now ajmin",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order add now ajmin",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:44 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:32:59 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "AGENT_SPAWN",
       "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
       "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:44 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:32:59 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:46 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:01 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
       "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:46 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:01 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "TOOL_HTTP_GET",
       "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maxi...",
       "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:46 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:01 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:55 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:09 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"...",
       "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:55 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:09 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 330,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 330,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 333,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 333,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:51:55 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:09 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:52:00 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:14 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 330.",
-      "agent_response": "Order created successfully with ID: 330....",
+      "content": "Task complete: Order created successfully with ID: 333.",
+      "agent_response": "Order created successfully with ID: 333....",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:52:00 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:14 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "AGENT_COMPLETE",
       "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
       "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:52:00 IST",
-      "task_id": "task-e2e-1784560904",
+      "timestamp": "21:33:14 IST",
+      "task_id": "task-e2e-1784563378",
       "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 330.",
-      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 330....",
+      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 333.",
+      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 333....",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:40 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:38:52 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "TASK_START",
-      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order amla as product",
-      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order amla as product",
+      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:40 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:38:52 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order amla as product",
-      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order amla as product",
+      "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+      "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:40 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:38:52 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "AGENT_SPAWN",
       "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
       "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:40 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:38:52 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:45 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:38:58 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
       "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:45 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:38:58 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "TOOL_HTTP_GET",
       "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maxi...",
       "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:45 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:38:58 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:52 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:39:05 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "MODEL_CHUNK",
-      "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"B123456789\", \"quantity\": 10, \"status\": \"Pending\",...",
-      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"B123456789\", \"quantity\": 10, \"status\": \"Pending\",",
+      "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"...",
+      "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:52 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:39:06 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "TOOL_HTTP_POST",
-      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 331,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
-      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 331,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
+      "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 334,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
+      "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 334,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:52 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:39:06 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "MODEL_CHUNK",
       "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:57 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:39:10 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "DONE",
-      "content": "Task complete: Order created successfully with ID: 331",
-      "agent_response": "Order created successfully with ID: 331...",
+      "content": "Task complete: Order created successfully with ID: 334",
+      "agent_response": "Order created successfully with ID: 334...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:57 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:39:10 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "AGENT_COMPLETE",
       "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
       "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "20:58:57 IST",
-      "task_id": "task-e2e-1784561319",
+      "timestamp": "21:39:10 IST",
+      "task_id": "task-e2e-1784563732",
       "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 331",
-      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 331...",
+      "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 334",
+      "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 334...",
       "model_name": "qwen2.5:7b"
     }
   ],
   "token_usage": {
-    "prompt_tokens": 28282,
-    "completion_tokens": 42714,
-    "total_tokens": 70996
+    "prompt_tokens": 29482,
+    "completion_tokens": 44976,
+    "total_tokens": 74458
   },
   "ai_agent_os_task_failures": [
     {
@@ -1088,6 +1088,324 @@
         "chunk_type": "TASK_COMPLETE",
         "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 331",
         "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 331...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-e2e-1784563277": [
+      {
+        "timestamp": "21:31:17 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:17 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:17 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:17 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:26 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+        "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:26 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "TOOL_HTTP_GET",
+        "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maxi...",
+        "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:26 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+        "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:34 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"...",
+        "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:35 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "TOOL_HTTP_POST",
+        "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 332,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
+        "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 332,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:35 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+        "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:40 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "DONE",
+        "content": "Task complete: Order created successfully with ID: 332",
+        "agent_response": "Order created successfully with ID: 332...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:40 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "AGENT_COMPLETE",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:31:40 IST",
+        "task_id": "task-e2e-1784563277",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 332",
+        "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 332...",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-e2e-1784563378": [
+      {
+        "timestamp": "21:32:59 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:32:59 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:32:59 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:32:59 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:01 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+        "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://127.0.0.1:9000/admin/incoming\"})",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:01 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "TOOL_HTTP_GET",
+        "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maxi...",
+        "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:01 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+        "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:09 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"...",
+        "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://127.0.0.1:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:09 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "TOOL_HTTP_POST",
+        "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 333,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
+        "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 333,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:09 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+        "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:14 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "DONE",
+        "content": "Task complete: Order created successfully with ID: 333.",
+        "agent_response": "Order created successfully with ID: 333....",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:14 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "AGENT_COMPLETE",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:33:14 IST",
+        "task_id": "task-e2e-1784563378",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 333.",
+        "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 333....",
+        "model_name": "qwen2.5:7b"
+      }
+    ],
+    "task-e2e-1784563732": [
+      {
+        "timestamp": "21:38:52 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "TASK_START",
+        "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:38:52 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "agent_response": "[Initializing LLM Runner] Dispatching to Ollama for: Test http://localhost:9000/admin/incoming page and place order added black seeds",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:38:52 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "AGENT_SPAWN",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: SPAWN. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:38:52 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "agent_response": "[[Iter 1] LLM Reasoning] Querying Ollama for iteration 1",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:38:58 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
+        "agent_response": "[[Iter 1] Tool: http_get] Running http_get({\"url\": \"http://localhost:9000/admin/incoming\"})",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:38:58 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "TOOL_HTTP_GET",
+        "content": "Tool 'http_get': {\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maxi...",
+        "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"<!DOCTYPE html><html lang=\\\"en\\\"><head><meta charSet=\\\"utf-8\\\"/><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=1, user...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:38:58 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+        "agent_response": "[[Iter 2] LLM Reasoning] Querying Ollama for iteration 2",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:39:05 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"...",
+        "agent_response": "[[Iter 2] Tool: http_post] Running http_post({\"url\": \"http://localhost:9000/api/admin/inventory/supplier-samples\", \"payload\": {\"internalBatchNumber\": \"BATCH123456\", \"quantity\": 10, \"status\": \"Pending\"",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:39:06 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "TOOL_HTTP_POST",
+        "content": "Tool 'http_post': {\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 334,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Par...",
+        "agent_response": "{\"success\": true, \"status\": 200, \"result\": \"{\\n  \\\"id\\\": 334,\\n  \\\"customer\\\": {\\n    \\\"id\\\": 4,\\n    \\\"uuid\\\": \\\"a80a9a0a-0722-4551-87ae-d1627ea233bb\\\",\\n    \\\"name\\\": \\\"Default Partner\\\",\\n    \\\"par...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:39:06 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "MODEL_CHUNK",
+        "content": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+        "agent_response": "[[Iter 3] LLM Reasoning] Querying Ollama for iteration 3",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:39:10 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "DONE",
+        "content": "Task complete: Order created successfully with ID: 334",
+        "agent_response": "Order created successfully with ID: 334...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:39:10 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "AGENT_COMPLETE",
+        "content": "Subagent [LLM-Runner:Test http://localhost:9000/adm] (task-e2e): Executing task",
+        "agent_response": "Subagent [LLM-Runner:Test http://localhost:9000/adm] event: COMPLETE. ...",
+        "model_name": "qwen2.5:7b"
+      },
+      {
+        "timestamp": "21:39:10 IST",
+        "task_id": "task-e2e-1784563732",
+        "chunk_type": "TASK_COMPLETE",
+        "content": "Task finished: COMPLETED - [3 iters] Order created successfully with ID: 334",
+        "agent_response": "Task Status: COMPLETED. Summary: [3 iters] Order created successfully with ID: 334...",
         "model_name": "qwen2.5:7b"
       }
     ]

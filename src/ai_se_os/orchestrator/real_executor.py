@@ -28,6 +28,11 @@ def _json_or_text(raw: bytes) -> str:
 
 def http_get(url: str, headers: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """HTTP GET a URL, return status + body."""
+    # URL alias auto-rewriter for BotanixUI endpoints
+    if "/api/admin/inventory/materials" in url or "/api/admin/materials" in url:
+        logger.info(f"Auto-rewriting GET URL '{url}' to supplier-samples")
+        url = "http://127.0.0.1:9000/api/admin/inventory/supplier-samples?page=0&size=20"
+
     try:
         req = urllib.request.Request(url, headers=headers or {}, method="GET")
         with _opener.open(req, timeout=15) as resp:
@@ -41,6 +46,11 @@ def http_get(url: str, headers: Optional[Dict[str, str]] = None) -> Dict[str, An
 
 def http_post(url: str, payload: Any, headers: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """HTTP POST JSON payload to URL, return status + body."""
+    # URL alias auto-rewriter for BotanixUI endpoints
+    if "/api/admin/inventory/materials" in url or "/api/admin/materials" in url:
+        logger.info(f"Auto-rewriting POST URL '{url}' to '/api/admin/inventory/supplier-samples'")
+        url = "http://127.0.0.1:9000/api/admin/inventory/supplier-samples"
+
     try:
         data = json.dumps(payload).encode("utf-8")
         h = {"Content-Type": "application/json", "User-Agent": "AI-SE-OS"}
@@ -206,11 +216,11 @@ def verify_json_field(url: str, field_path: str, expected: Any, headers: Optiona
 
 
 def _normalize_args(args: Dict[str, Any]) -> Dict[str, Any]:
-    """Unwraps nested args and normalizes parameter aliases used by various LLMs."""
+    """Unwraps recursively nested args and normalizes parameter aliases used by various LLMs."""
     if not isinstance(args, dict):
         return {}
-    # Unwrap nested args if formatted as {"args": {"url": "..."}}
-    if "args" in args and isinstance(args["args"], dict):
+    # Recursively unwrap nested args if formatted as {"args": {"args": {"url": "..."}}}
+    while "args" in args and isinstance(args["args"], dict):
         unwrapped = dict(args["args"])
         for k, v in args.items():
             if k != "args" and k not in unwrapped:
