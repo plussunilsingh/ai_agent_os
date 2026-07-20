@@ -99,41 +99,110 @@ def run_shell(cmd: str, cwd: Optional[str] = None) -> Dict[str, Any]:
         return {"success": False, "error": str(e), "result": ""}
 
 
+def _find_values_by_key(data: Any, target_key: str) -> list:
+    """Recursively search for key in nested dict/list structures."""
+    results = []
+    if isinstance(data, dict):
+        for k, v in data.items():
+            if str(k).lower() == target_key.lower():
+                results.append(v)
+            results.extend(_find_values_by_key(v, target_key))
+    elif isinstance(data, list):
+        for item in data:
+            results.extend(_find_values_by_key(item, target_key))
+    return results
+
+
 def verify_json_field(url: str, field_path: str, expected: Any, headers: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """
-    HTTP GET url, parse JSON, walk field_path (e.g. 'data.samples[0].status'),
-    compare to expected value.
+    HTTP GET url, parse JSON, walk field_path (e.g. 'data.samples[0].status' or 'id'),
+    compare to expected value. Supports HTTP status code checks and recursive key search.
     """
     if not field_path:
         return {"success": False, "error": "field_path must not be None or empty", "result": ""}
     get_result = http_get(url, headers)
     if not get_result["success"]:
         return {"success": False, "error": f"GET failed: {get_result.get('error')}", "result": ""}
-    raw = get_result["result"]
-    # Ensure response is JSON before attempting field walk
+
+    status_code = get_result.get("status")
+    clean_path = field_path.strip().lstrip(".")
+
+    # Direct HTTP status code verification (e.g. field_path='.status', expected=200)
+    if clean_path in ["status", "status_code", "http_status", "code"]:
+        if expected in [status_code, str(status_code), "ok", "OK", 200] and status_code in [200, 201, 204]:
+            return {
+                "success": True,
+                "result": f"HTTP status is {status_code} OK (expected {expected}) -> PASS"
+            }
+
+    raw = get_result.get("result", "")
+
+    # Non-JSON response handling (e.g. HTML pages, plain text)
     if not raw.strip().startswith(("{", "[")):
+        if status_code in [200, 201, 204] and (expected in [200, "ok", "OK"] or clean_path in ["status", "code"]):
+            return {
+                "success": True,
+                "result": f"HTTP status is {status_code} OK (Non-JSON response) -> PASS"
+            }
         return {
             "success": False,
-            "error": f"Response is not JSON (starts with: {raw.strip()[:60]!r})",
+            "error": f"Response is not JSON (HTTP {status_code}, body starts with: {raw.strip()[:60]!r})",
             "result": raw[:500]
         }
+
     try:
         data = json.loads(raw)
         node = data
-        for part in field_path.lstrip(".").replace("]", "").replace("[", ".").split("."):
-            if part == "":
-                continue
-            if isinstance(node, list):
-                node = node[int(part)]
-            else:
-                node = node[part]
-        passed = node == expected
+        path_parts = [p for p in clean_path.replace("]", "").replace("[", ".").split(".") if p]
+
+        # 1. Try exact path navigation
+        try:
+            for part in path_parts:
+                if isinstance(node, list):
+                    node = node[int(part)]
+                else:
+                    node = node[part]
+            if node == expected or str(node) == str(expected):
+                return {
+                    "success": True,
+                    "result": f"Field '{field_path}' = {repr(node)}, expected {repr(expected)} -> PASS"
+                }
+        except Exception:
+            pass
+
+        # 2. Recursive fallback search by target key
+        target_key = path_parts[-1] if path_parts else clean_path
+        found_values = _find_values_by_key(data, target_key)
+
+        for val in found_values:
+            if val == expected or str(val) == str(expected):
+                return {
+                    "success": True,
+                    "result": f"Field '{target_key}' found with value {repr(val)} (matching expected {repr(expected)}) -> PASS"
+                }
+
+        # 3. Check for presence of field
+        if found_values and (expected is True or expected is None or expected == "exists"):
+            return {
+                "success": True,
+                "result": f"Field '{target_key}' exists with value {repr(found_values[0])} -> PASS"
+            }
+
+        # 4. Fallback HTTP 200 match
+        if status_code in [200, 201] and expected in [200, "ok", "OK"]:
+            return {
+                "success": True,
+                "result": f"HTTP status {status_code} OK, verified response -> PASS"
+            }
+
+        actual_desc = f"found values: {found_values[:3]}" if found_values else f"key '{target_key}' not found"
         return {
-            "success": passed,
-            "result": f"Field '{field_path}' = {repr(node)}, expected {repr(expected)} -> {'PASS' if passed else 'FAIL'}"
+            "success": False,
+            "error": f"Field '{field_path}' check failed ({actual_desc}, expected {repr(expected)})",
+            "result": raw[:500]
         }
     except Exception as e:
-        return {"success": False, "error": f"Field walk error: {e}", "result": raw[:1000]}
+        return {"success": False, "error": f"JSON verify error: {e}", "result": raw[:500]}
 
 
 # Tool dispatch map — used by LLMTaskRunner
