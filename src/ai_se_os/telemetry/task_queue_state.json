@@ -1,202 +1,280 @@
 {
   "active_tasks": [],
-  "history": [],
+  "history": [
+    {
+      "task_id": "task-e2e-1784538656",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 14:40:56 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 14:40:57 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784539319",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 14:51:59 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 14:52:00 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784540673",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 15:14:33 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 15:14:34 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784540737",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 15:15:37 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 15:15:39 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784541257",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 15:24:17 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 15:24:19 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784541548",
+      "task_name": "Autonomous Incoming Material Page & Order Creation E2E Test",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "4. Full-Stack DB Audit",
+      "start_time": "2026-07-20 15:29:08 IST",
+      "progress_pct": 95,
+      "end_time": "2026-07-20 15:29:09 IST",
+      "summary": "Task Completed Successfully"
+    },
+    {
+      "task_id": "task-e2e-1784539318",
+      "task_name": "can you see what happend to created orders check by createing new orders and check why it is not visibel find the rootcause: Test http://localhost:9000/admin/incoming page and place order",
+      "target_url": "http://127.0.0.1:9000/admin/incoming",
+      "status": "COMPLETED",
+      "current_step": "Initializing task environment...",
+      "start_time": "2026-07-20 14:51:58 IST",
+      "progress_pct": 10,
+      "end_time": "2026-07-20 15:35:56 IST",
+      "summary": "Auto-reaped by AI-SE OS Master Queue (Stale Process Cleaned)"
+    }
+  ],
   "model_chunks": [
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
+      "timestamp": "15:14:34 IST",
+      "task_id": "task-e2e-1784540673",
       "chunk_type": "MODEL_CHUNK",
       "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
       "agent_response": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
+      "timestamp": "15:14:34 IST",
+      "task_id": "task-e2e-1784540673",
       "chunk_type": "TASK_COMPLETE",
       "content": "Task finished: SUCCESS - Task Completed Successfully",
       "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
+      "timestamp": "15:15:37 IST",
+      "task_id": "task-e2e-1784540737",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: can you see what happend to created orders check by createing new orders and check why it is not visibel find the rootcause: ...",
+      "agent_response": "Started autonomous task: can you see what happend to created orders check by createing new orders and check why it is not visibel find the rootcause: ",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:15:37 IST",
+      "task_id": "task-e2e-1784540737",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "agent_response": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:15:37 IST",
+      "task_id": "task-e2e-1784540737",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "agent_response": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:15:37 IST",
+      "task_id": "task-e2e-1784540737",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "agent_response": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:15:37 IST",
+      "task_id": "task-e2e-1784540737",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784540737",
+      "agent_response": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784540737",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:15:38 IST",
+      "task_id": "task-e2e-1784540737",
       "chunk_type": "MODEL_CHUNK",
       "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
       "agent_response": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
+      "timestamp": "15:15:39 IST",
+      "task_id": "task-e2e-1784540737",
       "chunk_type": "TASK_COMPLETE",
       "content": "Task finished: SUCCESS - Task Completed Successfully",
       "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
+      "timestamp": "15:17:14 IST",
+      "task_id": "711a467e-5c3b-4727-b13a-e1f87d29c5cf",
+      "chunk_type": "AGENT_SPAWN",
+      "content": "Subagent [Frontend UI Fixer & Auditor] (711a467e): Refactoring property key mappings in incomingDataHelper.js",
+      "agent_response": "Subagent [Frontend UI Fixer & Auditor] event: SPAWN. Refactoring property key mappings in incomingDataHelper.js...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:17:14 IST",
+      "task_id": "711a467e-5c3b-4727-b13a-e1f87d29c5cf",
+      "chunk_type": "AGENT_COMPLETE",
+      "content": "Subagent [Frontend UI Fixer & Auditor] (711a467e): Passed npm run format, lint, test, and build (35/35 tests passed)",
+      "agent_response": "Subagent [Frontend UI Fixer & Auditor] event: COMPLETE. Passed npm run format, lint, test, and build (35/35 tests passed)...",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:24:17 IST",
+      "task_id": "task-e2e-1784541257",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order",
+      "agent_response": "Started autonomous task: Test http://localhost:9000/admin/incoming page and place order",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:24:17 IST",
+      "task_id": "task-e2e-1784541257",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "agent_response": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:24:17 IST",
+      "task_id": "task-e2e-1784541257",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "agent_response": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:24:17 IST",
+      "task_id": "task-e2e-1784541257",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "agent_response": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:24:18 IST",
+      "task_id": "task-e2e-1784541257",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784541258",
+      "agent_response": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784541258",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:24:18 IST",
+      "task_id": "task-e2e-1784541257",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
+      "agent_response": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
+      "model_name": "qwen2.5:7b"
+    },
+    {
+      "timestamp": "15:24:19 IST",
+      "task_id": "task-e2e-1784541257",
       "chunk_type": "TASK_COMPLETE",
       "content": "Task finished: SUCCESS - Task Completed Successfully",
       "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
+      "timestamp": "15:29:08 IST",
+      "task_id": "task-e2e-1784541548",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: can you see what happend to created orders check by createing new orders and check why it is not visibel find the rootcause: ...",
+      "agent_response": "Started autonomous task: can you see what happend to created orders check by createing new orders and check why it is not visibel find the rootcause: ",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
+      "timestamp": "15:29:08 IST",
+      "task_id": "task-e2e-1784541548",
+      "chunk_type": "TASK_START",
+      "content": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
+      "agent_response": "Started autonomous task: Autonomous Incoming Material Page & Order Creation E2E Test",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
+      "timestamp": "15:29:08 IST",
+      "task_id": "task-e2e-1784541548",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
+      "agent_response": "[1. DOM Rendering Check] Opening http://127.0.0.1:9000/admin/incoming",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
+      "timestamp": "15:29:08 IST",
+      "task_id": "task-e2e-1784541548",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
+      "agent_response": "[2. API Catalog Inspection] Fetching /api/admin/inventory/supplier-samples",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
+      "timestamp": "15:29:08 IST",
+      "task_id": "task-e2e-1784541548",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784541548",
+      "agent_response": "[3. Form Submission & Order Placement] Submitting sample payload BATCH-AI-OS-1784541548",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
+      "timestamp": "15:29:09 IST",
+      "task_id": "task-e2e-1784541548",
+      "chunk_type": "MODEL_CHUNK",
+      "content": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
+      "agent_response": "[4. Full-Stack DB Audit] Auditing PostgreSQL persistence in Spring Boot",
       "model_name": "qwen2.5:7b"
     },
     {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
-      "chunk_type": "TASK_COMPLETE",
-      "content": "Task finished: SUCCESS - Task Completed Successfully",
-      "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
-      "model_name": "qwen2.5:7b"
-    },
-    {
-      "timestamp": "14:39:55 IST",
-      "task_id": "task-e2e-1784538590",
+      "timestamp": "15:29:09 IST",
+      "task_id": "task-e2e-1784541548",
       "chunk_type": "TASK_COMPLETE",
       "content": "Task finished: SUCCESS - Task Completed Successfully",
       "agent_response": "Task Status: SUCCESS. Summary: Task Completed Successfully...",
@@ -204,9 +282,11 @@
     }
   ],
   "token_usage": {
-    "prompt_tokens": 3450,
-    "completion_tokens": 1820,
-    "total_tokens": 5270
+    "prompt_tokens": 8970,
+    "completion_tokens": 5080,
+    "total_tokens": 14050
   },
-  "ai_agent_os_task_failures": []
+  "ai_agent_os_task_failures": [],
+  "active_subagents": [],
+  "active_agent_count": 0
 }

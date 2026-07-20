@@ -130,8 +130,39 @@ class TaskQueueTracker:
         cls._write_state(state)
 
     @classmethod
-    def register_task(cls, task_id: str, task_name: str, target_url: str) -> Dict[str, Any]:
+    def reap_stale_tasks(cls):
+        """Automatically reaps orphaned or stale tasks that have been in RUNNING state for >45s without completion."""
         state = cls._read_state()
+        active = state.get("active_tasks", [])
+        now_ts = time.time()
+        still_active = []
+        reaped_count = 0
+        for t in active:
+            start_ts = t.get("start_epoch", 0)
+            if start_ts == 0:
+                try:
+                    start_ts = time.mktime(time.strptime(t["start_time"], "%Y-%m-%d %H:%M:%S IST"))
+                except Exception:
+                    start_ts = now_ts - 120
+            
+            if now_ts - start_ts > 45:
+                t["status"] = "COMPLETED"
+                t["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S IST")
+                t["summary"] = "Auto-reaped by AI-SE OS Master Queue (Stale Process Cleaned)"
+                state["history"].append(t)
+                reaped_count += 1
+            else:
+                still_active.append(t)
+        
+        if reaped_count > 0:
+            state["active_tasks"] = still_active
+            cls._write_state(state)
+
+    @classmethod
+    def register_task(cls, task_id: str, task_name: str, target_url: str) -> Dict[str, Any]:
+        cls.reap_stale_tasks()
+        state = cls._read_state()
+        now_ts = time.time()
         task_entry = {
             "task_id": task_id,
             "task_name": task_name,
@@ -139,6 +170,7 @@ class TaskQueueTracker:
             "status": "RUNNING",
             "current_step": "Initializing task environment...",
             "start_time": time.strftime("%Y-%m-%d %H:%M:%S IST"),
+            "start_epoch": now_ts,
             "progress_pct": 10
         }
         state["active_tasks"] = [t for t in state["active_tasks"] if t["task_id"] != task_id]
@@ -191,6 +223,7 @@ class TaskQueueTracker:
 
     @classmethod
     def get_queue_telemetry(cls) -> Dict[str, Any]:
+        cls.reap_stale_tasks()
         state = cls._read_state()
         active_list = state.get("active_tasks", [])
         history_list = state.get("history", [])
